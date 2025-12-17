@@ -254,13 +254,13 @@ export default function DartsTrainingApp() {
                 Menu
               </Button>
             </SheetTrigger>
-            <SheetContent className="p-3">
+            <SheetContent className="p-3 flex flex-col overflow-hidden">
               <SheetHeader>
                 <SheetTitle className="text-base">Menu</SheetTitle>
                 <SheetDescription className="text-xs">Game controls and options</SheetDescription>
               </SheetHeader>
 
-              <div className="flex gap-1 mt-4 border-b">
+              <div className="flex gap-1 mt-4 border-b flex-shrink-0">
                 <Button
                   variant={activeMenuTab === "settings" ? "default" : "ghost"}
                   size="sm"
@@ -290,7 +290,7 @@ export default function DartsTrainingApp() {
                 </Button>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 overflow-y-auto flex-1 min-h-0">
 
                 {activeMenuTab === "settings" && <SettingsPanel onSettingsChange={setHitRatioSettings} />}
 
@@ -356,6 +356,8 @@ export default function DartsTrainingApp() {
                 onHoverTarget={setHoveredTarget}
                 disabled={gameStatus !== "playing"}
                 size={hitRatioSettings.dartboardSize}
+                tripleInnerRadius={hitRatioSettings.tripleInnerRadius}
+                tripleOuterRadius={hitRatioSettings.tripleOuterRadius}
               />
             </div>
           </div>

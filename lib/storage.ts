@@ -35,6 +35,8 @@ export interface HitRatioSettings {
   single: number
   dartboardSize: number
   difficulty: Difficulty
+  tripleInnerRadius: number
+  tripleOuterRadius: number
 }
 
 const STORAGE_KEY = "darts_training_progress"
@@ -136,11 +138,15 @@ export function loadSettings(): HitRatioSettings {
     const stored = localStorage.getItem(SETTINGS_KEY)
     if (!stored) return getDefaultSettings()
     const parsed = JSON.parse(stored)
-    // Ensure difficulty field exists for backwards compatibility
-    if (!parsed.difficulty) {
-      parsed.difficulty = "medium"
+    const defaults = getDefaultSettings()
+    // Ensure all fields exist for backwards compatibility
+    return {
+      ...defaults,
+      ...parsed,
+      difficulty: parsed.difficulty || defaults.difficulty,
+      tripleInnerRadius: parsed.tripleInnerRadius ?? defaults.tripleInnerRadius,
+      tripleOuterRadius: parsed.tripleOuterRadius ?? defaults.tripleOuterRadius,
     }
-    return parsed
   } catch {
     return getDefaultSettings()
   }
@@ -182,6 +188,8 @@ function getDefaultSettings(): HitRatioSettings {
     single: 85,
     dartboardSize: 100,
     difficulty: "medium",
+    tripleInnerRadius: 75,
+    tripleOuterRadius: 105,
   }
 }
 

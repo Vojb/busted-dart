@@ -9,6 +9,8 @@ interface DartboardSelectorProps {
   onHoverTarget?: (target: DartTarget | null) => void
   disabled?: boolean
   size?: number
+  tripleInnerRadius?: number
+  tripleOuterRadius?: number
 }
 
 // Helper function to round numbers to avoid floating-point precision issues
@@ -16,7 +18,7 @@ const roundTo = (value: number, decimals: number = 2): number => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
-export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100 }: DartboardSelectorProps) {
+export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 75, tripleOuterRadius = 105 }: DartboardSelectorProps) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -78,13 +80,13 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
 
   // Use consistent size during SSR to avoid hydration mismatch
   const displaySize = mounted ? size : 100
-  const maxWidth = roundTo((400 * displaySize) / 100)
+  const maxWidth = roundTo((450 * displaySize) / 100)
 
   return (
     <Card className="p-4 sm:p-6 flex items-center justify-center">
       <svg
         viewBox="0 0 340 340"
-        className="w-full max-w-[500px] touch-none select-none"
+        className="w-full max-w-[550px] touch-none select-none"
         style={{
           filter: disabled ? "opacity(0.5)" : "none",
           width: `${displaySize}%`,
@@ -121,7 +123,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
               />
 
               <path
-                d={createArc(95, 130, startAngle, endAngle)}
+                d={createArc(tripleOuterRadius, 130, startAngle, endAngle)}
                 fill={singleColor}
                 stroke="#000"
                 strokeWidth="0.5"
@@ -140,7 +142,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
               />
 
               <path
-                d={createArc(75, 95, startAngle, endAngle)}
+                d={createArc(tripleInnerRadius, tripleOuterRadius, startAngle, endAngle)}
                 fill={doubleTripleColor}
                 stroke="#000"
                 strokeWidth="0.5"
@@ -160,7 +162,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
               />
 
               <path
-                d={createArc(20, 75, startAngle, endAngle)}
+                d={createArc(20, tripleInnerRadius, startAngle, endAngle)}
                 fill={singleColor}
                 stroke="#000"
                 strokeWidth="0.5"

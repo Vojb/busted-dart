@@ -356,7 +356,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts
 const roundTo = (value, decimals = 2)=>{
     return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 };
-function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100 }) {
+function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 75, tripleOuterRadius = 105 }) {
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         setMounted(true);
@@ -430,12 +430,12 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
     };
     // Use consistent size during SSR to avoid hydration mismatch
     const displaySize = mounted ? size : 100;
-    const maxWidth = roundTo(400 * displaySize / 100);
+    const maxWidth = roundTo(450 * displaySize / 100);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
         className: "p-4 sm:p-6 flex items-center justify-center",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
             viewBox: "0 0 340 340",
-            className: "w-full max-w-[500px] touch-none select-none",
+            className: "w-full max-w-[550px] touch-none select-none",
             style: {
                 filter: disabled ? "opacity(0.5)" : "none",
                 width: `${displaySize}%`,
@@ -474,11 +474,11 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 103,
+                                lineNumber: 105,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                d: createArc(95, 130, startAngle, endAngle),
+                                d: createArc(tripleOuterRadius, 130, startAngle, endAngle),
                                 fill: singleColor,
                                 stroke: "#000",
                                 strokeWidth: "0.5",
@@ -501,11 +501,11 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 123,
+                                lineNumber: 125,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                d: createArc(75, 95, startAngle, endAngle),
+                                d: createArc(tripleInnerRadius, tripleOuterRadius, startAngle, endAngle),
                                 fill: doubleTripleColor,
                                 stroke: "#000",
                                 strokeWidth: "0.5",
@@ -529,11 +529,11 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 142,
+                                lineNumber: 144,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
-                                d: createArc(20, 75, startAngle, endAngle),
+                                d: createArc(20, tripleInnerRadius, startAngle, endAngle),
                                 fill: singleColor,
                                 stroke: "#000",
                                 strokeWidth: "0.5",
@@ -556,7 +556,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 162,
+                                lineNumber: 164,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
@@ -568,13 +568,13 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 children: number
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 182,
+                                lineNumber: 184,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, number, true, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 102,
+                        lineNumber: 104,
                         columnNumber: 13
                     }, this);
                 }),
@@ -604,7 +604,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 196,
+                    lineNumber: 198,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -633,18 +633,18 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 218,
+                    lineNumber: 220,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/dartboard-selector.tsx",
-            lineNumber: 85,
+            lineNumber: 87,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/dartboard-selector.tsx",
-        lineNumber: 84,
+        lineNumber: 86,
         columnNumber: 5
     }, this);
 }
@@ -1032,7 +1032,9 @@ function getDefaultSettings() {
         double: 65,
         single: 85,
         dartboardSize: 100,
-        difficulty: "medium"
+        difficulty: "medium",
+        tripleInnerRadius: 75,
+        tripleOuterRadius: 105
     };
 }
 function getRecentSessions(count = 10) {
@@ -2280,7 +2282,9 @@ function SettingsPanel({ onSettingsChange }) {
         double: 65,
         single: 85,
         dartboardSize: 120,
-        difficulty: "medium"
+        difficulty: "medium",
+        tripleInnerRadius: 75,
+        tripleOuterRadius: 105
     });
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
@@ -2310,7 +2314,9 @@ function SettingsPanel({ onSettingsChange }) {
             double: 65,
             single: 85,
             dartboardSize: 120,
-            difficulty: "medium"
+            difficulty: "medium",
+            tripleInnerRadius: 75,
+            tripleOuterRadius: 105
         };
         setSettings(defaultSettings);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$storage$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["saveSettings"])(defaultSettings);
@@ -2758,12 +2764,145 @@ function SettingsPanel({ onSettingsChange }) {
                 lineNumber: 123,
                 columnNumber: 7
             }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex items-center justify-between",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                    className: "text-sm font-semibold flex items-center gap-2",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Target$3e$__["Target"], {
+                            className: "size-3.5"
+                        }, void 0, false, {
+                            fileName: "[project]/components/settings-panel.tsx",
+                            lineNumber: 199,
+                            columnNumber: 11
+                        }, this),
+                        "Triple Ring Size"
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/components/settings-panel.tsx",
+                    lineNumber: 198,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/components/settings-panel.tsx",
+                lineNumber: 197,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
+                className: "p-3 space-y-4 bg-card/50",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "space-y-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center justify-between",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
+                                        htmlFor: "triple-inner-radius-slider",
+                                        className: "text-xs font-medium",
+                                        children: "Triple Inner Radius"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/settings-panel.tsx",
+                                        lineNumber: 207,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs font-semibold text-muted-foreground",
+                                        children: settings.tripleInnerRadius
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/settings-panel.tsx",
+                                        lineNumber: 210,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/settings-panel.tsx",
+                                lineNumber: 206,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Slider"], {
+                                id: "triple-inner-radius-slider",
+                                min: 50,
+                                max: 90,
+                                step: 1,
+                                value: [
+                                    settings.tripleInnerRadius
+                                ],
+                                onValueChange: (value)=>handleSettingChange("tripleInnerRadius", value[0]),
+                                className: "w-full"
+                            }, void 0, false, {
+                                fileName: "[project]/components/settings-panel.tsx",
+                                lineNumber: 212,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/settings-panel.tsx",
+                        lineNumber: 205,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "space-y-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center justify-between",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
+                                        htmlFor: "triple-outer-radius-slider",
+                                        className: "text-xs font-medium",
+                                        children: "Triple Outer Radius"
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/settings-panel.tsx",
+                                        lineNumber: 225,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs font-semibold text-muted-foreground",
+                                        children: settings.tripleOuterRadius
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/settings-panel.tsx",
+                                        lineNumber: 228,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/components/settings-panel.tsx",
+                                lineNumber: 224,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Slider"], {
+                                id: "triple-outer-radius-slider",
+                                min: 90,
+                                max: 130,
+                                step: 1,
+                                value: [
+                                    settings.tripleOuterRadius
+                                ],
+                                onValueChange: (value)=>handleSettingChange("tripleOuterRadius", value[0]),
+                                className: "w-full"
+                            }, void 0, false, {
+                                fileName: "[project]/components/settings-panel.tsx",
+                                lineNumber: 230,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/components/settings-panel.tsx",
+                        lineNumber: 223,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/components/settings-panel.tsx",
+                lineNumber: 204,
+                columnNumber: 7
+            }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                 className: "text-xs text-muted-foreground",
                 children: "Adjust dartboard size and hit ratios to match your skill level or practice at different difficulties."
             }, void 0, false, {
                 fileName: "[project]/components/settings-panel.tsx",
-                lineNumber: 197,
+                lineNumber: 242,
                 columnNumber: 7
             }, this)
         ]
@@ -4515,7 +4654,7 @@ function DartsTrainingApp() {
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SheetContent"], {
-                                    className: "p-3",
+                                    className: "p-3 flex flex-col overflow-hidden",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SheetHeader"], {
                                             children: [
@@ -4542,7 +4681,7 @@ function DartsTrainingApp() {
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex gap-1 mt-4 border-b",
+                                            className: "flex gap-1 mt-4 border-b flex-shrink-0",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
                                                     variant: activeMenuTab === "settings" ? "default" : "ghost",
@@ -4611,7 +4750,7 @@ function DartsTrainingApp() {
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "mt-4",
+                                            className: "mt-4 overflow-y-auto flex-1 min-h-0",
                                             children: [
                                                 activeMenuTab === "settings" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$settings$2d$panel$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SettingsPanel"], {
                                                     onSettingsChange: setHitRatioSettings
@@ -4782,7 +4921,9 @@ function DartsTrainingApp() {
                                     onSelectTarget: handleThrow,
                                     onHoverTarget: setHoveredTarget,
                                     disabled: gameStatus !== "playing",
-                                    size: hitRatioSettings.dartboardSize
+                                    size: hitRatioSettings.dartboardSize,
+                                    tripleInnerRadius: hitRatioSettings.tripleInnerRadius,
+                                    tripleOuterRadius: hitRatioSettings.tripleOuterRadius
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.tsx",
                                     lineNumber: 354,

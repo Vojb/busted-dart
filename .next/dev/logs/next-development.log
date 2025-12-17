@@ -180,3 +180,93 @@ Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
 [00:33:21.792] Server  LOG      ✓ Compiled in 26ms
 [00:33:24.526] Server  LOG      ✓ Compiled in 14ms
 [00:33:33.199] Server  LOG      ✓ Compiled in 16ms
+[03:03:58.367] Server  LOG      ✓ Compiled in 15ms
+[03:04:48.318] Server  LOG      ✓ Compiled in 26ms
+[03:04:58.005] Server  LOG      ✓ Compiled in 58ms
+[03:05:08.729] Server  LOG      ✓ Compiled in 12ms
+[03:05:11.810] Server  LOG      ✓ Compiled in 17ms
+[03:05:16.652] Server  LOG      ✓ Compiled in 15ms
+[03:05:21.865] Server  LOG      ✓ Compiled in 17ms
+[03:05:28.347] Server  LOG      ✓ Compiled in 16ms
+[03:07:14.900] Server  LOG      ✓ Compiled in 13ms
+[03:07:25.604] Server  LOG      ✓ Compiled in 17ms
+[03:08:05.773] Server  LOG      ✓ Compiled in 35ms
+[03:08:58.306] Server  LOG      ✓ Compiled in 14ms
+[03:08:59.937] Server  LOG      ✓ Compiled in 15ms
+[03:09:01.563] Server  LOG      ✓ Compiled in 58ms
+[03:09:03.522] Server  LOG      ✓ Compiled in 15ms
+[03:09:10.930] Server  LOG      ✓ Compiled in 16ms
+[03:09:11.867] Server  LOG      ✓ Compiled in 15ms
+[03:09:13.322] Server  LOG      ✓ Compiled in 76ms
+[03:09:13.407] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: TRIPLE_OUTER_RADIUS
+[03:09:13.520] Browser ERROR   uncaughtError: ReferenceError: TRIPLE_OUTER_RADIUS is not defined
+[03:09:14.856] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:14.856] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:14.913] Server  ERROR    ⨯ ReferenceError: TRIPLE_OUTER_RADIUS is not defined
+[03:09:14.918] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:14.918] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:15.607] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: TRIPLE_OUTER_RADIUS
+[03:09:18.419] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:18.419] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:18.435] Server  ERROR    ⨯ ReferenceError: TRIPLE_OUTER_RADIUS is not defined
+[03:09:18.439] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:18.439] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:18.613] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: TRIPLE_OUTER_RADIUS
+[03:09:19.256] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:19.256] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:19.269] Server  ERROR    ⨯ ReferenceError: TRIPLE_OUTER_RADIUS is not defined
+[03:09:19.274] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:19.274] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:19.443] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: TRIPLE_OUTER_RADIUS
+[03:09:20.014] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.014] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.027] Server  ERROR    ⨯ ReferenceError: TRIPLE_OUTER_RADIUS is not defined
+[03:09:20.031] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.031] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.201] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: TRIPLE_OUTER_RADIUS
+[03:09:20.751] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.751] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.764] Server  ERROR    ⨯ ReferenceError: TRIPLE_OUTER_RADIUS is not defined
+[03:09:20.767] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.767] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:20.937] Browser ERROR   uncaughtError: ReferenceError: Can't find variable: TRIPLE_OUTER_RADIUS
+[03:09:21.975] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:09:21.977] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:09:21.998] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:21.998] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:22.023] Server  LOG      ✓ Compiled in 16ms
+[03:09:22.031] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:22.031] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[03:09:22.145] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:09:22.270] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:09:22.270] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[03:09:22.270] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766005464153}
+[03:09:22.521] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[03:09:22.521] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[03:09:22.521] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766005464180}
+[03:09:24.018] Server  LOG      ✓ Compiled in 78ms
+[03:10:12.302] Server  LOG      ✓ Compiled in 90ms

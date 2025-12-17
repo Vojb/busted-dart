@@ -16,7 +16,7 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium" })
+  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium", tripleInnerRadius: 75, tripleOuterRadius: 105 })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   }
 
   const handleReset = () => {
-    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium" as Difficulty }
+    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium" as Difficulty, tripleInnerRadius: 75, tripleOuterRadius: 105 }
     setSettings(defaultSettings)
     saveSettings(defaultSettings)
     onSettingsChange?.(defaultSettings)
@@ -189,6 +189,51 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
             step={5}
             value={[settings.single]}
             onValueChange={(value) => handleSettingChange("single", value[0])}
+            className="w-full"
+          />
+        </div>
+      </Card>
+
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-semibold flex items-center gap-2">
+          <Target className="size-3.5" />
+          Triple Ring Size
+        </h3>
+      </div>
+
+      <Card className="p-3 space-y-4 bg-card/50">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="triple-inner-radius-slider" className="text-xs font-medium">
+              Triple Inner Radius
+            </Label>
+            <span className="text-xs font-semibold text-muted-foreground">{settings.tripleInnerRadius}</span>
+          </div>
+          <Slider
+            id="triple-inner-radius-slider"
+            min={50}
+            max={90}
+            step={1}
+            value={[settings.tripleInnerRadius]}
+            onValueChange={(value) => handleSettingChange("tripleInnerRadius", value[0])}
+            className="w-full"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="triple-outer-radius-slider" className="text-xs font-medium">
+              Triple Outer Radius
+            </Label>
+            <span className="text-xs font-semibold text-muted-foreground">{settings.tripleOuterRadius}</span>
+          </div>
+          <Slider
+            id="triple-outer-radius-slider"
+            min={90}
+            max={130}
+            step={1}
+            value={[settings.tripleOuterRadius]}
+            onValueChange={(value) => handleSettingChange("tripleOuterRadius", value[0])}
             className="w-full"
           />
         </div>
