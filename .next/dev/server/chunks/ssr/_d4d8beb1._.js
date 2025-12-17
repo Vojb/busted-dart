@@ -761,7 +761,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                 const isEmpty = !dart;
                 const isHovered = hoveredTarget && index === nextDartIndex && isEmpty;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: `flex flex-col items-center justify-center gap-1 p-1.5 sm:p-2 rounded-md border-2 transition-colors min-h-[100px] sm:min-h-[120px] ${isHovered ? "border-dashed border-muted-foreground/50 bg-muted/30 opacity-60" : isEmpty ? "border-dashed border-muted bg-muted/20" : dart?.score === 0 ? "border-red-500 bg-red-500/5" : dart?.wasAccurate ? "border-primary bg-primary/5" : "border-secondary bg-secondary/5"}`,
+                    className: `flex flex-col items-center justify-center gap-1 p-1.5 sm:p-2 rounded-md border-2 transition-colors min-h-[100px] sm:min-h-[120px] ${isHovered ? "border-dashed border-muted-foreground/50 bg-muted/30 opacity-60" : isEmpty ? "border-dashed border-muted bg-muted/20" : dart?.wasAccurate ? "border-primary bg-primary/5" : "border-red-500 bg-red-500/5"}`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "text-[8px] sm:text-[10px] font-medium text-muted-foreground",
@@ -771,7 +771,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/current-darts-display.tsx",
-                            lineNumber: 44,
+                            lineNumber: 42,
                             columnNumber: 15
                         }, this),
                         dart ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -781,7 +781,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                                     children: dart.score
                                 }, void 0, false, {
                                     fileName: "[project]/components/current-darts-display.tsx",
-                                    lineNumber: 47,
+                                    lineNumber: 45,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
@@ -790,7 +790,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                                     children: dart.hit.label
                                 }, void 0, false, {
                                     fileName: "[project]/components/current-darts-display.tsx",
-                                    lineNumber: 48,
+                                    lineNumber: 46,
                                     columnNumber: 19
                                 }, this)
                             ]
@@ -801,7 +801,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                                     children: hoveredTarget.value
                                 }, void 0, false, {
                                     fileName: "[project]/components/current-darts-display.tsx",
-                                    lineNumber: 54,
+                                    lineNumber: 52,
                                     columnNumber: 19
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
@@ -810,7 +810,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                                     children: hoveredTarget.label
                                 }, void 0, false, {
                                     fileName: "[project]/components/current-darts-display.tsx",
-                                    lineNumber: 55,
+                                    lineNumber: 53,
                                     columnNumber: 19
                                 }, this)
                             ]
@@ -819,7 +819,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                             children: "-"
                         }, void 0, false, {
                             fileName: "[project]/components/current-darts-display.tsx",
-                            lineNumber: 60,
+                            lineNumber: 58,
                             columnNumber: 17
                         }, this)
                     ]

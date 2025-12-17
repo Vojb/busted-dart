@@ -34,11 +34,9 @@ export function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }: Curre
                   ? "border-dashed border-muted-foreground/50 bg-muted/30 opacity-60"
                   : isEmpty
                     ? "border-dashed border-muted bg-muted/20"
-                    : dart?.score === 0
-                      ? "border-red-500 bg-red-500/5"
-                      : dart?.wasAccurate
-                        ? "border-primary bg-primary/5"
-                        : "border-secondary bg-secondary/5"
+                    : dart?.wasAccurate
+                      ? "border-primary bg-primary/5"
+                      : "border-red-500 bg-red-500/5"
               }`}
             >
               <div className="text-[8px] sm:text-[10px] font-medium text-muted-foreground">Dart {index + 1}</div>
