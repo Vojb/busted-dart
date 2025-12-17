@@ -4950,7 +4950,7 @@ function DartsTrainingApp() {
             setGameCompleteDialog(true);
             return;
         }
-        if (newScore === 0 && result.hit.zone === "D") {
+        if (newScore === 0 && (result.hit.zone === "D" || result.hit.zone === "BULL")) {
             setGameStatus("won");
             setDartHistory((prev)=>[
                     ...prev,
@@ -4966,7 +4966,7 @@ function DartsTrainingApp() {
             setGameCompleteDialog(true);
             return;
         }
-        if (newScore === 0 && result.hit.zone !== "D") {
+        if (newScore === 0 && result.hit.zone !== "D" && result.hit.zone !== "BULL") {
             setGameStatus("bust");
             setDartHistory((prev)=>[
                     ...prev,

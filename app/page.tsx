@@ -111,7 +111,7 @@ export default function DartsTrainingApp() {
       return
     }
 
-    if (newScore === 0 && result.hit.zone === "D") {
+    if (newScore === 0 && (result.hit.zone === "D" || result.hit.zone === "BULL")) {
       setGameStatus("won")
       setDartHistory((prev) => [...prev, result])
       setDartsThrown(newDartsThrown)
@@ -122,7 +122,7 @@ export default function DartsTrainingApp() {
       return
     }
 
-    if (newScore === 0 && result.hit.zone !== "D") {
+    if (newScore === 0 && result.hit.zone !== "D" && result.hit.zone !== "BULL") {
       setGameStatus("bust")
       setDartHistory((prev) => [...prev, result])
       setDartsThrown(newDartsThrown)
