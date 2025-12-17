@@ -5,9 +5,6 @@ import { Button } from "@/components/ui/button"
 import { DartboardSelector } from "@/components/dartboard-selector"
 import { ScoreDisplay } from "@/components/score-display"
 import { CurrentDartsDisplay } from "@/components/current-darts-display"
-import { ThrowHistory } from "@/components/throw-history"
-import { CheckoutFeedback } from "@/components/checkout-feedback"
-import { DecisionQualityMeter } from "@/components/decision-quality-meter"
 import { ProgressDashboard } from "@/components/progress-dashboard"
 import { SettingsPanel } from "@/components/settings-panel"
 import { GameHistory } from "@/components/game-history"
@@ -33,7 +30,6 @@ import {
   DialogTitle,
   DialogFooter,
 } from "@/components/ui/dialog"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { toast } from "sonner"
 
 export default function DartsTrainingApp() {
@@ -213,16 +209,30 @@ export default function DartsTrainingApp() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto p-2 sm:p-3 max-w-7xl">
         <div className="flex items-center justify-between mb-2">
-          <Button onClick={handleReset} variant="outline" size="sm" className="text-xs sm:text-sm bg-transparent">
-            <RotateCcw className="size-3 sm:size-4 mr-1 sm:mr-2" />
-            New Game
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button onClick={handleReset} variant="outline" size="sm" className="text-xs sm:text-sm bg-transparent">
+              <RotateCcw className="size-3 sm:size-4 mr-1 sm:mr-2" />
+              New Game
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs sm:text-sm bg-transparent"
+              onClick={() => {
+                setSheetOpen(true)
+                setActiveMenuTab("history")
+                setProgress(loadProgress())
+              }}
+            >
+              <History className="size-3 sm:size-4" />
+            </Button>
+          </div>
 
           {progress && progress.currentStreak > 0 && (
             <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-primary/10 border border-primary/20">
               <Trophy className="size-3 sm:size-4 text-primary" />
               <span className="text-xs sm:text-sm font-semibold text-primary">
-                {progress.currentStreak} {progress.currentStreak === 1 ? "game" : "games"} streak
+                {progress.currentStreak}{"x"}
               </span>
             </div>
           )}
@@ -340,47 +350,13 @@ export default function DartsTrainingApp() {
               <CurrentDartsDisplay darts={dartHistory} dartsThrown={dartsThrown} hoveredTarget={hoveredTarget} />
             </div>
 
-            <div className="lg:col-span-2 flex flex-col gap-2">
+            <div className="lg:col-span-2 flex flex-col gap-2 min-w-0">
               <DartboardSelector
                 onSelectTarget={handleThrow}
                 onHoverTarget={setHoveredTarget}
                 disabled={gameStatus !== "playing"}
                 size={hitRatioSettings.dartboardSize}
               />
-
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="details" className="border rounded-lg px-3">
-                  <AccordionTrigger className="text-xs py-2 hover:no-underline">
-                    View Details & History
-                  </AccordionTrigger>
-                  <AccordionContent className="space-y-2 pb-2">
-                    <ThrowHistory
-                      dartHistory={dartHistory.map((d) => ({
-                        aimed: d.aimed.label,
-                        hit: d.hit.label,
-                        score: d.score,
-                        wasAccurate: d.wasAccurate,
-                      }))}
-                    />
-
-                    {gameStatus === "playing" && (
-                      <CheckoutFeedback
-                        currentScore={currentScore}
-                        dartsRemaining={dartsRemaining}
-                        lastThrow={dartHistory.length > 0 ? dartHistory[dartHistory.length - 1] : undefined}
-                        userRoute={userRoute}
-                      />
-                    )}
-
-                    <DecisionQualityMeter
-                      accuracy={accuracy}
-                      optimalDecisions={sessionStats.optimalDecisions}
-                      totalDecisions={sessionStats.totalDecisions}
-                      averageDartsToFinish={averageDartsToFinish}
-                    />
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
             </div>
           </div>
         </div>

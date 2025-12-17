@@ -50,7 +50,7 @@ export function CheckoutFeedback({ currentScore, dartsRemaining, lastThrow, user
       )}
 
       {hasOptimalRoute && currentScore > 0 && (
-        <Card className="p-3 sm:p-4">
+        <Card className="p-3 sm:p-4 min-w-0">
           <div className="flex items-center gap-1.5 mb-2 sm:mb-3">
             <Lightbulb className="size-3.5 sm:size-4 text-accent" />
             <h3 className="text-xs sm:text-sm font-semibold">Optimal Routes</h3>
@@ -58,20 +58,20 @@ export function CheckoutFeedback({ currentScore, dartsRemaining, lastThrow, user
 
           <div className="flex flex-col gap-1.5 sm:gap-2">
             {optimalRoutes.slice(0, 3).map((route, index) => (
-              <div key={index} className="flex items-center gap-1.5 p-2 rounded-lg bg-muted/50">
+              <div key={index} className="flex items-center gap-1.5 p-2 rounded-lg bg-muted/50 min-w-0">
                 <Badge variant="outline" className="shrink-0 text-xs">
                   {index + 1}
                 </Badge>
-                <div className="flex items-center gap-1.5 flex-wrap">
+                <div className="flex items-center gap-1.5 flex-wrap min-w-0 flex-1">
                   {route.map((target, targetIndex) => (
-                    <div key={targetIndex} className="flex items-center gap-1">
+                    <div key={targetIndex} className="flex items-center gap-1 shrink-0">
                       <Badge variant={target.zone === "D" ? "default" : "secondary"} className="font-mono text-xs">
                         {target.label}
                       </Badge>
                       {targetIndex < route.length - 1 && <span className="text-muted-foreground text-xs">→</span>}
                     </div>
                   ))}
-                  <span className="text-xs text-muted-foreground ml-1">
+                  <span className="text-xs text-muted-foreground ml-1 shrink-0">
                     = {route.reduce((sum, t) => sum + t.value, 0)}
                   </span>
                 </div>
@@ -79,7 +79,7 @@ export function CheckoutFeedback({ currentScore, dartsRemaining, lastThrow, user
             ))}
           </div>
 
-          <p className="text-xs text-muted-foreground mt-2 sm:mt-3">Pro routes. Must finish on double!</p>
+          <p className="text-xs text-muted-foreground mt-2 sm:mt-3 break-words">Pro routes. Must finish on double!</p>
         </Card>
       )}
 

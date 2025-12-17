@@ -967,6 +967,14 @@
     max-height: var(--radix-select-content-available-height);
   }
 
+  .max-h-\[60vh\] {
+    max-height: 60vh;
+  }
+
+  .max-h-\[70vh\] {
+    max-height: 70vh;
+  }
+
   .max-h-\[300px\] {
     max-height: 300px;
   }
@@ -1459,16 +1467,32 @@
     overflow: hidden;
   }
 
+  .overflow-visible {
+    overflow: visible;
+  }
+
   .overflow-x-auto {
     overflow-x: auto;
+  }
+
+  .overflow-x-clip {
+    overflow-x: clip;
   }
 
   .overflow-x-hidden {
     overflow-x: hidden;
   }
 
+  .overflow-x-visible {
+    overflow-x: visible;
+  }
+
   .overflow-y-auto {
     overflow-y: auto;
+  }
+
+  .overflow-y-visible {
+    overflow-y: visible;
   }
 
   .rounded-\[2px\] {
@@ -3876,6 +3900,10 @@
     animation: exit var(--tw-animation-duration, var(--tw-duration, .15s)) var(--tw-ease, ease) var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1) var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, forwards);
   }
 
+  .data-\[state\=closed\]\:overflow-hidden[data-state="closed"] {
+    overflow: hidden;
+  }
+
   .data-\[state\=closed\]\:duration-300[data-state="closed"] {
     --tw-duration: .3s;
     transition-duration: .3s;
@@ -3947,6 +3975,14 @@
 
   .data-\[state\=open\]\:animate-in[data-state="open"] {
     animation: enter var(--tw-animation-duration, var(--tw-duration, .15s)) var(--tw-ease, ease) var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1) var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, forwards);
+  }
+
+  .data-\[state\=open\]\:overflow-visible[data-state="open"] {
+    overflow: visible;
+  }
+
+  .data-\[state\=open\]\:overflow-y-auto[data-state="open"] {
+    overflow-y: auto;
   }
 
   .data-\[state\=open\]\:bg-accent[data-state="open"] {

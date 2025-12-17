@@ -875,1266 +875,6 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
     }, this);
 }
 }),
-"[project]/components/throw-history.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "ThrowHistory",
-    ()=>ThrowHistory
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$history$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__History$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/history.js [app-ssr] (ecmascript) <export default as History>");
-"use client";
-;
-;
-;
-;
-function ThrowHistory({ dartHistory }) {
-    if (dartHistory.length === 0) return null;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
-        className: "p-2 sm:p-3",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center gap-1.5 mb-2",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$history$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__History$3e$__["History"], {
-                        className: "size-3 sm:size-4 text-muted-foreground"
-                    }, void 0, false, {
-                        fileName: "[project]/components/throw-history.tsx",
-                        lineNumber: 22,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        className: "text-xs sm:text-sm font-semibold",
-                        children: "Throw History"
-                    }, void 0, false, {
-                        fileName: "[project]/components/throw-history.tsx",
-                        lineNumber: 23,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/throw-history.tsx",
-                lineNumber: 21,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex flex-col gap-1",
-                children: dartHistory.slice().reverse().map((dart, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center justify-between p-1.5 sm:p-2 rounded-md bg-muted/50",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-1.5 flex-wrap",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                                        variant: dart.wasAccurate ? "default" : "secondary",
-                                        className: "text-[10px] sm:text-xs",
-                                        children: dart.aimed
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/throw-history.tsx",
-                                        lineNumber: 35,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-muted-foreground text-xs",
-                                        children: "→"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/throw-history.tsx",
-                                        lineNumber: 38,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                                        variant: "outline",
-                                        className: "text-[10px] sm:text-xs",
-                                        children: dart.hit
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/throw-history.tsx",
-                                        lineNumber: 39,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/throw-history.tsx",
-                                lineNumber: 34,
-                                columnNumber: 15
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-sm sm:text-base font-semibold",
-                                children: dart.score
-                            }, void 0, false, {
-                                fileName: "[project]/components/throw-history.tsx",
-                                lineNumber: 43,
-                                columnNumber: 15
-                            }, this)
-                        ]
-                    }, dartHistory.length - index, true, {
-                        fileName: "[project]/components/throw-history.tsx",
-                        lineNumber: 30,
-                        columnNumber: 13
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/components/throw-history.tsx",
-                lineNumber: 25,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/components/throw-history.tsx",
-        lineNumber: 20,
-        columnNumber: 5
-    }, this);
-}
-}),
-"[project]/components/ui/alert.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "Alert",
-    ()=>Alert,
-    "AlertDescription",
-    ()=>AlertDescription,
-    "AlertTitle",
-    ()=>AlertTitle
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$class$2d$variance$2d$authority$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/class-variance-authority/dist/index.mjs [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.ts [app-ssr] (ecmascript)");
-;
-;
-;
-const alertVariants = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$class$2d$variance$2d$authority$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cva"])('relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current', {
-    variants: {
-        variant: {
-            default: 'bg-card text-card-foreground',
-            destructive: 'text-destructive bg-card [&>svg]:text-current *:data-[slot=alert-description]:text-destructive/90'
-        }
-    },
-    defaultVariants: {
-        variant: 'default'
-    }
-});
-function Alert({ className, variant, ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        "data-slot": "alert",
-        role: "alert",
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])(alertVariants({
-            variant
-        }), className),
-        ...props
-    }, void 0, false, {
-        fileName: "[project]/components/ui/alert.tsx",
-        lineNumber: 28,
-        columnNumber: 5
-    }, this);
-}
-function AlertTitle({ className, ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        "data-slot": "alert-title",
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('col-start-2 line-clamp-1 min-h-4 font-medium tracking-tight', className),
-        ...props
-    }, void 0, false, {
-        fileName: "[project]/components/ui/alert.tsx",
-        lineNumber: 39,
-        columnNumber: 5
-    }, this);
-}
-function AlertDescription({ className, ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        "data-slot": "alert-description",
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed', className),
-        ...props
-    }, void 0, false, {
-        fileName: "[project]/components/ui/alert.tsx",
-        lineNumber: 55,
-        columnNumber: 5
-    }, this);
-}
-;
-}),
-"[project]/lib/checkout-logic.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "getOptimalCheckouts",
-    ()=>getOptimalCheckouts,
-    "simulateThrow",
-    ()=>simulateThrow,
-    "validateCheckoutRoute",
-    ()=>validateCheckoutRoute
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/darts-config.ts [app-ssr] (ecmascript)");
-;
-function simulateThrow(aimedTarget, remainingScore, customHitRatio) {
-    if (aimedTarget.zone === "D" && aimedTarget.value === remainingScore) {
-        return {
-            aimed: aimedTarget,
-            hit: aimedTarget,
-            score: aimedTarget.value,
-            wasAccurate: true
-        };
-    }
-    if (aimedTarget.zone === "BULL" && aimedTarget.value === remainingScore) {
-        return {
-            aimed: aimedTarget,
-            hit: aimedTarget,
-            score: aimedTarget.value,
-            wasAccurate: true
-        };
-    }
-    const hitProbability = customHitRatio ? customHitRatio / 100 : __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].PERFECT_HIT;
-    const rand = Math.random();
-    // Perfect hit
-    if (rand < hitProbability) {
-        return {
-            aimed: aimedTarget,
-            hit: aimedTarget,
-            score: aimedTarget.value,
-            wasAccurate: true
-        };
-    }
-    // Adjacent number hit
-    if (rand < hitProbability + __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].ADJACENT_NUMBER) {
-        if (aimedTarget.zone === "BULL" || aimedTarget.zone === "OUTER_BULL") {
-            // Bulls can drop to outer bull or miss
-            if (aimedTarget.zone === "BULL") {
-                const hitTarget = {
-                    zone: "OUTER_BULL",
-                    number: 25,
-                    label: "25",
-                    value: 25
-                };
-                return {
-                    aimed: aimedTarget,
-                    hit: hitTarget,
-                    score: 25,
-                    wasAccurate: false
-                };
-            } else {
-                // Random single
-                const randomNum = Math.floor(Math.random() * 20) + 1;
-                const hitTarget = {
-                    zone: "S",
-                    number: randomNum,
-                    label: `S${randomNum}`,
-                    value: randomNum
-                };
-                return {
-                    aimed: aimedTarget,
-                    hit: hitTarget,
-                    score: randomNum,
-                    wasAccurate: false
-                };
-            }
-        }
-        const adjacentNumbers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAdjacentNumbers"])(aimedTarget.number);
-        const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
-        const hitTarget = {
-            zone: aimedTarget.zone,
-            number: adjacentNumber,
-            label: `${aimedTarget.zone}${adjacentNumber}`,
-            value: aimedTarget.zone === "T" ? adjacentNumber * 3 : aimedTarget.zone === "D" ? adjacentNumber * 2 : adjacentNumber
-        };
-        return {
-            aimed: aimedTarget,
-            hit: hitTarget,
-            score: hitTarget.value,
-            wasAccurate: false
-        };
-    }
-    // Wrong zone, same number OR adjacent number miss
-    if (rand < hitProbability + __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].ADJACENT_NUMBER + __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].WRONG_ZONE_SAME_NUMBER) {
-        if (aimedTarget.zone === "BULL" || aimedTarget.zone === "OUTER_BULL") {
-            // Drop to single random
-            const randomNum = Math.floor(Math.random() * 20) + 1;
-            const hitTarget = {
-                zone: "S",
-                number: randomNum,
-                label: `S${randomNum}`,
-                value: randomNum
-            };
-            return {
-                aimed: aimedTarget,
-                hit: hitTarget,
-                score: randomNum,
-                wasAccurate: false
-            };
-        }
-        if (aimedTarget.zone === "T") {
-            const missType = Math.random();
-            const adjacentNumbers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAdjacentNumbers"])(aimedTarget.number);
-            if (missType < 0.5) {
-                // Hit single of same number
-                const hitTarget = {
-                    zone: "S",
-                    number: aimedTarget.number,
-                    label: `S${aimedTarget.number}`,
-                    value: aimedTarget.number
-                };
-                return {
-                    aimed: aimedTarget,
-                    hit: hitTarget,
-                    score: hitTarget.value,
-                    wasAccurate: false
-                };
-            } else if (missType < 0.8) {
-                // Hit single of adjacent number
-                const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
-                const hitTarget = {
-                    zone: "S",
-                    number: adjacentNumber,
-                    label: `S${adjacentNumber}`,
-                    value: adjacentNumber
-                };
-                return {
-                    aimed: aimedTarget,
-                    hit: hitTarget,
-                    score: hitTarget.value,
-                    wasAccurate: false
-                };
-            } else {
-                // Hit triple of adjacent number
-                const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
-                const hitTarget = {
-                    zone: "T",
-                    number: adjacentNumber,
-                    label: `T${adjacentNumber}`,
-                    value: adjacentNumber * 3
-                };
-                return {
-                    aimed: aimedTarget,
-                    hit: hitTarget,
-                    score: hitTarget.value,
-                    wasAccurate: false
-                };
-            }
-        }
-        // For double or single, can hit other zones
-        const zones = [
-            "S",
-            "T",
-            "D"
-        ].filter((z)=>z !== aimedTarget.zone);
-        const newZone = zones[Math.floor(Math.random() * zones.length)];
-        const hitTarget = {
-            zone: newZone,
-            number: aimedTarget.number,
-            label: `${newZone}${aimedTarget.number}`,
-            value: newZone === "T" ? aimedTarget.number * 3 : newZone === "D" ? aimedTarget.number * 2 : aimedTarget.number
-        };
-        return {
-            aimed: aimedTarget,
-            hit: hitTarget,
-            score: hitTarget.value,
-            wasAccurate: false
-        };
-    }
-    // Complete miss for non-triples
-    if (aimedTarget.zone !== "T") {
-        return {
-            aimed: aimedTarget,
-            hit: {
-                zone: "S",
-                number: 0,
-                label: "Miss",
-                value: 0
-            },
-            score: 0,
-            wasAccurate: false
-        };
-    }
-    // If we got here and it's a triple, ensure we hit something
-    const missType = Math.random();
-    const adjacentNumbers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAdjacentNumbers"])(aimedTarget.number);
-    if (missType < 0.5) {
-        const hitTarget = {
-            zone: "S",
-            number: aimedTarget.number,
-            label: `S${aimedTarget.number}`,
-            value: aimedTarget.number
-        };
-        return {
-            aimed: aimedTarget,
-            hit: hitTarget,
-            score: hitTarget.value,
-            wasAccurate: false
-        };
-    } else if (missType < 0.8) {
-        const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
-        const hitTarget = {
-            zone: "S",
-            number: adjacentNumber,
-            label: `S${adjacentNumber}`,
-            value: adjacentNumber
-        };
-        return {
-            aimed: aimedTarget,
-            hit: hitTarget,
-            score: hitTarget.value,
-            wasAccurate: false
-        };
-    } else {
-        const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
-        const hitTarget = {
-            zone: "T",
-            number: adjacentNumber,
-            label: `T${adjacentNumber}`,
-            value: adjacentNumber * 3
-        };
-        return {
-            aimed: aimedTarget,
-            hit: hitTarget,
-            score: hitTarget.value,
-            wasAccurate: false
-        };
-    }
-}
-function validateCheckoutRoute(score, route) {
-    const totalScore = route.reduce((sum, target)=>sum + target.value, 0);
-    const isValid = totalScore === score;
-    const lastTarget = route.length > 0 ? route[route.length - 1] : null;
-    const finishesOnDouble = lastTarget ? lastTarget.zone === "D" || lastTarget.zone === "BULL" : false;
-    return {
-        targets: route,
-        totalScore,
-        isValid: isValid && finishesOnDouble,
-        finishesOnDouble
-    };
-}
-function getOptimalCheckouts(score) {
-    const routes = [];
-    // Common checkout routes (simplified - can be expanded)
-    const commonCheckouts = {
-        170: [
-            [
-                "T20",
-                "T20",
-                "D25"
-            ]
-        ],
-        167: [
-            [
-                "T20",
-                "T19",
-                "D25"
-            ]
-        ],
-        164: [
-            [
-                "T20",
-                "T18",
-                "D25"
-            ]
-        ],
-        161: [
-            [
-                "T20",
-                "T17",
-                "D25"
-            ]
-        ],
-        160: [
-            [
-                "T20",
-                "T20",
-                "D20"
-            ]
-        ],
-        157: [
-            [
-                "T20",
-                "T19",
-                "D20"
-            ]
-        ],
-        154: [
-            [
-                "T20",
-                "T18",
-                "D20"
-            ]
-        ],
-        151: [
-            [
-                "T20",
-                "T17",
-                "D20"
-            ]
-        ],
-        150: [
-            [
-                "T20",
-                "T18",
-                "D18"
-            ]
-        ],
-        147: [
-            [
-                "T20",
-                "T17",
-                "D18"
-            ]
-        ],
-        144: [
-            [
-                "T20",
-                "T20",
-                "D12"
-            ]
-        ],
-        141: [
-            [
-                "T20",
-                "T19",
-                "D12"
-            ]
-        ],
-        138: [
-            [
-                "T20",
-                "T18",
-                "D12"
-            ]
-        ],
-        135: [
-            [
-                "T20",
-                "T15",
-                "D15"
-            ]
-        ],
-        132: [
-            [
-                "T20",
-                "T16",
-                "D12"
-            ]
-        ],
-        131: [
-            [
-                "T20",
-                "T13",
-                "D16"
-            ]
-        ],
-        130: [
-            [
-                "T20",
-                "T18",
-                "D8"
-            ]
-        ],
-        129: [
-            [
-                "T19",
-                "T16",
-                "D12"
-            ]
-        ],
-        128: [
-            [
-                "T18",
-                "T14",
-                "D16"
-            ]
-        ],
-        127: [
-            [
-                "T20",
-                "T17",
-                "D8"
-            ]
-        ],
-        126: [
-            [
-                "T19",
-                "T19",
-                "D6"
-            ]
-        ],
-        125: [
-            [
-                "T18",
-                "T13",
-                "D16"
-            ]
-        ],
-        124: [
-            [
-                "T20",
-                "T14",
-                "D11"
-            ]
-        ],
-        123: [
-            [
-                "T19",
-                "T16",
-                "D9"
-            ]
-        ],
-        122: [
-            [
-                "T18",
-                "T18",
-                "D7"
-            ]
-        ],
-        121: [
-            [
-                "T20",
-                "T11",
-                "D14"
-            ]
-        ],
-        120: [
-            [
-                "T20",
-                "S20",
-                "D20"
-            ]
-        ],
-        110: [
-            [
-                "T20",
-                "D25"
-            ]
-        ],
-        107: [
-            [
-                "T19",
-                "D25"
-            ]
-        ],
-        104: [
-            [
-                "T18",
-                "D25"
-            ]
-        ],
-        101: [
-            [
-                "T17",
-                "D25"
-            ]
-        ],
-        100: [
-            [
-                "T20",
-                "D20"
-            ]
-        ],
-        97: [
-            [
-                "T19",
-                "D20"
-            ]
-        ],
-        94: [
-            [
-                "T18",
-                "D20"
-            ]
-        ],
-        91: [
-            [
-                "T17",
-                "D20"
-            ]
-        ],
-        90: [
-            [
-                "T18",
-                "D18"
-            ]
-        ],
-        87: [
-            [
-                "T17",
-                "D18"
-            ]
-        ],
-        84: [
-            [
-                "T20",
-                "D12"
-            ]
-        ],
-        81: [
-            [
-                "T19",
-                "D12"
-            ]
-        ],
-        78: [
-            [
-                "T18",
-                "D12"
-            ]
-        ],
-        75: [
-            [
-                "T15",
-                "D15"
-            ]
-        ],
-        72: [
-            [
-                "T16",
-                "D12"
-            ]
-        ],
-        71: [
-            [
-                "T13",
-                "D16"
-            ]
-        ],
-        70: [
-            [
-                "T18",
-                "D8"
-            ]
-        ],
-        69: [
-            [
-                "T19",
-                "D6"
-            ]
-        ],
-        68: [
-            [
-                "T20",
-                "D4"
-            ]
-        ],
-        67: [
-            [
-                "T17",
-                "D8"
-            ]
-        ],
-        66: [
-            [
-                "T10",
-                "D18"
-            ]
-        ],
-        65: [
-            [
-                "T11",
-                "D16"
-            ]
-        ],
-        64: [
-            [
-                "T16",
-                "D8"
-            ]
-        ],
-        63: [
-            [
-                "T13",
-                "D12"
-            ]
-        ],
-        62: [
-            [
-                "T10",
-                "D16"
-            ]
-        ],
-        61: [
-            [
-                "T15",
-                "D8"
-            ]
-        ],
-        60: [
-            [
-                "S20",
-                "D20"
-            ]
-        ],
-        57: [
-            [
-                "S17",
-                "D20"
-            ]
-        ],
-        56: [
-            [
-                "T16",
-                "D4"
-            ]
-        ],
-        55: [
-            [
-                "S15",
-                "D20"
-            ]
-        ],
-        54: [
-            [
-                "S14",
-                "D20"
-            ]
-        ],
-        53: [
-            [
-                "S13",
-                "D20"
-            ]
-        ],
-        52: [
-            [
-                "S12",
-                "D20"
-            ]
-        ],
-        51: [
-            [
-                "S11",
-                "D20"
-            ]
-        ],
-        50: [
-            [
-                "D25"
-            ]
-        ],
-        48: [
-            [
-                "S16",
-                "D16"
-            ]
-        ],
-        46: [
-            [
-                "S6",
-                "D20"
-            ]
-        ],
-        44: [
-            [
-                "S12",
-                "D16"
-            ]
-        ],
-        42: [
-            [
-                "S10",
-                "D16"
-            ]
-        ],
-        40: [
-            [
-                "D20"
-            ]
-        ],
-        38: [
-            [
-                "D19"
-            ]
-        ],
-        36: [
-            [
-                "D18"
-            ]
-        ],
-        34: [
-            [
-                "D17"
-            ]
-        ],
-        32: [
-            [
-                "D16"
-            ]
-        ],
-        30: [
-            [
-                "D15"
-            ]
-        ],
-        28: [
-            [
-                "D14"
-            ]
-        ],
-        26: [
-            [
-                "D13"
-            ]
-        ],
-        24: [
-            [
-                "D12"
-            ]
-        ],
-        22: [
-            [
-                "D11"
-            ]
-        ],
-        20: [
-            [
-                "D10"
-            ]
-        ],
-        18: [
-            [
-                "D9"
-            ]
-        ],
-        16: [
-            [
-                "D8"
-            ]
-        ],
-        14: [
-            [
-                "D7"
-            ]
-        ],
-        12: [
-            [
-                "D6"
-            ]
-        ],
-        10: [
-            [
-                "D5"
-            ]
-        ],
-        8: [
-            [
-                "D4"
-            ]
-        ],
-        6: [
-            [
-                "D3"
-            ]
-        ],
-        4: [
-            [
-                "D2"
-            ]
-        ],
-        2: [
-            [
-                "D1"
-            ]
-        ]
-    };
-    const routeLabels = commonCheckouts[score];
-    if (!routeLabels) return [];
-    // Convert labels to targets
-    return routeLabels.map((labelRoute)=>{
-        return labelRoute.map((label)=>{
-            const zone = label.charAt(0);
-            const numberStr = label.slice(1);
-            if (label === "D25") {
-                return {
-                    zone: "BULL",
-                    number: 50,
-                    label: "Bull",
-                    value: 50
-                };
-            }
-            const number = Number.parseInt(numberStr);
-            const value = zone === "T" ? number * 3 : zone === "D" ? number * 2 : number;
-            return {
-                zone,
-                number,
-                label,
-                value
-            };
-        });
-    });
-}
-}),
-"[project]/components/checkout-feedback.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "CheckoutFeedback",
-    ()=>CheckoutFeedback
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/alert.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lightbulb$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lightbulb$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/lightbulb.js [app-ssr] (ecmascript) <export default as Lightbulb>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-ssr] (ecmascript) <export default as TrendingUp>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/triangle-alert.js [app-ssr] (ecmascript) <export default as AlertTriangle>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$checkout$2d$logic$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/checkout-logic.ts [app-ssr] (ecmascript)");
-"use client";
-;
-;
-;
-;
-;
-;
-function CheckoutFeedback({ currentScore, dartsRemaining, lastThrow, userRoute }) {
-    const optimalRoutes = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$checkout$2d$logic$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getOptimalCheckouts"])(currentScore);
-    const hasOptimalRoute = optimalRoutes.length > 0;
-    const evaluateDecision = ()=>{
-        if (!lastThrow || userRoute.length === 0) return null;
-        const aimedTarget = lastThrow.aimed;
-        const wasInOptimalRoute = optimalRoutes.some((route)=>route.some((target)=>target.label === aimedTarget.label));
-        return {
-            wasOptimal: wasInOptimalRoute,
-            wasAccurate: lastThrow.wasAccurate
-        };
-    };
-    const decision = evaluateDecision();
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col gap-2 sm:gap-3",
-        children: [
-            decision && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Alert"], {
-                variant: decision.wasAccurate ? "default" : "destructive",
-                className: "py-2 sm:py-3",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
-                        className: "size-3.5 sm:size-4"
-                    }, void 0, false, {
-                        fileName: "[project]/components/checkout-feedback.tsx",
-                        lineNumber: 42,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertTitle"], {
-                        className: "text-xs sm:text-sm",
-                        children: decision.wasAccurate ? "Good Shot!" : "Missed"
-                    }, void 0, false, {
-                        fileName: "[project]/components/checkout-feedback.tsx",
-                        lineNumber: 43,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$alert$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AlertDescription"], {
-                        className: "text-xs sm:text-sm",
-                        children: [
-                            decision.wasAccurate && decision.wasOptimal && "You hit an optimal target. Keep it up!",
-                            decision.wasAccurate && !decision.wasOptimal && "Hit, but check suggestions for better routes.",
-                            !decision.wasAccurate && "Missed target. Adjust your strategy based on where you landed."
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/checkout-feedback.tsx",
-                        lineNumber: 44,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/checkout-feedback.tsx",
-                lineNumber: 41,
-                columnNumber: 9
-            }, this),
-            hasOptimalRoute && currentScore > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
-                className: "p-3 sm:p-4 min-w-0",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-1.5 mb-2 sm:mb-3",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$lightbulb$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Lightbulb$3e$__["Lightbulb"], {
-                                className: "size-3.5 sm:size-4 text-accent"
-                            }, void 0, false, {
-                                fileName: "[project]/components/checkout-feedback.tsx",
-                                lineNumber: 55,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-xs sm:text-sm font-semibold",
-                                children: "Optimal Routes"
-                            }, void 0, false, {
-                                fileName: "[project]/components/checkout-feedback.tsx",
-                                lineNumber: 56,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/checkout-feedback.tsx",
-                        lineNumber: 54,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "flex flex-col gap-1.5 sm:gap-2",
-                        children: optimalRoutes.slice(0, 3).map((route, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center gap-1.5 p-2 rounded-lg bg-muted/50 min-w-0",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                                        variant: "outline",
-                                        className: "shrink-0 text-xs",
-                                        children: index + 1
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/checkout-feedback.tsx",
-                                        lineNumber: 62,
-                                        columnNumber: 17
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-1.5 flex-wrap min-w-0 flex-1",
-                                        children: [
-                                            route.map((target, targetIndex)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center gap-1 shrink-0",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                                                            variant: target.zone === "D" ? "default" : "secondary",
-                                                            className: "font-mono text-xs",
-                                                            children: target.label
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                                            lineNumber: 68,
-                                                            columnNumber: 23
-                                                        }, this),
-                                                        targetIndex < route.length - 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "text-muted-foreground text-xs",
-                                                            children: "→"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                                            lineNumber: 71,
-                                                            columnNumber: 58
-                                                        }, this)
-                                                    ]
-                                                }, targetIndex, true, {
-                                                    fileName: "[project]/components/checkout-feedback.tsx",
-                                                    lineNumber: 67,
-                                                    columnNumber: 21
-                                                }, this)),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs text-muted-foreground ml-1 shrink-0",
-                                                children: [
-                                                    "= ",
-                                                    route.reduce((sum, t)=>sum + t.value, 0)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/checkout-feedback.tsx",
-                                                lineNumber: 74,
-                                                columnNumber: 19
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/checkout-feedback.tsx",
-                                        lineNumber: 65,
-                                        columnNumber: 17
-                                    }, this)
-                                ]
-                            }, index, true, {
-                                fileName: "[project]/components/checkout-feedback.tsx",
-                                lineNumber: 61,
-                                columnNumber: 15
-                            }, this))
-                    }, void 0, false, {
-                        fileName: "[project]/components/checkout-feedback.tsx",
-                        lineNumber: 59,
-                        columnNumber: 11
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-xs text-muted-foreground mt-2 sm:mt-3 break-words",
-                        children: "Pro routes. Must finish on double!"
-                    }, void 0, false, {
-                        fileName: "[project]/components/checkout-feedback.tsx",
-                        lineNumber: 82,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/checkout-feedback.tsx",
-                lineNumber: 53,
-                columnNumber: 9
-            }, this),
-            currentScore > 0 && currentScore <= 170 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
-                className: "p-2.5 sm:p-3 bg-primary/5",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: "flex items-start gap-2",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$triangle$2d$alert$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__AlertTriangle$3e$__["AlertTriangle"], {
-                            className: "size-3.5 sm:size-4 text-primary shrink-0 mt-0.5"
-                        }, void 0, false, {
-                            fileName: "[project]/components/checkout-feedback.tsx",
-                            lineNumber: 89,
-                            columnNumber: 13
-                        }, this),
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "flex flex-col gap-1",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
-                                    className: "font-semibold text-xs sm:text-sm",
-                                    children: "Tips"
-                                }, void 0, false, {
-                                    fileName: "[project]/components/checkout-feedback.tsx",
-                                    lineNumber: 91,
-                                    columnNumber: 15
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                                    className: "text-xs text-muted-foreground space-y-0.5",
-                                    children: [
-                                        currentScore > 100 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            children: "• Focus on T20s to bring score down"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                            lineNumber: 93,
-                                            columnNumber: 40
-                                        }, this),
-                                        currentScore <= 40 && currentScore > 1 && currentScore % 2 === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            children: "• Finishable with a double!"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                            lineNumber: 95,
-                                            columnNumber: 19
-                                        }, this),
-                                        currentScore === 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            children: "• Score of 1 is bust!"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                            lineNumber: 97,
-                                            columnNumber: 40
-                                        }, this),
-                                        dartsRemaining === 1 && currentScore > 50 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            children: "• Not finishable with one dart. Set up next round."
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                            lineNumber: 99,
-                                            columnNumber: 19
-                                        }, this),
-                                        currentScore % 2 === 1 && currentScore > 50 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                            children: "• Odd score - hit single to make even"
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/checkout-feedback.tsx",
-                                            lineNumber: 101,
-                                            columnNumber: 65
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/components/checkout-feedback.tsx",
-                                    lineNumber: 92,
-                                    columnNumber: 15
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/components/checkout-feedback.tsx",
-                            lineNumber: 90,
-                            columnNumber: 13
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/components/checkout-feedback.tsx",
-                    lineNumber: 88,
-                    columnNumber: 11
-                }, this)
-            }, void 0, false, {
-                fileName: "[project]/components/checkout-feedback.tsx",
-                lineNumber: 87,
-                columnNumber: 9
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/components/checkout-feedback.tsx",
-        lineNumber: 39,
-        columnNumber: 5
-    }, this);
-}
-}),
 "[project]/components/ui/progress.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -2172,266 +912,6 @@ function Progress({ className, value, ...props }) {
     }, this);
 }
 ;
-}),
-"[project]/components/decision-quality-meter.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "DecisionQualityMeter",
-    ()=>DecisionQualityMeter
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/badge.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$progress$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/progress.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$brain$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Brain$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/brain.js [app-ssr] (ecmascript) <export default as Brain>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TargetIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/target.js [app-ssr] (ecmascript) <export default as TargetIcon>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/trending-up.js [app-ssr] (ecmascript) <export default as TrendingUp>");
-"use client";
-;
-;
-;
-;
-;
-function DecisionQualityMeter({ accuracy, optimalDecisions, totalDecisions, averageDartsToFinish }) {
-    const decisionQuality = totalDecisions > 0 ? optimalDecisions / totalDecisions * 100 : 0;
-    const getQualityRating = (quality)=>{
-        if (quality >= 80) return {
-            label: "Excellent",
-            color: "text-accent"
-        };
-        if (quality >= 60) return {
-            label: "Good",
-            color: "text-primary"
-        };
-        if (quality >= 40) return {
-            label: "Fair",
-            color: "text-yellow-600"
-        };
-        return {
-            label: "Needs Work",
-            color: "text-destructive"
-        };
-    };
-    const rating = getQualityRating(decisionQuality);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
-        className: "p-3 sm:p-4",
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex items-center gap-1.5 mb-3 sm:mb-4",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$brain$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__Brain$3e$__["Brain"], {
-                        className: "size-3.5 sm:size-4 text-muted-foreground"
-                    }, void 0, false, {
-                        fileName: "[project]/components/decision-quality-meter.tsx",
-                        lineNumber: 35,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                        className: "text-xs sm:text-sm font-semibold",
-                        children: "Session Performance"
-                    }, void 0, false, {
-                        fileName: "[project]/components/decision-quality-meter.tsx",
-                        lineNumber: 36,
-                        columnNumber: 9
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/decision-quality-meter.tsx",
-                lineNumber: 34,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "grid gap-3 sm:gap-4",
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "space-y-1.5",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-1.5",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$target$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TargetIcon$3e$__["TargetIcon"], {
-                                                className: "size-3 sm:size-3.5 text-muted-foreground"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                                lineNumber: 43,
-                                                columnNumber: 15
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs sm:text-sm font-medium",
-                                                children: "Hit Accuracy"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                                lineNumber: 44,
-                                                columnNumber: 15
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/decision-quality-meter.tsx",
-                                        lineNumber: 42,
-                                        columnNumber: 13
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-xs sm:text-sm font-bold",
-                                        children: [
-                                            accuracy.toFixed(1),
-                                            "%"
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/decision-quality-meter.tsx",
-                                        lineNumber: 46,
-                                        columnNumber: 13
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 41,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$progress$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Progress"], {
-                                value: accuracy,
-                                className: "h-1.5 sm:h-2"
-                            }, void 0, false, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 48,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/decision-quality-meter.tsx",
-                        lineNumber: 40,
-                        columnNumber: 9
-                    }, this),
-                    totalDecisions > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "space-y-1.5",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center gap-1.5",
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$trending$2d$up$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__TrendingUp$3e$__["TrendingUp"], {
-                                                className: "size-3 sm:size-3.5 text-muted-foreground"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                                lineNumber: 55,
-                                                columnNumber: 17
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs sm:text-sm font-medium",
-                                                children: "Decision Quality"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                                lineNumber: 56,
-                                                columnNumber: 17
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "[project]/components/decision-quality-meter.tsx",
-                                        lineNumber: 54,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Badge"], {
-                                        variant: "outline",
-                                        className: `${rating.color} text-xs`,
-                                        children: rating.label
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/decision-quality-meter.tsx",
-                                        lineNumber: 58,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 53,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$progress$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Progress"], {
-                                value: decisionQuality,
-                                className: "h-1.5 sm:h-2"
-                            }, void 0, false, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 62,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-xs text-muted-foreground",
-                                children: [
-                                    optimalDecisions,
-                                    " of ",
-                                    totalDecisions,
-                                    " throws matched optimal routes"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 63,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/decision-quality-meter.tsx",
-                        lineNumber: 52,
-                        columnNumber: 11
-                    }, this),
-                    averageDartsToFinish !== null && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "pt-2 sm:pt-3 border-t",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex items-center justify-between",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-xs sm:text-sm font-medium",
-                                        children: "Avg. Darts to Finish"
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/decision-quality-meter.tsx",
-                                        lineNumber: 72,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                        className: "text-xl sm:text-2xl font-bold",
-                                        children: averageDartsToFinish.toFixed(1)
-                                    }, void 0, false, {
-                                        fileName: "[project]/components/decision-quality-meter.tsx",
-                                        lineNumber: 73,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 71,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-xs text-muted-foreground mt-0.5",
-                                children: "Lower is better - pros average 3-6 darts"
-                            }, void 0, false, {
-                                fileName: "[project]/components/decision-quality-meter.tsx",
-                                lineNumber: 75,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/components/decision-quality-meter.tsx",
-                        lineNumber: 70,
-                        columnNumber: 11
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/components/decision-quality-meter.tsx",
-                lineNumber: 39,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/components/decision-quality-meter.tsx",
-        lineNumber: 33,
-        columnNumber: 5
-    }, this);
-}
 }),
 "[project]/lib/storage.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
@@ -4531,6 +3011,809 @@ function GameHistory({ sessions }) {
     }, this);
 }
 }),
+"[project]/lib/checkout-logic.ts [app-ssr] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "getOptimalCheckouts",
+    ()=>getOptimalCheckouts,
+    "simulateThrow",
+    ()=>simulateThrow,
+    "validateCheckoutRoute",
+    ()=>validateCheckoutRoute
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/darts-config.ts [app-ssr] (ecmascript)");
+;
+function simulateThrow(aimedTarget, remainingScore, customHitRatio) {
+    if (aimedTarget.zone === "D" && aimedTarget.value === remainingScore) {
+        return {
+            aimed: aimedTarget,
+            hit: aimedTarget,
+            score: aimedTarget.value,
+            wasAccurate: true
+        };
+    }
+    if (aimedTarget.zone === "BULL" && aimedTarget.value === remainingScore) {
+        return {
+            aimed: aimedTarget,
+            hit: aimedTarget,
+            score: aimedTarget.value,
+            wasAccurate: true
+        };
+    }
+    const hitProbability = customHitRatio ? customHitRatio / 100 : __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].PERFECT_HIT;
+    const rand = Math.random();
+    // Perfect hit
+    if (rand < hitProbability) {
+        return {
+            aimed: aimedTarget,
+            hit: aimedTarget,
+            score: aimedTarget.value,
+            wasAccurate: true
+        };
+    }
+    // Adjacent number hit
+    if (rand < hitProbability + __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].ADJACENT_NUMBER) {
+        if (aimedTarget.zone === "BULL" || aimedTarget.zone === "OUTER_BULL") {
+            // Bulls can drop to outer bull or miss
+            if (aimedTarget.zone === "BULL") {
+                const hitTarget = {
+                    zone: "OUTER_BULL",
+                    number: 25,
+                    label: "25",
+                    value: 25
+                };
+                return {
+                    aimed: aimedTarget,
+                    hit: hitTarget,
+                    score: 25,
+                    wasAccurate: false
+                };
+            } else {
+                // Random single
+                const randomNum = Math.floor(Math.random() * 20) + 1;
+                const hitTarget = {
+                    zone: "S",
+                    number: randomNum,
+                    label: `S${randomNum}`,
+                    value: randomNum
+                };
+                return {
+                    aimed: aimedTarget,
+                    hit: hitTarget,
+                    score: randomNum,
+                    wasAccurate: false
+                };
+            }
+        }
+        const adjacentNumbers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAdjacentNumbers"])(aimedTarget.number);
+        const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
+        const hitTarget = {
+            zone: aimedTarget.zone,
+            number: adjacentNumber,
+            label: `${aimedTarget.zone}${adjacentNumber}`,
+            value: aimedTarget.zone === "T" ? adjacentNumber * 3 : aimedTarget.zone === "D" ? adjacentNumber * 2 : adjacentNumber
+        };
+        return {
+            aimed: aimedTarget,
+            hit: hitTarget,
+            score: hitTarget.value,
+            wasAccurate: false
+        };
+    }
+    // Wrong zone, same number OR adjacent number miss
+    if (rand < hitProbability + __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].ADJACENT_NUMBER + __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["HIT_PROBABILITIES"].WRONG_ZONE_SAME_NUMBER) {
+        if (aimedTarget.zone === "BULL" || aimedTarget.zone === "OUTER_BULL") {
+            // Drop to single random
+            const randomNum = Math.floor(Math.random() * 20) + 1;
+            const hitTarget = {
+                zone: "S",
+                number: randomNum,
+                label: `S${randomNum}`,
+                value: randomNum
+            };
+            return {
+                aimed: aimedTarget,
+                hit: hitTarget,
+                score: randomNum,
+                wasAccurate: false
+            };
+        }
+        if (aimedTarget.zone === "T") {
+            const missType = Math.random();
+            const adjacentNumbers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAdjacentNumbers"])(aimedTarget.number);
+            if (missType < 0.5) {
+                // Hit single of same number
+                const hitTarget = {
+                    zone: "S",
+                    number: aimedTarget.number,
+                    label: `S${aimedTarget.number}`,
+                    value: aimedTarget.number
+                };
+                return {
+                    aimed: aimedTarget,
+                    hit: hitTarget,
+                    score: hitTarget.value,
+                    wasAccurate: false
+                };
+            } else if (missType < 0.8) {
+                // Hit single of adjacent number
+                const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
+                const hitTarget = {
+                    zone: "S",
+                    number: adjacentNumber,
+                    label: `S${adjacentNumber}`,
+                    value: adjacentNumber
+                };
+                return {
+                    aimed: aimedTarget,
+                    hit: hitTarget,
+                    score: hitTarget.value,
+                    wasAccurate: false
+                };
+            } else {
+                // Hit triple of adjacent number
+                const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
+                const hitTarget = {
+                    zone: "T",
+                    number: adjacentNumber,
+                    label: `T${adjacentNumber}`,
+                    value: adjacentNumber * 3
+                };
+                return {
+                    aimed: aimedTarget,
+                    hit: hitTarget,
+                    score: hitTarget.value,
+                    wasAccurate: false
+                };
+            }
+        }
+        // For double or single, can hit other zones
+        const zones = [
+            "S",
+            "T",
+            "D"
+        ].filter((z)=>z !== aimedTarget.zone);
+        const newZone = zones[Math.floor(Math.random() * zones.length)];
+        const hitTarget = {
+            zone: newZone,
+            number: aimedTarget.number,
+            label: `${newZone}${aimedTarget.number}`,
+            value: newZone === "T" ? aimedTarget.number * 3 : newZone === "D" ? aimedTarget.number * 2 : aimedTarget.number
+        };
+        return {
+            aimed: aimedTarget,
+            hit: hitTarget,
+            score: hitTarget.value,
+            wasAccurate: false
+        };
+    }
+    // Complete miss for non-triples
+    if (aimedTarget.zone !== "T") {
+        return {
+            aimed: aimedTarget,
+            hit: {
+                zone: "S",
+                number: 0,
+                label: "Miss",
+                value: 0
+            },
+            score: 0,
+            wasAccurate: false
+        };
+    }
+    // If we got here and it's a triple, ensure we hit something
+    const missType = Math.random();
+    const adjacentNumbers = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["getAdjacentNumbers"])(aimedTarget.number);
+    if (missType < 0.5) {
+        const hitTarget = {
+            zone: "S",
+            number: aimedTarget.number,
+            label: `S${aimedTarget.number}`,
+            value: aimedTarget.number
+        };
+        return {
+            aimed: aimedTarget,
+            hit: hitTarget,
+            score: hitTarget.value,
+            wasAccurate: false
+        };
+    } else if (missType < 0.8) {
+        const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
+        const hitTarget = {
+            zone: "S",
+            number: adjacentNumber,
+            label: `S${adjacentNumber}`,
+            value: adjacentNumber
+        };
+        return {
+            aimed: aimedTarget,
+            hit: hitTarget,
+            score: hitTarget.value,
+            wasAccurate: false
+        };
+    } else {
+        const adjacentNumber = adjacentNumbers[Math.floor(Math.random() * adjacentNumbers.length)];
+        const hitTarget = {
+            zone: "T",
+            number: adjacentNumber,
+            label: `T${adjacentNumber}`,
+            value: adjacentNumber * 3
+        };
+        return {
+            aimed: aimedTarget,
+            hit: hitTarget,
+            score: hitTarget.value,
+            wasAccurate: false
+        };
+    }
+}
+function validateCheckoutRoute(score, route) {
+    const totalScore = route.reduce((sum, target)=>sum + target.value, 0);
+    const isValid = totalScore === score;
+    const lastTarget = route.length > 0 ? route[route.length - 1] : null;
+    const finishesOnDouble = lastTarget ? lastTarget.zone === "D" || lastTarget.zone === "BULL" : false;
+    return {
+        targets: route,
+        totalScore,
+        isValid: isValid && finishesOnDouble,
+        finishesOnDouble
+    };
+}
+function getOptimalCheckouts(score) {
+    const routes = [];
+    // Common checkout routes (simplified - can be expanded)
+    const commonCheckouts = {
+        170: [
+            [
+                "T20",
+                "T20",
+                "D25"
+            ]
+        ],
+        167: [
+            [
+                "T20",
+                "T19",
+                "D25"
+            ]
+        ],
+        164: [
+            [
+                "T20",
+                "T18",
+                "D25"
+            ]
+        ],
+        161: [
+            [
+                "T20",
+                "T17",
+                "D25"
+            ]
+        ],
+        160: [
+            [
+                "T20",
+                "T20",
+                "D20"
+            ]
+        ],
+        157: [
+            [
+                "T20",
+                "T19",
+                "D20"
+            ]
+        ],
+        154: [
+            [
+                "T20",
+                "T18",
+                "D20"
+            ]
+        ],
+        151: [
+            [
+                "T20",
+                "T17",
+                "D20"
+            ]
+        ],
+        150: [
+            [
+                "T20",
+                "T18",
+                "D18"
+            ]
+        ],
+        147: [
+            [
+                "T20",
+                "T17",
+                "D18"
+            ]
+        ],
+        144: [
+            [
+                "T20",
+                "T20",
+                "D12"
+            ]
+        ],
+        141: [
+            [
+                "T20",
+                "T19",
+                "D12"
+            ]
+        ],
+        138: [
+            [
+                "T20",
+                "T18",
+                "D12"
+            ]
+        ],
+        135: [
+            [
+                "T20",
+                "T15",
+                "D15"
+            ]
+        ],
+        132: [
+            [
+                "T20",
+                "T16",
+                "D12"
+            ]
+        ],
+        131: [
+            [
+                "T20",
+                "T13",
+                "D16"
+            ]
+        ],
+        130: [
+            [
+                "T20",
+                "T18",
+                "D8"
+            ]
+        ],
+        129: [
+            [
+                "T19",
+                "T16",
+                "D12"
+            ]
+        ],
+        128: [
+            [
+                "T18",
+                "T14",
+                "D16"
+            ]
+        ],
+        127: [
+            [
+                "T20",
+                "T17",
+                "D8"
+            ]
+        ],
+        126: [
+            [
+                "T19",
+                "T19",
+                "D6"
+            ]
+        ],
+        125: [
+            [
+                "T18",
+                "T13",
+                "D16"
+            ]
+        ],
+        124: [
+            [
+                "T20",
+                "T14",
+                "D11"
+            ]
+        ],
+        123: [
+            [
+                "T19",
+                "T16",
+                "D9"
+            ]
+        ],
+        122: [
+            [
+                "T18",
+                "T18",
+                "D7"
+            ]
+        ],
+        121: [
+            [
+                "T20",
+                "T11",
+                "D14"
+            ]
+        ],
+        120: [
+            [
+                "T20",
+                "S20",
+                "D20"
+            ]
+        ],
+        110: [
+            [
+                "T20",
+                "D25"
+            ]
+        ],
+        107: [
+            [
+                "T19",
+                "D25"
+            ]
+        ],
+        104: [
+            [
+                "T18",
+                "D25"
+            ]
+        ],
+        101: [
+            [
+                "T17",
+                "D25"
+            ]
+        ],
+        100: [
+            [
+                "T20",
+                "D20"
+            ]
+        ],
+        97: [
+            [
+                "T19",
+                "D20"
+            ]
+        ],
+        94: [
+            [
+                "T18",
+                "D20"
+            ]
+        ],
+        91: [
+            [
+                "T17",
+                "D20"
+            ]
+        ],
+        90: [
+            [
+                "T18",
+                "D18"
+            ]
+        ],
+        87: [
+            [
+                "T17",
+                "D18"
+            ]
+        ],
+        84: [
+            [
+                "T20",
+                "D12"
+            ]
+        ],
+        81: [
+            [
+                "T19",
+                "D12"
+            ]
+        ],
+        78: [
+            [
+                "T18",
+                "D12"
+            ]
+        ],
+        75: [
+            [
+                "T15",
+                "D15"
+            ]
+        ],
+        72: [
+            [
+                "T16",
+                "D12"
+            ]
+        ],
+        71: [
+            [
+                "T13",
+                "D16"
+            ]
+        ],
+        70: [
+            [
+                "T18",
+                "D8"
+            ]
+        ],
+        69: [
+            [
+                "T19",
+                "D6"
+            ]
+        ],
+        68: [
+            [
+                "T20",
+                "D4"
+            ]
+        ],
+        67: [
+            [
+                "T17",
+                "D8"
+            ]
+        ],
+        66: [
+            [
+                "T10",
+                "D18"
+            ]
+        ],
+        65: [
+            [
+                "T11",
+                "D16"
+            ]
+        ],
+        64: [
+            [
+                "T16",
+                "D8"
+            ]
+        ],
+        63: [
+            [
+                "T13",
+                "D12"
+            ]
+        ],
+        62: [
+            [
+                "T10",
+                "D16"
+            ]
+        ],
+        61: [
+            [
+                "T15",
+                "D8"
+            ]
+        ],
+        60: [
+            [
+                "S20",
+                "D20"
+            ]
+        ],
+        57: [
+            [
+                "S17",
+                "D20"
+            ]
+        ],
+        56: [
+            [
+                "T16",
+                "D4"
+            ]
+        ],
+        55: [
+            [
+                "S15",
+                "D20"
+            ]
+        ],
+        54: [
+            [
+                "S14",
+                "D20"
+            ]
+        ],
+        53: [
+            [
+                "S13",
+                "D20"
+            ]
+        ],
+        52: [
+            [
+                "S12",
+                "D20"
+            ]
+        ],
+        51: [
+            [
+                "S11",
+                "D20"
+            ]
+        ],
+        50: [
+            [
+                "D25"
+            ]
+        ],
+        48: [
+            [
+                "S16",
+                "D16"
+            ]
+        ],
+        46: [
+            [
+                "S6",
+                "D20"
+            ]
+        ],
+        44: [
+            [
+                "S12",
+                "D16"
+            ]
+        ],
+        42: [
+            [
+                "S10",
+                "D16"
+            ]
+        ],
+        40: [
+            [
+                "D20"
+            ]
+        ],
+        38: [
+            [
+                "D19"
+            ]
+        ],
+        36: [
+            [
+                "D18"
+            ]
+        ],
+        34: [
+            [
+                "D17"
+            ]
+        ],
+        32: [
+            [
+                "D16"
+            ]
+        ],
+        30: [
+            [
+                "D15"
+            ]
+        ],
+        28: [
+            [
+                "D14"
+            ]
+        ],
+        26: [
+            [
+                "D13"
+            ]
+        ],
+        24: [
+            [
+                "D12"
+            ]
+        ],
+        22: [
+            [
+                "D11"
+            ]
+        ],
+        20: [
+            [
+                "D10"
+            ]
+        ],
+        18: [
+            [
+                "D9"
+            ]
+        ],
+        16: [
+            [
+                "D8"
+            ]
+        ],
+        14: [
+            [
+                "D7"
+            ]
+        ],
+        12: [
+            [
+                "D6"
+            ]
+        ],
+        10: [
+            [
+                "D5"
+            ]
+        ],
+        8: [
+            [
+                "D4"
+            ]
+        ],
+        6: [
+            [
+                "D3"
+            ]
+        ],
+        4: [
+            [
+                "D2"
+            ]
+        ],
+        2: [
+            [
+                "D1"
+            ]
+        ]
+    };
+    const routeLabels = commonCheckouts[score];
+    if (!routeLabels) return [];
+    // Convert labels to targets
+    return routeLabels.map((labelRoute)=>{
+        return labelRoute.map((label)=>{
+            const zone = label.charAt(0);
+            const numberStr = label.slice(1);
+            if (label === "D25") {
+                return {
+                    zone: "BULL",
+                    number: 50,
+                    label: "Bull",
+                    value: 50
+                };
+            }
+            const number = Number.parseInt(numberStr);
+            const value = zone === "T" ? number * 3 : zone === "D" ? number * 2 : number;
+            return {
+                zone,
+                number,
+                label,
+                value
+            };
+        });
+    });
+}
+}),
 "[project]/components/ui/sheet.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -4891,98 +4174,6 @@ function DialogDescription({ className, ...props }) {
 }
 ;
 }),
-"[project]/components/ui/accordion.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "Accordion",
-    ()=>Accordion,
-    "AccordionContent",
-    ()=>AccordionContent,
-    "AccordionItem",
-    ()=>AccordionItem,
-    "AccordionTrigger",
-    ()=>AccordionTrigger
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$radix$2d$ui$2f$react$2d$accordion$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/@radix-ui/react-accordion/dist/index.mjs [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDownIcon$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/chevron-down.js [app-ssr] (ecmascript) <export default as ChevronDownIcon>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.ts [app-ssr] (ecmascript)");
-'use client';
-;
-;
-;
-;
-function Accordion({ ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$radix$2d$ui$2f$react$2d$accordion$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Root"], {
-        "data-slot": "accordion",
-        ...props
-    }, void 0, false, {
-        fileName: "[project]/components/ui/accordion.tsx",
-        lineNumber: 12,
-        columnNumber: 10
-    }, this);
-}
-function AccordionItem({ className, ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$radix$2d$ui$2f$react$2d$accordion$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Item"], {
-        "data-slot": "accordion-item",
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('border-b last:border-b-0', className),
-        ...props
-    }, void 0, false, {
-        fileName: "[project]/components/ui/accordion.tsx",
-        lineNumber: 20,
-        columnNumber: 5
-    }, this);
-}
-function AccordionTrigger({ className, children, ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$radix$2d$ui$2f$react$2d$accordion$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Header"], {
-        className: "flex",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$radix$2d$ui$2f$react$2d$accordion$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Trigger"], {
-            "data-slot": "accordion-trigger",
-            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-start justify-between gap-4 rounded-md py-4 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&[data-state=open]>svg]:rotate-180', className),
-            ...props,
-            children: [
-                children,
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$chevron$2d$down$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ChevronDownIcon$3e$__["ChevronDownIcon"], {
-                    className: "text-muted-foreground pointer-events-none size-4 shrink-0 translate-y-0.5 transition-transform duration-200"
-                }, void 0, false, {
-                    fileName: "[project]/components/ui/accordion.tsx",
-                    lineNumber: 44,
-                    columnNumber: 9
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/components/ui/accordion.tsx",
-            lineNumber: 35,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/components/ui/accordion.tsx",
-        lineNumber: 34,
-        columnNumber: 5
-    }, this);
-}
-function AccordionContent({ className, children, ...props }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$radix$2d$ui$2f$react$2d$accordion$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Content"], {
-        "data-slot": "accordion-content",
-        className: "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down overflow-hidden text-sm",
-        ...props,
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["cn"])('pt-0 pb-4 min-w-0', className),
-            children: children
-        }, void 0, false, {
-            fileName: "[project]/components/ui/accordion.tsx",
-            lineNumber: 61,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/components/ui/accordion.tsx",
-        lineNumber: 56,
-        columnNumber: 5
-    }, this);
-}
-;
-}),
 "[project]/app/page.tsx [app-ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -4996,9 +4187,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dartboard$2d$selector$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/dartboard-selector.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$score$2d$display$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/score-display.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$current$2d$darts$2d$display$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/current-darts-display.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$throw$2d$history$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/throw-history.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$checkout$2d$feedback$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/checkout-feedback.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$decision$2d$quality$2d$meter$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/decision-quality-meter.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$progress$2d$dashboard$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/progress-dashboard.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$settings$2d$panel$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/settings-panel.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$game$2d$history$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/game-history.tsx [app-ssr] (ecmascript)");
@@ -5013,13 +4201,8 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$history$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__History$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/history.js [app-ssr] (ecmascript) <export default as History>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/sheet.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/dialog.tsx [app-ssr] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordion$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/accordion.tsx [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/sonner/dist/index.mjs [app-ssr] (ecmascript)");
 "use client";
-;
-;
-;
-;
 ;
 ;
 ;
@@ -5230,14 +4413,14 @@ function DartsTrainingApp() {
                                             className: "size-3 sm:size-4 mr-1 sm:mr-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 218,
+                                            lineNumber: 214,
                                             columnNumber: 15
                                         }, this),
                                         "New Game"
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 217,
+                                    lineNumber: 213,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5253,18 +4436,18 @@ function DartsTrainingApp() {
                                         className: "size-3 sm:size-4"
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 231,
+                                        lineNumber: 227,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 221,
+                                    lineNumber: 217,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/page.tsx",
-                            lineNumber: 216,
+                            lineNumber: 212,
                             columnNumber: 11
                         }, this),
                         progress && progress.currentStreak > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5274,7 +4457,7 @@ function DartsTrainingApp() {
                                     className: "size-3 sm:size-4 text-primary"
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 237,
+                                    lineNumber: 233,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -5285,13 +4468,13 @@ function DartsTrainingApp() {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 238,
+                                    lineNumber: 234,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/page.tsx",
-                            lineNumber: 236,
+                            lineNumber: 232,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Sheet"], {
@@ -5316,19 +4499,19 @@ function DartsTrainingApp() {
                                                 className: "size-3 sm:size-4 mr-1 sm:mr-2"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/page.tsx",
-                                                lineNumber: 257,
+                                                lineNumber: 253,
                                                 columnNumber: 17
                                             }, this),
                                             "Menu"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 256,
+                                        lineNumber: 252,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 255,
+                                    lineNumber: 251,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SheetContent"], {
@@ -5341,7 +4524,7 @@ function DartsTrainingApp() {
                                                     children: "Menu"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 263,
+                                                    lineNumber: 259,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$sheet$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SheetDescription"], {
@@ -5349,13 +4532,13 @@ function DartsTrainingApp() {
                                                     children: "Game controls and options"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 264,
+                                                    lineNumber: 260,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 262,
+                                            lineNumber: 258,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5371,14 +4554,14 @@ function DartsTrainingApp() {
                                                             className: "size-3 mr-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.tsx",
-                                                            lineNumber: 274,
+                                                            lineNumber: 270,
                                                             columnNumber: 19
                                                         }, this),
                                                         "Settings"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 268,
+                                                    lineNumber: 264,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5391,14 +4574,14 @@ function DartsTrainingApp() {
                                                             className: "size-3 mr-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.tsx",
-                                                            lineNumber: 283,
+                                                            lineNumber: 279,
                                                             columnNumber: 19
                                                         }, this),
                                                         "Progress"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 277,
+                                                    lineNumber: 273,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5411,20 +4594,20 @@ function DartsTrainingApp() {
                                                             className: "size-3 mr-1"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.tsx",
-                                                            lineNumber: 292,
+                                                            lineNumber: 288,
                                                             columnNumber: 19
                                                         }, this),
                                                         "History"
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 286,
+                                                    lineNumber: 282,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 267,
+                                            lineNumber: 263,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5434,7 +4617,7 @@ function DartsTrainingApp() {
                                                     onSettingsChange: setHitRatioSettings
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 299,
+                                                    lineNumber: 295,
                                                     columnNumber: 50
                                                 }, this),
                                                 activeMenuTab === "progress" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5443,7 +4626,7 @@ function DartsTrainingApp() {
                                                             progress: progress
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.tsx",
-                                                            lineNumber: 303,
+                                                            lineNumber: 299,
                                                             columnNumber: 34
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -5454,44 +4637,44 @@ function DartsTrainingApp() {
                                                             children: "Clear All Progress"
                                                         }, void 0, false, {
                                                             fileName: "[project]/app/page.tsx",
-                                                            lineNumber: 304,
+                                                            lineNumber: 300,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 302,
+                                                    lineNumber: 298,
                                                     columnNumber: 19
                                                 }, this),
                                                 activeMenuTab === "history" && progress && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$game$2d$history$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["GameHistory"], {
                                                     sessions: progress.sessions.slice().reverse()
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 316,
+                                                    lineNumber: 312,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/page.tsx",
-                                            lineNumber: 297,
+                                            lineNumber: 293,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 261,
+                                    lineNumber: 257,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/page.tsx",
-                            lineNumber: 244,
+                            lineNumber: 240,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/page.tsx",
-                    lineNumber: 215,
+                    lineNumber: 211,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Dialog"], {
@@ -5510,7 +4693,7 @@ function DartsTrainingApp() {
                                                     className: "size-5 text-primary"
                                                 }, void 0, false, {
                                                     fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 329,
+                                                    lineNumber: 325,
                                                     columnNumber: 21
                                                 }, this),
                                                 "Checkout Complete!"
@@ -5518,20 +4701,20 @@ function DartsTrainingApp() {
                                         }, void 0, true) : "Game Over"
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 326,
+                                        lineNumber: 322,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogDescription"], {
                                         children: gameStatus === "won" ? `You finished ${startingScore} in ${dartsThrown} darts!` : "You busted or failed to finish on a double."
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 336,
+                                        lineNumber: 332,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/page.tsx",
-                                lineNumber: 325,
+                                lineNumber: 321,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$dialog$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DialogFooter"], {
@@ -5542,23 +4725,23 @@ function DartsTrainingApp() {
                                     children: "New Game"
                                 }, void 0, false, {
                                     fileName: "[project]/app/page.tsx",
-                                    lineNumber: 343,
+                                    lineNumber: 339,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/app/page.tsx",
-                                lineNumber: 342,
+                                lineNumber: 338,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 324,
+                        lineNumber: 320,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/page.tsx",
-                    lineNumber: 323,
+                    lineNumber: 319,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -5575,7 +4758,7 @@ function DartsTrainingApp() {
                                         dartsThrown: dartsThrown
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 353,
+                                        lineNumber: 349,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$current$2d$darts$2d$display$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CurrentDartsDisplay"], {
@@ -5584,133 +4767,56 @@ function DartsTrainingApp() {
                                         hoveredTarget: hoveredTarget
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 354,
+                                        lineNumber: 350,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/page.tsx",
-                                lineNumber: 352,
+                                lineNumber: 348,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "lg:col-span-2 flex flex-col gap-2 min-w-0",
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dartboard$2d$selector$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DartboardSelector"], {
-                                        onSelectTarget: handleThrow,
-                                        onHoverTarget: setHoveredTarget,
-                                        disabled: gameStatus !== "playing",
-                                        size: hitRatioSettings.dartboardSize
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/page.tsx",
-                                        lineNumber: 358,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordion$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Accordion"], {
-                                        type: "single",
-                                        collapsible: true,
-                                        className: "w-full min-w-0",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordion$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AccordionItem"], {
-                                            value: "details",
-                                            className: "border rounded-lg px-3 min-w-0 overflow-visible",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordion$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AccordionTrigger"], {
-                                                    className: "text-xs py-2 hover:no-underline",
-                                                    children: "View Details & History"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 367,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$accordion$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AccordionContent"], {
-                                                    className: "pb-2",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                        className: "max-h-[60vh] overflow-y-auto overflow-x-visible space-y-2 pr-1 min-w-0 w-full",
-                                                        children: [
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$throw$2d$history$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["ThrowHistory"], {
-                                                                dartHistory: dartHistory.map((d)=>({
-                                                                        aimed: d.aimed.label,
-                                                                        hit: d.hit.label,
-                                                                        score: d.score,
-                                                                        wasAccurate: d.wasAccurate
-                                                                    }))
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/page.tsx",
-                                                                lineNumber: 372,
-                                                                columnNumber: 21
-                                                            }, this),
-                                                            gameStatus === "playing" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$checkout$2d$feedback$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CheckoutFeedback"], {
-                                                                currentScore: currentScore,
-                                                                dartsRemaining: dartsRemaining,
-                                                                lastThrow: dartHistory.length > 0 ? dartHistory[dartHistory.length - 1] : undefined,
-                                                                userRoute: userRoute
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/page.tsx",
-                                                                lineNumber: 382,
-                                                                columnNumber: 23
-                                                            }, this),
-                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$decision$2d$quality$2d$meter$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DecisionQualityMeter"], {
-                                                                accuracy: accuracy,
-                                                                optimalDecisions: sessionStats.optimalDecisions,
-                                                                totalDecisions: sessionStats.totalDecisions,
-                                                                averageDartsToFinish: averageDartsToFinish
-                                                            }, void 0, false, {
-                                                                fileName: "[project]/app/page.tsx",
-                                                                lineNumber: 390,
-                                                                columnNumber: 21
-                                                            }, this)
-                                                        ]
-                                                    }, void 0, true, {
-                                                        fileName: "[project]/app/page.tsx",
-                                                        lineNumber: 371,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/app/page.tsx",
-                                                    lineNumber: 370,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/app/page.tsx",
-                                            lineNumber: 366,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
-                                        fileName: "[project]/app/page.tsx",
-                                        lineNumber: 365,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$dartboard$2d$selector$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["DartboardSelector"], {
+                                    onSelectTarget: handleThrow,
+                                    onHoverTarget: setHoveredTarget,
+                                    disabled: gameStatus !== "playing",
+                                    size: hitRatioSettings.dartboardSize
+                                }, void 0, false, {
+                                    fileName: "[project]/app/page.tsx",
+                                    lineNumber: 354,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
                                 fileName: "[project]/app/page.tsx",
-                                lineNumber: 357,
+                                lineNumber: 353,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/page.tsx",
-                        lineNumber: 351,
+                        lineNumber: 347,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/page.tsx",
-                    lineNumber: 350,
+                    lineNumber: 346,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/page.tsx",
-            lineNumber: 214,
+            lineNumber: 210,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/page.tsx",
-        lineNumber: 213,
+        lineNumber: 209,
         columnNumber: 5
     }, this);
 }
 }),
 ];
 
-//# sourceMappingURL=_6984ac36._.js.map
+//# sourceMappingURL=_79b74208._.js.map
