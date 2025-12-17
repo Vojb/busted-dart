@@ -8,10 +8,35 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Darts Checkout Trainer - Master Your Finishing",
+  title: "BustedDarts - Master Your Finishing",
   description:
     "Professional darts training app focused on checkout math and decision-making under realistic match conditions",
   generator: "v0.app",
+  manifest: "/manifest.json",
+  applicationName: "BustedDarts",
+  keywords: ["darts", "training", "checkout", "sports", "game"],
+  authors: [{ name: "BustedDarts" }],
+  creator: "BustedDarts",
+  publisher: "BustedDarts",
+  formatDetection: {
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    siteName: "BustedDarts",
+    title: "BustedDarts - Master Your Finishing",
+    description:
+      "Professional darts training app focused on checkout math and decision-making under realistic match conditions",
+  },
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "BustedDarts",
+  },
   icons: {
     icon: [
       {
@@ -27,7 +52,20 @@ export const metadata: Metadata = {
         type: "image/svg+xml",
       },
     ],
-    apple: "/apple-icon.png",
+    apple: [
+      {
+        url: "/apple-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
+    ],
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+    userScalable: false,
+    viewportFit: "cover",
   },
 }
 

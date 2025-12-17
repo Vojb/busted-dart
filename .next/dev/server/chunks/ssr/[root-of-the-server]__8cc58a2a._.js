@@ -72,9 +72,49 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$vercel$2f$
 ;
 ;
 const metadata = {
-    title: "Darts Checkout Trainer - Master Your Finishing",
+    title: "BustedDarts - Master Your Finishing",
     description: "Professional darts training app focused on checkout math and decision-making under realistic match conditions",
     generator: "v0.app",
+    manifest: "/manifest.json",
+    applicationName: "BustedDarts",
+    keywords: [
+        "darts",
+        "training",
+        "checkout",
+        "sports",
+        "game"
+    ],
+    authors: [
+        {
+            name: "BustedDarts"
+        }
+    ],
+    creator: "BustedDarts",
+    publisher: "BustedDarts",
+    formatDetection: {
+        telephone: false
+    },
+    openGraph: {
+        type: "website",
+        siteName: "BustedDarts",
+        title: "BustedDarts - Master Your Finishing",
+        description: "Professional darts training app focused on checkout math and decision-making under realistic match conditions"
+    },
+    themeColor: [
+        {
+            media: "(prefers-color-scheme: light)",
+            color: "#ffffff"
+        },
+        {
+            media: "(prefers-color-scheme: dark)",
+            color: "#000000"
+        }
+    ],
+    appleWebApp: {
+        capable: true,
+        statusBarStyle: "default",
+        title: "BustedDarts"
+    },
     icons: {
         icon: [
             {
@@ -90,7 +130,20 @@ const metadata = {
                 type: "image/svg+xml"
             }
         ],
-        apple: "/apple-icon.png"
+        apple: [
+            {
+                url: "/apple-icon.png",
+                sizes: "180x180",
+                type: "image/png"
+            }
+        ]
+    },
+    viewport: {
+        width: "device-width",
+        initialScale: 1,
+        maximumScale: 1,
+        userScalable: false,
+        viewportFit: "cover"
     }
 };
 function RootLayout({ children }) {
@@ -102,18 +155,18 @@ function RootLayout({ children }) {
                 children,
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f40$vercel$2f$analytics$2f$dist$2f$next$2f$index$2e$mjs__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["Analytics"], {}, void 0, false, {
                     fileName: "[project]/app/layout.tsx",
-                    lineNumber: 43,
+                    lineNumber: 81,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/layout.tsx",
-            lineNumber: 41,
+            lineNumber: 79,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/app/layout.tsx",
-        lineNumber: 40,
+        lineNumber: 78,
         columnNumber: 5
     }, this);
 }

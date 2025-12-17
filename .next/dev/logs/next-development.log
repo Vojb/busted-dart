@@ -1,153 +1,10 @@
-[00:00:00.991] Server  LOG     
-[00:00:00.991] Server  LOG        We detected TypeScript in your project and reconfigured your tsconfig.json file for you.
-[00:00:00.991] Server  LOG        The following suggested values were added to your tsconfig.json. These values can be changed to fit your project's needs:
-
-[00:00:00.991] Server  LOG        	- include was updated to add '.next/dev/types/**/*.ts'
-[00:00:00.991] Server  LOG     
-[00:00:00.991] Server  LOG        The following mandatory changes were made to your tsconfig.json:
-
-[00:00:00.991] Server  LOG        	- jsx was set to react-jsx (next.js uses the React automatic runtime)
-[00:00:00.992] Server  LOG     
-[00:00:01.026] Server  LOG      ✓ Ready in 951ms
-[00:00:16.363] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:16.487] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-      <SegmentViewNode type="page" pagePath="page.tsx">
-        <SegmentTrieNode>
-        <ClientPageRoot Component={function DartsTrainingApp} serverProvidedParams={{...}}>
-          <DartsTrainingApp params={Promise} searchParams={Promise}>
-            <div className="min-h-scre...">
-              <div className="container ...">
-                <div>
-                <Dialog>
-                <div className="flex flex-...">
-                  <div className="grid lg:gr...">
-                    <div className="lg:col-spa...">
-                      <ScoreDisplay currentScore={69} startingScore={69} dartsThrown={0}>
-                        <Card className="p-3 sm:p-4">
-                          <div data-slot="card" className="bg-card te...">
-                            <div className="flex flex-...">
-                              <div>
-                              <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-+                               69
--                               38
-                              ...
-                      ...
-                    ...
-      ...
-
-[00:00:16.609] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:16.609] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:16.609] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:16.609] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964722562}
-[00:00:16.609] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964722562}
-[00:00:16.769] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:16.892] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-      <SegmentViewNode type="page" pagePath="page.tsx">
-        <SegmentTrieNode>
-        <ClientPageRoot Component={function DartsTrainingApp} serverProvidedParams={{...}}>
-          <DartsTrainingApp params={Promise} searchParams={Promise}>
-            <div className="min-h-scre...">
-              <div className="container ...">
-                <div>
-                <Dialog>
-                <div className="flex flex-...">
-                  <div className="grid lg:gr...">
-                    <div className="lg:col-spa...">
-                      <ScoreDisplay currentScore={139} startingScore={139} dartsThrown={0}>
-                        <Card className="p-3 sm:p-4">
-                          <div data-slot="card" className="bg-card te...">
-                            <div className="flex flex-...">
-                              <div>
-                              <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-+                               139
--                               109
-                              ...
-                      ...
-                    ...
-      ...
-
-[00:00:16.892] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:16.892] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:16.892] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:16.892] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964722845}
-[00:00:16.892] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964722845}
-[00:00:17.208] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.208] Browser ERROR   uncaughtError: Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-https://react.dev/link/hydration-mismatch
-
-  ...
-    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
-      <SegmentViewNode type="page" pagePath="page.tsx">
-        <SegmentTrieNode>
-        <ClientPageRoot Component={function DartsTrainingApp} serverProvidedParams={{...}}>
-          <DartsTrainingApp params={Promise} searchParams={Promise}>
-            <div className="min-h-scre...">
-              <div className="container ...">
-                <div>
-                <Dialog>
-                <div className="flex flex-...">
-                  <div className="grid lg:gr...">
-                    <div className="lg:col-spa...">
-                      <ScoreDisplay currentScore={96} startingScore={96} dartsThrown={0}>
-                        <Card className="p-3 sm:p-4">
-                          <div data-slot="card" className="bg-card te...">
-                            <div className="flex flex-...">
-                              <div>
-                              <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
-+                               96
--                               20
-                              ...
-                      ...
-                    ...
-      ...
-
-[00:00:17.309] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:00:17.309] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:17.309] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:00:17.309] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964723262}
-[00:00:17.309] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964723262}
-[00:00:49.067] Server  LOG      ✓ Compiled in 37ms
-[00:01:00.954] Server  LOG      ✓ Compiled in 43ms
-[00:01:01.078] Browser ERROR   uncaughtError: ReferenceError: setIsMounted is not defined
-[00:01:01.949] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:01:02.003] Server  LOG      ✓ Compiled in 17ms
-[00:01:02.057] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:01:03.078] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+[00:00:00.420] Server  LOG      ✓ Ready in 346ms
+[00:00:04.471] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:00:04.471] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:00:04.622] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:04.753] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
 
 - A server/client branch `if (typeof window !== 'undefined')`.
 - Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
@@ -160,142 +17,158 @@ It can also happen if the client has a browser extension installed which messes 
 %s%s https://react.dev/link/hydration-mismatch 
 
   ...
-    <SegmentViewNode type="page" pagePath="page.tsx">
-      <SegmentTrieNode>
-      <ClientPageRoot Component={function DartsTrainingApp} serverProvidedParams={{...}}>
-        <DartsTrainingApp params={Promise} searchParams={Promise}>
-          <div className="min-h-scre...">
-            <div className="container ...">
-              <div>
-              <Dialog>
-              <div className="flex flex-...">
-                <div className="grid lg:gr...">
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="page.tsx">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function DartsTrainingApp} serverProvidedParams={{...}}>
+            <DartsTrainingApp params={Promise} searchParams={Promise}>
+              <div className="min-h-scre...">
+                <div className="container ...">
                   <div>
-                  <div className="lg:col-spa...">
-                    <DartboardSelector onSelectTarget={function handleThrow} disabled={false} size={100}>
-                      <Card className="p-2 sm:p-3...">
-                        <div data-slot="card" className="bg-card te...">
-                          <svg viewBox="0 0 340 340" className="w-full max..." style={{filter:"none", ...}}>
-                            <circle>
-                            <g>
-                            <g>
-                            <g>
-                            <g>
-                              <path
-+                               d="M 299.19594600731335 104.17137753776572 A 145 145 0 0 0 272.5304832720494 67.469516..."
--                               d="M 299.19594600731335 104.17137753776571 A 145 145 0 0 0 272.5304832720494 67.469516..."
-                                fill="#16a34a"
-                                stroke="#000"
-                                strokeWidth="0.5"
-                                className="cursor-pointer transition-all"
-                                onClick={function onClick}
-                                onMouseEnter={function onMouseEnter}
-                                onMouseLeave={function onMouseLeave}
-                                style={{opacity:0.9}}
+                  <Dialog>
+                  <div className="flex flex-...">
+                    <div className="grid lg:gr...">
+                      <div>
+                      <div className="lg:col-spa...">
+                        <DartboardSelector onSelectTarget={function handleThrow} disabled={false} size={120}>
+                          <Card className="p-2 sm:p-3...">
+                            <div data-slot="card" className="bg-card te...">
+                              <svg
+                                viewBox="0 0 340 340"
+                                className="w-full max-w-[400px] touch-none select-none"
+                                style={{
++                                 filter: "none"
+-                                 filter: "none"
++                                 width: "120%"
+-                                 width: "100%"
++                                 maxWidth: "480px"
+-                                 max-width: "400px"
+                                }}
                               >
+                                <circle>
+                                <g>
+                                <g>
+                                <g>
+                                <g>
+                                  <path
++                                   d="M 299.19594600731335 104.17137753776572 A 145 145 0 0 0 272.5304832720494 67.46..."
+-                                   d="M 299.19594600731335 104.17137753776571 A 145 145 0 0 0 272.5304832720494 67.46..."
+                                    fill="#16a34a"
+                                    stroke="#000"
+                                    strokeWidth="0.5"
+                                    className="cursor-pointer transition-all"
+                                    onClick={function onClick}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
+                                    style={{opacity:0.9}}
+                                  >
+                                  ...
+                                <g>
+                                  <path
++                                   d="M 313.214809386295 147.31700256916653 A 145 145 0 0 0 299.19594600731335 104.17..."
+-                                   d="M 313.214809386295 147.31700256916653 A 145 145 0 0 0 299.19594600731335 104.17..."
+                                    fill="#dc2626"
+                                    stroke="#000"
+                                    strokeWidth="0.5"
+                                    className="cursor-pointer transition-all"
+                                    onClick={function onClick}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
+                                    style={{opacity:0.9}}
+                                  >
+                                  ...
+                                <g>
+                                <g>
+                                  <path
++                                   d="M 299.19594600731335 235.82862246223428 A 145 145 0 0 0 313.214809386295 192.68..."
+-                                   d="M 299.19594600731335 235.8286224622343 A 145 145 0 0 0 313.214809386295 192.682..."
+                                    fill="#dc2626"
+                                    stroke="#000"
+                                    strokeWidth="0.5"
+                                    className="cursor-pointer transition-all"
+                                    onClick={function onClick}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
+                                    style={{opacity:0.9}}
+                                  >
+                                  ...
+                                <g>
+                                  <path
++                                   d="M 272.5304832720494 272.53048327204937 A 145 145 0 0 0 299.19594600731335 235.8..."
+-                                   d="M 272.5304832720494 272.53048327204937 A 145 145 0 0 0 299.19594600731335 235.8..."
+                                    fill="#16a34a"
+                                    stroke="#000"
+                                    strokeWidth="0.5"
+                                    className="cursor-pointer transition-all"
+                                    onClick={function onClick}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
+                                    style={{opacity:0.9}}
+                                  >
+                                  ...
+                                <g>
+                                <g>
+                                <g>
+                                <g>
+                                  <path
++                                   d="M 104.17137753776574 299.19594600731335 A 145 145 0 0 0 147.3170025691665 313.2..."
+-                                   d="M 104.17137753776572 299.19594600731335 A 145 145 0 0 0 147.3170025691665 313.2..."
+                                    fill="#16a34a"
+                                    stroke="#000"
+                                    strokeWidth="0.5"
+                                    className="cursor-pointer transition-all"
+                                    onClick={function onClick}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
+                                    style={{opacity:0.9}}
+                                  >
+                                  ...
+                                <g>
+                                  <path
++                                   d="M 67.46951672795062 272.5304832720494 A 145 145 0 0 0 104.17137753776574 299.19..."
+-                                   d="M 67.46951672795062 272.5304832720494 A 145 145 0 0 0 104.17137753776572 299.19..."
+                                    fill="#dc2626"
+                                    stroke="#000"
+                                    strokeWidth="0.5"
+                                    className="cursor-pointer transition-all"
+                                    onClick={function onClick}
+                                    onMouseEnter={function onMouseEnter}
+                                    onMouseLeave={function onMouseLeave}
+                                    style={{opacity:0.9}}
+                                  >
+                                  ...
+                                <g>
+                                <g>
+                                <g>
+                                <g>
+                                <g>
+                                  <path>
+                                  <path>
+                                  <path>
+                                  <path>
+                                  <text
++                                   x={40.55728090000838}
+-                                   x="40.55728090000841"
+                                    y={75.95435963320432}
+                                    textAnchor="middle"
+                                    dominantBaseline="middle"
+                                    className="text-xs sm:text-sm font-bold fill-foreground pointer-events-none"
+                                  >
++                                   9
+                                ...
+                                ...
                               ...
-                            <g>
-                              <path
-+                               d="M 313.214809386295 147.31700256916653 A 145 145 0 0 0 299.19594600731335 104.171377..."
--                               d="M 313.214809386295 147.31700256916653 A 145 145 0 0 0 299.19594600731335 104.171377..."
-                                fill="#dc2626"
-                                stroke="#000"
-                                strokeWidth="0.5"
-                                className="cursor-pointer transition-all"
-                                onClick={function onClick}
-                                onMouseEnter={function onMouseEnter}
-                                onMouseLeave={function onMouseLeave}
-                                style={{opacity:0.9}}
-                              >
-                              ...
-                            <g>
-                            <g>
-                              <path
-+                               d="M 299.19594600731335 235.82862246223428 A 145 145 0 0 0 313.214809386295 192.682997..."
--                               d="M 299.19594600731335 235.8286224622343 A 145 145 0 0 0 313.214809386295 192.6829974..."
-                                fill="#dc2626"
-                                stroke="#000"
-                                strokeWidth="0.5"
-                                className="cursor-pointer transition-all"
-                                onClick={function onClick}
-                                onMouseEnter={function onMouseEnter}
-                                onMouseLeave={function onMouseLeave}
-                                style={{opacity:0.9}}
-                              >
-                              ...
-                            <g>
-                              <path
-+                               d="M 272.5304832720494 272.53048327204937 A 145 145 0 0 0 299.19594600731335 235.82862..."
--                               d="M 272.5304832720494 272.53048327204937 A 145 145 0 0 0 299.19594600731335 235.82862..."
-                                fill="#16a34a"
-                                stroke="#000"
-                                strokeWidth="0.5"
-                                className="cursor-pointer transition-all"
-                                onClick={function onClick}
-                                onMouseEnter={function onMouseEnter}
-                                onMouseLeave={function onMouseLeave}
-                                style={{opacity:0.9}}
-                              >
-                              ...
-                            <g>
-                            <g>
-                            <g>
-                            <g>
-                              <path
-+                               d="M 104.17137753776574 299.19594600731335 A 145 145 0 0 0 147.3170025691665 313.21480..."
--                               d="M 104.17137753776572 299.19594600731335 A 145 145 0 0 0 147.3170025691665 313.21480..."
-                                fill="#16a34a"
-                                stroke="#000"
-                                strokeWidth="0.5"
-                                className="cursor-pointer transition-all"
-                                onClick={function onClick}
-                                onMouseEnter={function onMouseEnter}
-                                onMouseLeave={function onMouseLeave}
-                                style={{opacity:0.9}}
-                              >
-                              ...
-                            <g>
-                              <path
-+                               d="M 67.46951672795062 272.5304832720494 A 145 145 0 0 0 104.17137753776574 299.195946..."
--                               d="M 67.46951672795062 272.5304832720494 A 145 145 0 0 0 104.17137753776572 299.195946..."
-                                fill="#dc2626"
-                                stroke="#000"
-                                strokeWidth="0.5"
-                                className="cursor-pointer transition-all"
-                                onClick={function onClick}
-                                onMouseEnter={function onMouseEnter}
-                                onMouseLeave={function onMouseLeave}
-                                style={{opacity:0.9}}
-                              >
-                              ...
-                            <g>
-                            <g>
-                            <g>
-                            <g>
-                            <g>
-                              <path>
-                              <path>
-                              <path>
-                              <path>
-                              <text
-+                               x={40.55728090000838}
--                               x="40.55728090000841"
-                                y={75.95435963320432}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                className="text-xs sm:text-sm font-bold fill-foreground pointer-events-none"
-                              >
-+                               9
-                            ...
-                            ...
-                          ...
-                    ...
-    ...
+                        ...
+        ...
+      ...
 
-[00:01:03.078] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
-[00:01:03.078] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
-[00:01:03.078] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765964768148}
-[00:01:35.933] Server  LOG      ✓ Compiled in 33ms
-[00:02:39.503] Server  LOG      ✓ Compiled in 72ms
-[00:03:33.896] Server  LOG      ✓ Compiled in 17ms
-[00:03:35.282] Server  LOG      ✓ Compiled in 30ms
+[00:00:04.753] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:00:04.753] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:00:04.753] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1765985029635}
+[00:00:46.395] Server  LOG      ✓ Compiled in 21ms
+[00:00:57.979] Server  LOG      ✓ Compiled in 18ms
+[00:01:01.742] Server  LOG      ✓ Compiled in 39ms
+[00:01:05.128] Server  LOG      ✓ Compiled in 17ms
+[00:01:26.383] Server  LOG      ✓ Compiled in 15ms
+[00:02:01.904] Server  LOG      ✓ Compiled in 21ms

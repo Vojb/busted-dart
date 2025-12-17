@@ -318,8 +318,16 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts
 ;
 ;
 ;
+// Helper function to round numbers to avoid floating-point precision issues
+const roundTo = (value, decimals = 2)=>{
+    return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+};
 function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
     const [hoveredSegment, setHoveredSegment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        setMounted(true);
+    }, []);
     const handleSegmentClick = (zone, number)=>{
         if (disabled) return;
         const value = zone === "T" ? number * 3 : zone === "D" ? number * 2 : number;
@@ -371,18 +379,25 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
         const innerStart = polarToCartesian(170, 170, innerRadius, endAngle);
         const innerEnd = polarToCartesian(170, 170, innerRadius, startAngle);
         const largeArc = endAngle - startAngle <= 180 ? "0" : "1";
-        return `M ${start.x} ${start.y} A ${outerRadius} ${outerRadius} 0 ${largeArc} 0 ${end.x} ${end.y} L ${innerEnd.x} ${innerEnd.y} A ${innerRadius} ${innerRadius} 0 ${largeArc} 1 ${innerStart.x} ${innerStart.y} Z`;
+        return `M ${roundTo(start.x)} ${roundTo(start.y)} A ${outerRadius} ${outerRadius} 0 ${largeArc} 0 ${roundTo(end.x)} ${roundTo(end.y)} L ${roundTo(innerEnd.x)} ${roundTo(innerEnd.y)} A ${innerRadius} ${innerRadius} 0 ${largeArc} 1 ${roundTo(innerStart.x)} ${roundTo(innerStart.y)} Z`;
     };
     const polarToCartesian = (centerX, centerY, radius, angleInDegrees)=>{
         const angleInRadians = (angleInDegrees - 90) * Math.PI / 180;
         return {
-            x: centerX + radius * Math.cos(angleInRadians),
-            y: centerY + radius * Math.sin(angleInRadians)
+            x: roundTo(centerX + radius * Math.cos(angleInRadians)),
+            y: roundTo(centerY + radius * Math.sin(angleInRadians))
         };
     };
     const getTextPosition = (radius, angle)=>{
-        return polarToCartesian(170, 170, radius, angle);
+        const pos = polarToCartesian(170, 170, radius, angle);
+        return {
+            x: pos.x,
+            y: pos.y
+        };
     };
+    // Use consistent size during SSR to avoid hydration mismatch
+    const displaySize = mounted ? size : 100;
+    const maxWidth = roundTo(400 * displaySize / 100);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
         className: "p-2 sm:p-3 flex items-center justify-center",
         children: [
@@ -391,8 +406,8 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                 className: "w-full max-w-[400px] touch-none select-none",
                 style: {
                     filter: disabled ? "opacity(0.5)" : "none",
-                    width: `${size}%`,
-                    maxWidth: `${400 * size / 100}px`
+                    width: `${displaySize}%`,
+                    maxWidth: `${maxWidth}px`
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -404,13 +419,14 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                         strokeWidth: "2"
                     }, void 0, false, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 77,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, this),
                     segments.map(({ number, angle, segmentAngle, singleColor, doubleTripleColor })=>{
                         const startAngle = angle;
                         const endAngle = angle + segmentAngle;
                         const midAngle = angle + segmentAngle / 2;
+                        const textPos = getTextPosition(160, midAngle);
                         return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -427,7 +443,7 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/dartboard-selector.tsx",
-                                    lineNumber: 87,
+                                    lineNumber: 106,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -444,7 +460,7 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/dartboard-selector.tsx",
-                                    lineNumber: 99,
+                                    lineNumber: 118,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -461,7 +477,7 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/dartboard-selector.tsx",
-                                    lineNumber: 111,
+                                    lineNumber: 130,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -478,24 +494,25 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/components/dartboard-selector.tsx",
-                                    lineNumber: 123,
+                                    lineNumber: 142,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
-                                    ...getTextPosition(160, midAngle),
+                                    x: textPos.x,
+                                    y: textPos.y,
                                     textAnchor: "middle",
                                     dominantBaseline: "middle",
                                     className: "text-xs sm:text-sm font-bold fill-foreground pointer-events-none",
                                     children: number
                                 }, void 0, false, {
                                     fileName: "[project]/components/dartboard-selector.tsx",
-                                    lineNumber: 136,
+                                    lineNumber: 155,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, number, true, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 86,
+                            lineNumber: 105,
                             columnNumber: 13
                         }, this);
                     }),
@@ -512,7 +529,7 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                         onMouseLeave: ()=>setHoveredSegment(null)
                     }, void 0, false, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 149,
+                        lineNumber: 169,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -528,13 +545,13 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                         onMouseLeave: ()=>setHoveredSegment(null)
                     }, void 0, false, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 163,
+                        lineNumber: 183,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/dartboard-selector.tsx",
-                lineNumber: 67,
+                lineNumber: 85,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -544,18 +561,18 @@ function DartboardSelector({ onSelectTarget, disabled, size = 100 }) {
                     children: hoveredSegment === "BULL" ? "Bull (50)" : hoveredSegment === "25" ? "Outer Bull (25)" : hoveredSegment
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 179,
+                    lineNumber: 199,
                     columnNumber: 11
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/components/dartboard-selector.tsx",
-                lineNumber: 177,
+                lineNumber: 197,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/dartboard-selector.tsx",
-        lineNumber: 66,
+        lineNumber: 84,
         columnNumber: 5
     }, this);
 }

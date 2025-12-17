@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card } from "@/components/ui/card"
 import { type DartTarget, DARTBOARD_NUMBERS } from "@/lib/darts-config"
 
@@ -10,8 +10,18 @@ interface DartboardSelectorProps {
   size?: number
 }
 
+// Helper function to round numbers to avoid floating-point precision issues
+const roundTo = (value: number, decimals: number = 2): number => {
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
+}
+
 export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: DartboardSelectorProps) {
   const [hoveredSegment, setHoveredSegment] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const handleSegmentClick = (zone: "T" | "D" | "S", number: number) => {
     if (disabled) return
@@ -47,20 +57,28 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
     const innerEnd = polarToCartesian(170, 170, innerRadius, startAngle)
     const largeArc = endAngle - startAngle <= 180 ? "0" : "1"
 
-    return `M ${start.x} ${start.y} A ${outerRadius} ${outerRadius} 0 ${largeArc} 0 ${end.x} ${end.y} L ${innerEnd.x} ${innerEnd.y} A ${innerRadius} ${innerRadius} 0 ${largeArc} 1 ${innerStart.x} ${innerStart.y} Z`
+    return `M ${roundTo(start.x)} ${roundTo(start.y)} A ${outerRadius} ${outerRadius} 0 ${largeArc} 0 ${roundTo(end.x)} ${roundTo(end.y)} L ${roundTo(innerEnd.x)} ${roundTo(innerEnd.y)} A ${innerRadius} ${innerRadius} 0 ${largeArc} 1 ${roundTo(innerStart.x)} ${roundTo(innerStart.y)} Z`
   }
 
   const polarToCartesian = (centerX: number, centerY: number, radius: number, angleInDegrees: number) => {
     const angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180
     return {
-      x: centerX + radius * Math.cos(angleInRadians),
-      y: centerY + radius * Math.sin(angleInRadians),
+      x: roundTo(centerX + radius * Math.cos(angleInRadians)),
+      y: roundTo(centerY + radius * Math.sin(angleInRadians)),
     }
   }
 
   const getTextPosition = (radius: number, angle: number) => {
-    return polarToCartesian(170, 170, radius, angle)
+    const pos = polarToCartesian(170, 170, radius, angle)
+    return {
+      x: pos.x,
+      y: pos.y,
+    }
   }
+
+  // Use consistent size during SSR to avoid hydration mismatch
+  const displaySize = mounted ? size : 100
+  const maxWidth = roundTo((400 * displaySize) / 100)
 
   return (
     <Card className="p-2 sm:p-3 flex items-center justify-center">
@@ -69,8 +87,8 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
         className="w-full max-w-[400px] touch-none select-none"
         style={{
           filter: disabled ? "opacity(0.5)" : "none",
-          width: `${size}%`,
-          maxWidth: `${(400 * size) / 100}px`,
+          width: `${displaySize}%`,
+          maxWidth: `${maxWidth}px`,
         }}
       >
         {/* Outer border */}
@@ -81,6 +99,7 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
           const startAngle = angle
           const endAngle = angle + segmentAngle
           const midAngle = angle + segmentAngle / 2
+          const textPos = getTextPosition(160, midAngle)
 
           return (
             <g key={number}>
@@ -134,7 +153,8 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
 
               {/* Number labels outside dartboard */}
               <text
-                {...getTextPosition(160, midAngle)}
+                x={textPos.x}
+                y={textPos.y}
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className="text-xs sm:text-sm font-bold fill-foreground pointer-events-none"
