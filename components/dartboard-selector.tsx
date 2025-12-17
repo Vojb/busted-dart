@@ -6,6 +6,7 @@ import { type DartTarget, DARTBOARD_NUMBERS } from "@/lib/darts-config"
 
 interface DartboardSelectorProps {
   onSelectTarget: (target: DartTarget) => void
+  onHoverTarget?: (target: DartTarget | null) => void
   disabled?: boolean
   size?: number
 }
@@ -15,8 +16,7 @@ const roundTo = (value: number, decimals: number = 2): number => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
-export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: DartboardSelectorProps) {
-  const [hoveredSegment, setHoveredSegment] = useState<string | null>(null)
+export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100 }: DartboardSelectorProps) {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -81,19 +81,16 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
   const maxWidth = roundTo((400 * displaySize) / 100)
 
   return (
-    <Card className="p-2 sm:p-3 flex items-center justify-center">
+    <Card className="p-4 sm:p-6 flex items-center justify-center">
       <svg
         viewBox="0 0 340 340"
-        className="w-full max-w-[400px] touch-none select-none"
+        className="w-full max-w-[500px] touch-none select-none"
         style={{
           filter: disabled ? "opacity(0.5)" : "none",
           width: `${displaySize}%`,
           maxWidth: `${maxWidth}px`,
         }}
       >
-        {/* Outer border */}
-        <circle cx="170" cy="170" r="148" fill="none" stroke="#888" strokeWidth="2" />
-
         {/* Segments */}
         {segments.map(({ number, angle, segmentAngle, singleColor, doubleTripleColor }) => {
           const startAngle = angle
@@ -105,50 +102,80 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
             <g key={number}>
               <path
                 d={createArc(130, 145, startAngle, endAngle)}
-                fill={hoveredSegment === `D${number}` ? "#fbbf24" : doubleTripleColor}
+                fill={doubleTripleColor}
                 stroke="#000"
                 strokeWidth="0.5"
-                className="cursor-pointer transition-all"
+                className="cursor-pointer"
                 onClick={() => handleSegmentClick("D", number)}
-                onMouseEnter={() => setHoveredSegment(`D${number}`)}
-                onMouseLeave={() => setHoveredSegment(null)}
-                style={{ opacity: hoveredSegment === `D${number}` ? 1 : 0.9 }}
+                onMouseEnter={() => {
+                  if (onHoverTarget && !disabled) {
+                    const value = number * 2
+                    onHoverTarget({ zone: "D", number, label: `D${number}`, value })
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (onHoverTarget) {
+                    onHoverTarget(null)
+                  }
+                }}
               />
 
               <path
                 d={createArc(95, 130, startAngle, endAngle)}
-                fill={hoveredSegment === `S${number}` ? "#fbbf24" : singleColor}
+                fill={singleColor}
                 stroke="#000"
                 strokeWidth="0.5"
-                className="cursor-pointer transition-all"
+                className="cursor-pointer"
                 onClick={() => handleSegmentClick("S", number)}
-                onMouseEnter={() => setHoveredSegment(`S${number}`)}
-                onMouseLeave={() => setHoveredSegment(null)}
-                style={{ opacity: hoveredSegment === `S${number}` ? 1 : 0.9 }}
+                onMouseEnter={() => {
+                  if (onHoverTarget && !disabled) {
+                    onHoverTarget({ zone: "S", number, label: `S${number}`, value: number })
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (onHoverTarget) {
+                    onHoverTarget(null)
+                  }
+                }}
               />
 
               <path
                 d={createArc(75, 95, startAngle, endAngle)}
-                fill={hoveredSegment === `T${number}` ? "#fbbf24" : doubleTripleColor}
+                fill={doubleTripleColor}
                 stroke="#000"
                 strokeWidth="0.5"
-                className="cursor-pointer transition-all"
+                className="cursor-pointer"
                 onClick={() => handleSegmentClick("T", number)}
-                onMouseEnter={() => setHoveredSegment(`T${number}`)}
-                onMouseLeave={() => setHoveredSegment(null)}
-                style={{ opacity: hoveredSegment === `T${number}` ? 1 : 0.9 }}
+                onMouseEnter={() => {
+                  if (onHoverTarget && !disabled) {
+                    const value = number * 3
+                    onHoverTarget({ zone: "T", number, label: `T${number}`, value })
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (onHoverTarget) {
+                    onHoverTarget(null)
+                  }
+                }}
               />
 
               <path
                 d={createArc(20, 75, startAngle, endAngle)}
-                fill={hoveredSegment === `S${number}` ? "#fbbf24" : singleColor}
+                fill={singleColor}
                 stroke="#000"
                 strokeWidth="0.5"
-                className="cursor-pointer transition-all"
+                className="cursor-pointer"
                 onClick={() => handleSegmentClick("S", number)}
-                onMouseEnter={() => setHoveredSegment(`S${number}`)}
-                onMouseLeave={() => setHoveredSegment(null)}
-                style={{ opacity: hoveredSegment === `S${number}` ? 1 : 0.9 }}
+                onMouseEnter={() => {
+                  if (onHoverTarget && !disabled) {
+                    onHoverTarget({ zone: "S", number, label: `S${number}`, value: number })
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (onHoverTarget) {
+                    onHoverTarget(null)
+                  }
+                }}
               />
 
               {/* Number labels outside dartboard */}
@@ -170,13 +197,21 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
           cx="170"
           cy="170"
           r="20"
-          fill={hoveredSegment === "25" ? "#fbbf24" : "#16a34a"}
+          fill="#16a34a"
           stroke="#000"
           strokeWidth="0.5"
-          className="cursor-pointer transition-all"
+          className="cursor-pointer"
           onClick={() => handleBullClick(false)}
-          onMouseEnter={() => setHoveredSegment("25")}
-          onMouseLeave={() => setHoveredSegment(null)}
+          onMouseEnter={() => {
+            if (onHoverTarget && !disabled) {
+              onHoverTarget({ zone: "OUTER_BULL", number: 25, label: "25", value: 25 })
+            }
+          }}
+          onMouseLeave={() => {
+            if (onHoverTarget) {
+              onHoverTarget(null)
+            }
+          }}
         />
 
         {/* Bull (50) */}
@@ -184,23 +219,24 @@ export function DartboardSelector({ onSelectTarget, disabled, size = 100 }: Dart
           cx="170"
           cy="170"
           r="10"
-          fill={hoveredSegment === "BULL" ? "#fbbf24" : "#dc2626"}
+          fill="#dc2626"
           stroke="#000"
           strokeWidth="0.5"
-          className="cursor-pointer transition-all"
+          className="cursor-pointer"
           onClick={() => handleBullClick(true)}
-          onMouseEnter={() => setHoveredSegment("BULL")}
-          onMouseLeave={() => setHoveredSegment(null)}
+          onMouseEnter={() => {
+            if (onHoverTarget && !disabled) {
+              onHoverTarget({ zone: "BULL", number: 50, label: "Bull", value: 50 })
+            }
+          }}
+          onMouseLeave={() => {
+            if (onHoverTarget) {
+              onHoverTarget(null)
+            }
+          }}
         />
       </svg>
 
-      <div className="text-xs sm:text-sm text-muted-foreground text-center mt-2">
-        {hoveredSegment && (
-          <span className="font-medium">
-            {hoveredSegment === "BULL" ? "Bull (50)" : hoveredSegment === "25" ? "Outer Bull (25)" : hoveredSegment}
-          </span>
-        )}
-      </div>
     </Card>
   )
 }

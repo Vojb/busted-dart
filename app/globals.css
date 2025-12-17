@@ -40,38 +40,47 @@
 }
 
 .dark {
-  --background: oklch(0.12 0.02 264);
-  --foreground: oklch(0.95 0.01 264);
-  --card: oklch(0.15 0.02 264);
-  --card-foreground: oklch(0.95 0.01 264);
-  --popover: oklch(0.15 0.02 264);
-  --popover-foreground: oklch(0.95 0.01 264);
-  --primary: oklch(0.6 0.18 264);
+  /* Dark background with purple/pink ambient lighting - like the dim tournament venue */
+  --background: oklch(0.1 0.03 315);
+  --foreground: oklch(0.95 0.01 315);
+  /* Cards with subtle purple/pink tint */
+  --card: oklch(0.16 0.04 315);
+  --card-foreground: oklch(0.95 0.01 315);
+  --popover: oklch(0.16 0.04 315);
+  --popover-foreground: oklch(0.95 0.01 315);
+  /* Bright vibrant purple/pink primary - like stage lights */
+  --primary: oklch(0.68 0.28 315);
   --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.22 0.02 264);
-  --secondary-foreground: oklch(0.95 0.01 264);
-  --muted: oklch(0.22 0.02 264);
-  --muted-foreground: oklch(0.6 0.01 264);
-  --accent: oklch(0.55 0.2 140);
+  /* Secondary surfaces with purple tint */
+  --secondary: oklch(0.22 0.05 315);
+  --secondary-foreground: oklch(0.95 0.01 315);
+  --muted: oklch(0.22 0.05 315);
+  --muted-foreground: oklch(0.65 0.02 315);
+  /* Pink accent - vibrant like the ambient lighting */
+  --accent: oklch(0.65 0.25 325);
   --accent-foreground: oklch(0.99 0 0);
-  --destructive: oklch(0.5 0.2 25);
+  --destructive: oklch(0.55 0.22 25);
   --destructive-foreground: oklch(0.99 0 0);
-  --border: oklch(0.25 0.02 264);
-  --input: oklch(0.25 0.02 264);
-  --ring: oklch(0.6 0.18 264);
-  --chart-1: oklch(0.6 0.2 264);
-  --chart-2: oklch(0.6 0.2 140);
-  --chart-3: oklch(0.65 0.18 60);
-  --chart-4: oklch(0.55 0.18 320);
-  --chart-5: oklch(0.7 0.15 200);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Borders with purple/pink tint */
+  --border: oklch(0.28 0.06 315);
+  --input: oklch(0.28 0.06 315);
+  /* Ring/focus with bright purple */
+  --ring: oklch(0.68 0.28 315);
+  /* Chart colors with purple/pink theme */
+  --chart-1: oklch(0.68 0.28 315);
+  --chart-2: oklch(0.65 0.25 325);
+  --chart-3: oklch(0.7 0.22 305);
+  --chart-4: oklch(0.62 0.24 330);
+  --chart-5: oklch(0.75 0.2 300);
+  /* Sidebar with purple/pink theme */
+  --sidebar: oklch(0.18 0.04 315);
+  --sidebar-foreground: oklch(0.95 0.01 315);
+  --sidebar-primary: oklch(0.68 0.28 315);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.22 0.05 315);
+  --sidebar-accent-foreground: oklch(0.95 0.01 315);
+  --sidebar-border: oklch(0.28 0.06 315);
+  --sidebar-ring: oklch(0.68 0.28 315);
 }
 
 @theme inline {

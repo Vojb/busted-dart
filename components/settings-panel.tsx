@@ -1,23 +1,37 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useTheme } from "next-themes"
 import { loadSettings, saveSettings, type HitRatioSettings } from "@/lib/storage"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
-import { Target } from "lucide-react"
+import { Target, Moon, Sun } from "lucide-react"
 
 interface SettingsPanelProps {
   onSettingsChange?: (settings: HitRatioSettings) => void
 }
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 120 })
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     setSettings(loadSettings())
   }, [])
+
+  const currentTheme = resolvedTheme || theme || "dark"
+  
+  const toggleTheme = () => {
+    if (currentTheme === "dark") {
+      setTheme("light")
+    } else {
+      setTheme("dark")
+    }
+  }
 
   const handleSettingChange = (key: keyof HitRatioSettings, value: number) => {
     const newSettings = { ...settings, [key]: value }
@@ -33,8 +47,39 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
     onSettingsChange?.(defaultSettings)
   }
 
+  if (!mounted) {
+    return null
+  }
+
   return (
     <div className="space-y-3">
+      <Card className="p-3 bg-card/50">
+        <div className="flex items-center justify-between">
+          <Label className="text-xs font-medium flex items-center gap-2">
+            {currentTheme === "dark" ? <Moon className="size-3.5" /> : <Sun className="size-3.5" />}
+            Theme
+          </Label>
+          <Button
+            onClick={toggleTheme}
+            variant="outline"
+            size="sm"
+            className="text-xs h-7"
+          >
+            {currentTheme === "dark" ? (
+              <>
+                <Sun className="size-3 mr-1" />
+                Light
+              </>
+            ) : (
+              <>
+                <Moon className="size-3 mr-1" />
+                Dark
+              </>
+            )}
+          </Button>
+        </div>
+      </Card>
+
       <div className="flex items-center justify-between">
         <h3 className="text-sm font-semibold flex items-center gap-2">
           <Target className="size-3.5" />

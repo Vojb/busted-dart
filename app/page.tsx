@@ -20,6 +20,8 @@ import {
   type ProgressData,
   loadSettings,
   type HitRatioSettings,
+  update3DartGameAndStreak,
+  resetStreak,
 } from "@/lib/storage"
 import { RotateCcw, Trophy, Menu, BarChart3, Settings, History } from "lucide-react"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
@@ -55,6 +57,7 @@ export default function DartsTrainingApp() {
     optimalDecisions: 0,
     totalDecisions: 0,
   })
+  const [hoveredTarget, setHoveredTarget] = useState<DartTarget | null>(null)
 
   useEffect(() => {
     setProgress(loadProgress())
@@ -68,6 +71,8 @@ export default function DartsTrainingApp() {
 
   const handleThrow = (target: DartTarget) => {
     if (gameStatus !== "playing") return
+
+    setHoveredTarget(null)
 
     // Determine hit ratio based on zone
     let hitRatio: number
@@ -152,6 +157,10 @@ export default function DartsTrainingApp() {
       optimalDecisionRate: decisionRate,
     })
 
+    // Track 3-dart games and update streak
+    const completedWith3Darts = completed && totalDarts === 3
+    update3DartGameAndStreak(completedWith3Darts)
+
     setProgress(loadProgress())
   }
 
@@ -166,6 +175,7 @@ export default function DartsTrainingApp() {
     setDartHistory([])
     setGameStatus("playing")
     setUserRoute([])
+    setHoveredTarget(null)
     setSessionStats({
       accurateHits: 0,
       totalDarts: 0,
@@ -196,7 +206,26 @@ export default function DartsTrainingApp() {
             New Game
           </Button>
 
-          <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+          {progress && progress.currentStreak > 0 && (
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-primary/10 border border-primary/20">
+              <Trophy className="size-3 sm:size-4 text-primary" />
+              <span className="text-xs sm:text-sm font-semibold text-primary">
+                {progress.currentStreak} {progress.currentStreak === 1 ? "game" : "games"} streak
+              </span>
+            </div>
+          )}
+
+          <Sheet
+            open={sheetOpen}
+            onOpenChange={(open) => {
+              setSheetOpen(open)
+              if (open) {
+                // Reset streak when menu is opened
+                resetStreak()
+                setProgress(loadProgress())
+              }
+            }}
+          >
             <SheetTrigger asChild>
               <Button variant="outline" size="sm" className="text-xs sm:text-sm bg-transparent">
                 <Menu className="size-3 sm:size-4 mr-1 sm:mr-2" />
@@ -296,12 +325,13 @@ export default function DartsTrainingApp() {
           <div className="grid lg:grid-cols-3 gap-2 sm:gap-3">
             <div className="lg:col-span-1 flex flex-col gap-2">
               <ScoreDisplay currentScore={currentScore} startingScore={startingScore} dartsThrown={dartsThrown} />
-              <CurrentDartsDisplay darts={dartHistory} dartsThrown={dartsThrown} />
+              <CurrentDartsDisplay darts={dartHistory} dartsThrown={dartsThrown} hoveredTarget={hoveredTarget} />
             </div>
 
             <div className="lg:col-span-2 flex flex-col gap-2">
               <DartboardSelector
                 onSelectTarget={handleThrow}
+                onHoverTarget={setHoveredTarget}
                 disabled={gameStatus !== "playing"}
                 size={hitRatioSettings.dartboardSize}
               />

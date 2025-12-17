@@ -18,6 +18,8 @@ export interface ProgressData {
   totalOptimalDecisions: number
   totalDecisions: number
   sessions: GameSession[]
+  gamesWith3Darts: number
+  currentStreak: number
   personalBests: {
     fewestDarts: number | null
     bestAccuracy: number | null
@@ -93,6 +95,25 @@ export function addSession(session: GameSession): void {
   saveProgress(progress)
 }
 
+export function update3DartGameAndStreak(completedWith3Darts: boolean): void {
+  const progress = loadProgress()
+
+  if (completedWith3Darts) {
+    progress.gamesWith3Darts += 1
+    progress.currentStreak += 1
+  } else {
+    progress.currentStreak = 0
+  }
+
+  saveProgress(progress)
+}
+
+export function resetStreak(): void {
+  const progress = loadProgress()
+  progress.currentStreak = 0
+  saveProgress(progress)
+}
+
 export function clearProgress(): void {
   if (typeof window === "undefined") return
   localStorage.removeItem(STORAGE_KEY)
@@ -131,6 +152,8 @@ function getEmptyProgress(): ProgressData {
     totalOptimalDecisions: 0,
     totalDecisions: 0,
     sessions: [],
+    gamesWith3Darts: 0,
+    currentStreak: 0,
     personalBests: {
       fewestDarts: null,
       bestAccuracy: null,

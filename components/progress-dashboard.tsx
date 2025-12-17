@@ -118,6 +118,19 @@ export function ProgressDashboard({ progress }: ProgressDashboardProps) {
                 <div className="text-2xl font-bold">{progress.totalGames}</div>
               </div>
             </div>
+
+            <div className="flex items-center gap-2 p-3 rounded-lg bg-primary/10">
+              <Target className="size-5 text-primary" />
+              <div>
+                <div className="text-sm font-medium">{"Games with 3 Darts"}</div>
+                <div className="text-2xl font-bold">{progress.gamesWith3Darts || 0}</div>
+                {progress.currentStreak > 0 && (
+                  <div className="text-xs text-muted-foreground mt-1">
+                    {"Current streak: "} {progress.currentStreak}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </Card>
