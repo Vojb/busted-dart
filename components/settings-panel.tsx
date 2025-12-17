@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
-import { loadSettings, saveSettings, type HitRatioSettings } from "@/lib/storage"
+import { loadSettings, saveSettings, type HitRatioSettings, type Difficulty } from "@/lib/storage"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Target, Moon, Sun } from "lucide-react"
 
 interface SettingsPanelProps {
@@ -15,7 +16,7 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 120 })
+  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium" })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -41,10 +42,17 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   }
 
   const handleReset = () => {
-    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 120 }
+    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium" as Difficulty }
     setSettings(defaultSettings)
     saveSettings(defaultSettings)
     onSettingsChange?.(defaultSettings)
+  }
+  
+  const handleDifficultyChange = (difficulty: Difficulty) => {
+    const newSettings = { ...settings, difficulty }
+    setSettings(newSettings)
+    saveSettings(newSettings)
+    onSettingsChange?.(newSettings)
   }
 
   if (!mounted) {
@@ -77,6 +85,28 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
               </>
             )}
           </Button>
+        </div>
+      </Card>
+
+      <Card className="p-3 bg-card/50">
+        <div className="space-y-2">
+          <Label htmlFor="difficulty-select" className="text-xs font-medium">
+            Difficulty
+          </Label>
+          <Select value={settings.difficulty} onValueChange={handleDifficultyChange}>
+            <SelectTrigger id="difficulty-select" size="sm" className="w-full text-xs h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="easy">Easy (1-40)</SelectItem>
+              <SelectItem value="medium">Medium (40-120)</SelectItem>
+              <SelectItem value="hard">Hard (120-170)</SelectItem>
+              <SelectItem value="random">Random (1-170)</SelectItem>
+            </SelectContent>
+          </Select>
+          <p className="text-xs text-muted-foreground">
+            Only scores finishable with 3 darts will be generated
+          </p>
         </div>
       </Card>
 

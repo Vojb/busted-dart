@@ -77,13 +77,52 @@ export function isFinishable(score: number, dartsRemaining: number): boolean {
   return false
 }
 
-// Generate a random finishable score
-export function generateRandomCheckout(): number {
+// Generate a random finishable score based on difficulty
+export function generateRandomCheckout(difficulty: "easy" | "medium" | "hard" | "random" = "medium"): number {
   const finishableScores = []
-  for (let i = 2; i <= 170; i++) {
+  
+  // Define difficulty ranges
+  let minScore: number
+  let maxScore: number
+  
+  switch (difficulty) {
+    case "easy":
+      minScore = 2 // Can't finish on 1
+      maxScore = 40
+      break
+    case "medium":
+      minScore = 41
+      maxScore = 120
+      break
+    case "hard":
+      minScore = 121
+      maxScore = 170
+      break
+    case "random":
+      // Random selects from all finishable scores (2-170)
+      minScore = 2
+      maxScore = 170
+      break
+    default:
+      minScore = 2
+      maxScore = 170
+  }
+  
+  // Only include scores that are finishable with 3 darts
+  for (let i = minScore; i <= maxScore; i++) {
     if (isFinishable(i, 3) && i !== 1) {
       finishableScores.push(i)
     }
   }
+  
+  if (finishableScores.length === 0) {
+    // Fallback to default range if no scores found in difficulty range
+    for (let i = 2; i <= 170; i++) {
+      if (isFinishable(i, 3) && i !== 1) {
+        finishableScores.push(i)
+      }
+    }
+  }
+  
   return finishableScores[Math.floor(Math.random() * finishableScores.length)]
 }

@@ -27,11 +27,14 @@ export interface ProgressData {
   }
 }
 
+export type Difficulty = "easy" | "medium" | "hard" | "random"
+
 export interface HitRatioSettings {
   triple: number
   double: number
   single: number
   dartboardSize: number
+  difficulty: Difficulty
 }
 
 const STORAGE_KEY = "darts_training_progress"
@@ -95,11 +98,16 @@ export function addSession(session: GameSession): void {
   saveProgress(progress)
 }
 
-export function update3DartGameAndStreak(completedWith3Darts: boolean): void {
+export function update3DartGameAndStreak(completed: boolean, totalDarts: number): void {
   const progress = loadProgress()
 
-  if (completedWith3Darts) {
+  // Track 3-dart games separately
+  if (completed && totalDarts === 3) {
     progress.gamesWith3Darts += 1
+  }
+
+  // Update streak: increment for 1-3 darts, reset if more than 3 darts or not completed
+  if (completed && totalDarts <= 3) {
     progress.currentStreak += 1
   } else {
     progress.currentStreak = 0
@@ -127,7 +135,12 @@ export function loadSettings(): HitRatioSettings {
   try {
     const stored = localStorage.getItem(SETTINGS_KEY)
     if (!stored) return getDefaultSettings()
-    return JSON.parse(stored)
+    const parsed = JSON.parse(stored)
+    // Ensure difficulty field exists for backwards compatibility
+    if (!parsed.difficulty) {
+      parsed.difficulty = "medium"
+    }
+    return parsed
   } catch {
     return getDefaultSettings()
   }
@@ -168,6 +181,7 @@ function getDefaultSettings(): HitRatioSettings {
     double: 65,
     single: 85,
     dartboardSize: 100,
+    difficulty: "medium",
   }
 }
 

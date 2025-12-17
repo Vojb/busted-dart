@@ -62,9 +62,10 @@ export default function DartsTrainingApp() {
 
   useEffect(() => {
     setProgress(loadProgress())
-    setHitRatioSettings(loadSettings())
+    const settings = loadSettings()
+    setHitRatioSettings(settings)
     // Generate random checkout only on client side after hydration
-    const initialScore = generateRandomCheckout()
+    const initialScore = generateRandomCheckout(settings.difficulty)
     setStartingScore(initialScore)
     setCurrentScore(initialScore)
     setPendingScore(initialScore)
@@ -170,8 +171,7 @@ export default function DartsTrainingApp() {
     })
 
     // Track 3-dart games and update streak
-    const completedWith3Darts = completed && totalDarts === 3
-    update3DartGameAndStreak(completedWith3Darts)
+    update3DartGameAndStreak(completed, totalDarts)
 
     setProgress(loadProgress())
   }
@@ -179,7 +179,7 @@ export default function DartsTrainingApp() {
   const handleReset = () => {
     setSheetOpen(false)
     setGameCompleteDialog(false)
-    const newScore = generateRandomCheckout()
+    const newScore = generateRandomCheckout(hitRatioSettings.difficulty)
     setStartingScore(newScore)
     setCurrentScore(newScore)
     setPendingScore(newScore)
