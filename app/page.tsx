@@ -34,6 +34,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { toast } from "sonner"
 
 export default function DartsTrainingApp() {
   // Initialize with a consistent default value to avoid hydration mismatch
@@ -86,6 +87,17 @@ export default function DartsTrainingApp() {
 
     const result = simulateThrow(target, pendingScore, hitRatio)
     const newScore = pendingScore - result.score
+
+    // Show toast notification for the throw
+    if (result.wasAccurate) {
+      toast.success(`You hit ${target.label}!`, {
+        description: `Scored ${result.score} points`,
+      })
+    } else {
+      toast.error(`You missed ${target.label}`, {
+        description: `Hit ${result.hit.label} instead (${result.score} points)`,
+      })
+    }
 
     const optimalRoutes = getOptimalCheckouts(pendingScore)
     const wasOptimal = optimalRoutes.some((route) => route.some((t) => t.label === target.label))
