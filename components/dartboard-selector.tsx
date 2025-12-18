@@ -155,8 +155,9 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
       setIsTouching(true)
       setTouchPosition(svgPoint)
       
-      // Show preview
-      const target = getTargetAtPoint(svgPoint.x, svgPoint.y)
+      // Show preview - use dot position (25 units above touch)
+      const dotY = svgPoint.y - 25
+      const target = getTargetAtPoint(svgPoint.x, dotY)
       if (target && onHoverTarget) {
         onHoverTarget(target)
       }
@@ -182,8 +183,9 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
       }
       setTouchPosition(svgPoint)
       
-      // Update preview as user moves
-      const target = getTargetAtPoint(svgPoint.x, svgPoint.y)
+      // Update preview as user moves - use dot position (25 units above touch)
+      const dotY = svgPoint.y - 25
+      const target = getTargetAtPoint(svgPoint.x, dotY)
       if (target && onHoverTarget) {
         onHoverTarget(target)
       } else if (onHoverTarget) {
@@ -204,7 +206,9 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
       shouldPreventClickRef.current = true
       
       if (touchPosition) {
-        const target = getTargetAtPoint(touchPosition.x, touchPosition.y)
+        // Use dot position (25 units above touch) for selection
+        const dotY = touchPosition.y - 25
+        const target = getTargetAtPoint(touchPosition.x, dotY)
         if (target) {
           onSelectTarget(target)
         }
@@ -410,7 +414,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             {/* Glow effect */}
             <circle
               cx={touchPosition.x}
-              cy={touchPosition.y - 12}
+              cy={touchPosition.y - 25}
               r="6"
               fill="#ffff00"
               opacity="0.4"
@@ -418,7 +422,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             {/* Main bright dot */}
             <circle
               cx={touchPosition.x}
-              cy={touchPosition.y - 12}
+              cy={touchPosition.y - 25}
               r="5"
               fill="#ffff00"
               stroke="#000000"
@@ -427,7 +431,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             {/* Inner highlight */}
             <circle
               cx={touchPosition.x}
-              cy={touchPosition.y - 12}
+              cy={touchPosition.y - 25}
               r="2.5"
               fill="#ffffff"
               opacity="0.8"

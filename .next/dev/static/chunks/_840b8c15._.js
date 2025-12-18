@@ -554,8 +554,9 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
             // Show dot and preview immediately
             setIsTouching(true);
             setTouchPosition(svgPoint);
-            // Show preview
-            const target = getTargetAtPoint(svgPoint.x, svgPoint.y);
+            // Show preview - use dot position (25 units above touch)
+            const dotY = svgPoint.y - 25;
+            const target = getTargetAtPoint(svgPoint.x, dotY);
             if (target && onHoverTarget) {
                 onHoverTarget(target);
             }
@@ -575,8 +576,9 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                 setIsTouching(true);
             }
             setTouchPosition(svgPoint);
-            // Update preview as user moves
-            const target = getTargetAtPoint(svgPoint.x, svgPoint.y);
+            // Update preview as user moves - use dot position (25 units above touch)
+            const dotY = svgPoint.y - 25;
+            const target = getTargetAtPoint(svgPoint.x, dotY);
             if (target && onHoverTarget) {
                 onHoverTarget(target);
             } else if (onHoverTarget) {
@@ -593,7 +595,9 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
             e.preventDefault();
             shouldPreventClickRef.current = true;
             if (touchPosition) {
-                const target = getTargetAtPoint(touchPosition.x, touchPosition.y);
+                // Use dot position (25 units above touch) for selection
+                const dotY = touchPosition.y - 25;
+                const target = getTargetAtPoint(touchPosition.x, dotY);
                 if (target) {
                     onSelectTarget(target);
                 }
@@ -673,7 +677,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 271,
+                                lineNumber: 275,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -700,7 +704,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 291,
+                                lineNumber: 295,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -728,7 +732,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 310,
+                                lineNumber: 314,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -755,7 +759,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 330,
+                                lineNumber: 334,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
@@ -767,13 +771,13 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 children: number
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 350,
+                                lineNumber: 354,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, number, true, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 270,
+                        lineNumber: 274,
                         columnNumber: 13
                     }, this);
                 }),
@@ -803,7 +807,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 364,
+                    lineNumber: 368,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -832,7 +836,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 386,
+                    lineNumber: 390,
                     columnNumber: 9
                 }, this),
                 isTouching && touchPosition && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -842,53 +846,53 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
                             cx: touchPosition.x,
-                            cy: touchPosition.y - 12,
+                            cy: touchPosition.y - 25,
                             r: "6",
                             fill: "#ffff00",
                             opacity: "0.4"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 411,
+                            lineNumber: 415,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
                             cx: touchPosition.x,
-                            cy: touchPosition.y - 12,
+                            cy: touchPosition.y - 25,
                             r: "5",
                             fill: "#ffff00",
                             stroke: "#000000",
                             strokeWidth: "1.5"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 419,
+                            lineNumber: 423,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
                             cx: touchPosition.x,
-                            cy: touchPosition.y - 12,
+                            cy: touchPosition.y - 25,
                             r: "2.5",
                             fill: "#ffffff",
                             opacity: "0.8"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 428,
+                            lineNumber: 432,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 409,
+                    lineNumber: 413,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/dartboard-selector.tsx",
-            lineNumber: 248,
+            lineNumber: 252,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/dartboard-selector.tsx",
-        lineNumber: 247,
+        lineNumber: 251,
         columnNumber: 5
     }, this);
 }
@@ -1058,7 +1062,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                 const isEmpty = !dart;
                 const isHovered = hoveredTarget && index === nextDartIndex && isEmpty;
                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                    className: `flex flex-col items-center justify-center gap-1 p-1.5 sm:p-2 rounded-md border-2 transition-colors min-h-[100px] sm:min-h-[120px] ${isHovered ? "border-dashed border-muted-foreground/50 bg-muted/30 opacity-60" : isEmpty ? "border-dashed border-muted bg-muted/20" : dart?.wasAccurate ? "border-primary bg-primary/5" : "border-red-500 bg-red-500/5"}`,
+                    className: `flex flex-col items-center justify-center gap-1 p-1.5 sm:p-2 rounded-md border-2 transition-colors min-h-[100px] sm:min-h-[120px] ${isHovered ? "border-primary border-solid bg-primary/20" : isEmpty ? "border-dashed border-muted bg-muted/20" : dart?.wasAccurate ? "border-primary bg-primary/5" : "border-red-500 bg-red-500/5"}`,
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "text-[8px] sm:text-[10px] font-medium text-muted-foreground",
@@ -1094,17 +1098,16 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                         }, void 0, true) : isHovered ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "text-xl sm:text-2xl font-bold text-muted-foreground/60",
-                                    children: hoveredTarget.value
+                                    className: "text-2xl sm:text-3xl font-bold text-primary",
+                                    children: hoveredTarget.label
                                 }, void 0, false, {
                                     fileName: "[project]/components/current-darts-display.tsx",
                                     lineNumber: 52,
                                     columnNumber: 19
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$badge$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Badge"], {
-                                    variant: "outline",
-                                    className: "text-[10px] sm:text-xs opacity-60",
-                                    children: hoveredTarget.label
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "text-lg sm:text-xl font-semibold text-muted-foreground",
+                                    children: hoveredTarget.value
                                 }, void 0, false, {
                                     fileName: "[project]/components/current-darts-display.tsx",
                                     lineNumber: 53,
@@ -1116,7 +1119,7 @@ function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }) {
                             children: "-"
                         }, void 0, false, {
                             fileName: "[project]/components/current-darts-display.tsx",
-                            lineNumber: 58,
+                            lineNumber: 56,
                             columnNumber: 17
                         }, this)
                     ]

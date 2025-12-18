@@ -31,7 +31,7 @@ export function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }: Curre
               key={index}
               className={`flex flex-col items-center justify-center gap-1 p-1.5 sm:p-2 rounded-md border-2 transition-colors min-h-[100px] sm:min-h-[120px] ${
                 isHovered
-                  ? "border-dashed border-muted-foreground/50 bg-muted/30 opacity-60"
+                  ? "border-primary border-solid bg-primary/20"
                   : isEmpty
                     ? "border-dashed border-muted bg-muted/20"
                     : dart?.wasAccurate
@@ -49,10 +49,8 @@ export function CurrentDartsDisplay({ darts, dartsThrown, hoveredTarget }: Curre
                 </>
               ) : isHovered ? (
                 <>
-                  <div className="text-xl sm:text-2xl font-bold text-muted-foreground/60">{hoveredTarget.value}</div>
-                  <Badge variant="outline" className="text-[10px] sm:text-xs opacity-60">
-                    {hoveredTarget.label}
-                  </Badge>
+                  <div className="text-2xl sm:text-3xl font-bold text-primary">{hoveredTarget.label}</div>
+                  <div className="text-lg sm:text-xl font-semibold text-muted-foreground">{hoveredTarget.value}</div>
                 </>
               ) : (
                 <div className="text-2xl sm:text-3xl font-bold text-muted-foreground/30">-</div>

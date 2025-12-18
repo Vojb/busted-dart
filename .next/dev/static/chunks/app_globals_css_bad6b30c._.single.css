@@ -1616,6 +1616,11 @@
     border-style: dashed;
   }
 
+  .border-solid {
+    --tw-border-style: solid;
+    border-style: solid;
+  }
+
   .border-\(--color-border\) {
     border-color: var(--color-border);
   }
@@ -4485,6 +4490,13 @@
     .sm\:text-sm {
       font-size: var(--text-sm);
       line-height: var(--tw-leading, var(--text-sm--line-height));
+    }
+  }
+
+  @media (min-width: 40rem) {
+    .sm\:text-xl {
+      font-size: var(--text-xl);
+      line-height: var(--tw-leading, var(--text-xl--line-height));
     }
   }
 
