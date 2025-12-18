@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Card } from "@/components/ui/card"
 import { type DartTarget, DARTBOARD_NUMBERS } from "@/lib/darts-config"
 
@@ -20,6 +20,12 @@ const roundTo = (value: number, decimals: number = 2): number => {
 
 export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 75, tripleOuterRadius = 105 }: DartboardSelectorProps) {
   const [mounted, setMounted] = useState(false)
+  const [touchPosition, setTouchPosition] = useState<{ x: number; y: number } | null>(null)
+  const [isTouching, setIsTouching] = useState(false)
+  const svgRef = useRef<SVGSVGElement>(null)
+  const touchStartTimeRef = useRef<number>(0)
+  const hasMovedRef = useRef<boolean>(false)
+  const shouldPreventClickRef = useRef<boolean>(false)
 
   useEffect(() => {
     setMounted(true)
@@ -78,6 +84,161 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
     }
   }
 
+  // Convert screen coordinates to SVG viewBox coordinates
+  const screenToSVG = (clientX: number, clientY: number): { x: number; y: number } | null => {
+    if (!svgRef.current) return null
+    
+    const svg = svgRef.current
+    const rect = svg.getBoundingClientRect()
+    const viewBox = svg.viewBox.baseVal
+    
+    const x = ((clientX - rect.left) / rect.width) * viewBox.width
+    const y = ((clientY - rect.top) / rect.height) * viewBox.height
+    
+    return { x, y }
+  }
+
+  // Determine which target is at a given SVG coordinate
+  const getTargetAtPoint = (x: number, y: number): DartTarget | null => {
+    const centerX = 170
+    const centerY = 170
+    const dx = x - centerX
+    const dy = y - centerY
+    const distance = Math.sqrt(dx * dx + dy * dy)
+    const angle = (Math.atan2(dy, dx) * 180) / Math.PI + 90 // Convert to 0-360 starting from top
+    const normalizedAngle = angle < 0 ? angle + 360 : angle
+
+    // Check for bull
+    if (distance <= 10) {
+      return { zone: "BULL", number: 50, label: "Bull", value: 50 }
+    }
+    if (distance <= 20) {
+      return { zone: "OUTER_BULL", number: 25, label: "25", value: 25 }
+    }
+
+    // Determine which segment number
+    const segmentAngle = 360 / 20
+    let segmentIndex = Math.floor((normalizedAngle + segmentAngle / 2) / segmentAngle)
+    if (segmentIndex >= 20) segmentIndex = 0
+    const number = DARTBOARD_NUMBERS[segmentIndex]
+
+    // Determine zone based on radius
+    if (distance >= 130 && distance <= 145) {
+      // Double ring
+      return { zone: "D", number, label: `D${number}`, value: number * 2 }
+    } else if (distance >= tripleInnerRadius && distance <= tripleOuterRadius) {
+      // Triple ring
+      return { zone: "T", number, label: `T${number}`, value: number * 3 }
+    } else if (distance > 20 && distance < 145) {
+      // Single zone
+      return { zone: "S", number, label: `S${number}`, value: number }
+    }
+
+    return null
+  }
+
+  // Handle touch start
+  const handleTouchStart = (e: React.TouchEvent<SVGSVGElement>) => {
+    if (disabled) return
+    
+    const touch = e.touches[0]
+    if (!touch) return
+    
+    touchStartTimeRef.current = Date.now()
+    hasMovedRef.current = false
+    shouldPreventClickRef.current = false
+    
+    const svgPoint = screenToSVG(touch.clientX, touch.clientY)
+    
+    if (svgPoint) {
+      // Show dot and preview immediately
+      setIsTouching(true)
+      setTouchPosition(svgPoint)
+      
+      // Show preview
+      const target = getTargetAtPoint(svgPoint.x, svgPoint.y)
+      if (target && onHoverTarget) {
+        onHoverTarget(target)
+      }
+    }
+  }
+
+  // Handle touch move
+  const handleTouchMove = (e: React.TouchEvent<SVGSVGElement>) => {
+    if (disabled) return
+    
+    e.preventDefault() // Prevent scrolling when dragging
+    hasMovedRef.current = true
+    
+    const touch = e.touches[0]
+    if (!touch) return
+    
+    const svgPoint = screenToSVG(touch.clientX, touch.clientY)
+    
+    if (svgPoint) {
+      // Ensure dot is visible when moving
+      if (!isTouching) {
+        setIsTouching(true)
+      }
+      setTouchPosition(svgPoint)
+      
+      // Update preview as user moves
+      const target = getTargetAtPoint(svgPoint.x, svgPoint.y)
+      if (target && onHoverTarget) {
+        onHoverTarget(target)
+      } else if (onHoverTarget) {
+        onHoverTarget(null)
+      }
+    }
+  }
+
+  // Handle touch end
+  const handleTouchEnd = (e: React.TouchEvent<SVGSVGElement>) => {
+    if (disabled) return
+    
+    const holdTime = Date.now() - touchStartTimeRef.current
+    
+    // If user moved or held for more than 100ms, handle selection here
+    if (hasMovedRef.current || (isTouching && holdTime > 100)) {
+      e.preventDefault()
+      shouldPreventClickRef.current = true
+      
+      if (touchPosition) {
+        const target = getTargetAtPoint(touchPosition.x, touchPosition.y)
+        if (target) {
+          onSelectTarget(target)
+        }
+      }
+      
+      // Reset flag after a short delay
+      setTimeout(() => {
+        shouldPreventClickRef.current = false
+      }, 100)
+    } else {
+      // Quick tap - let click handler work
+      shouldPreventClickRef.current = false
+    }
+    
+    setIsTouching(false)
+    setTouchPosition(null)
+    
+    if (onHoverTarget) {
+      onHoverTarget(null)
+    }
+  }
+
+  // Handle touch cancel
+  const handleTouchCancel = () => {
+    setIsTouching(false)
+    setTouchPosition(null)
+    hasMovedRef.current = false
+    shouldPreventClickRef.current = false
+    
+    if (onHoverTarget) {
+      onHoverTarget(null)
+    }
+  }
+
   // Use consistent size during SSR to avoid hydration mismatch
   const displaySize = mounted ? size : 100
   const maxWidth = roundTo((450 * displaySize) / 100)
@@ -85,6 +246,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
   return (
     <Card className="p-4 sm:p-6 flex items-center justify-center">
       <svg
+        ref={svgRef}
         viewBox="0 0 340 340"
         className="w-full max-w-[550px] touch-none select-none"
         style={{
@@ -92,6 +254,10 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
           width: `${displaySize}%`,
           maxWidth: `${maxWidth}px`,
         }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onTouchCancel={handleTouchCancel}
       >
         {/* Segments */}
         {segments.map(({ number, angle, segmentAngle, singleColor, doubleTripleColor }) => {
@@ -237,6 +403,19 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             }
           }}
         />
+
+        {/* Touch indicator dot */}
+        {isTouching && touchPosition && (
+          <circle
+            cx={touchPosition.x}
+            cy={touchPosition.y}
+            r="4"
+            fill="#ffffff"
+            stroke="#000000"
+            strokeWidth="1.5"
+            style={{ pointerEvents: "none" }}
+          />
+        )}
       </svg>
 
     </Card>
