@@ -8,6 +8,7 @@ import { CurrentDartsDisplay } from "@/components/current-darts-display"
 import { ProgressDashboard } from "@/components/progress-dashboard"
 import { SettingsPanel } from "@/components/settings-panel"
 import { GameHistory } from "@/components/game-history"
+import { CheckoutFeedback } from "@/components/checkout-feedback"
 import { type DartTarget, generateRandomCheckout } from "@/lib/darts-config"
 import { simulateThrow, type ThrowResult, getOptimalCheckouts } from "@/lib/checkout-logic"
 import {
@@ -47,7 +48,7 @@ export default function DartsTrainingApp() {
   const [gameCompleteDialog, setGameCompleteDialog] = useState(false)
   const [scoreBeforeBust, setScoreBeforeBust] = useState<number | null>(null)
   const [hitRatioSettings, setHitRatioSettings] = useState<HitRatioSettings>(loadSettings())
-  const [activeMenuTab, setActiveMenuTab] = useState<"menu" | "progress" | "settings" | "history">("menu")
+  const [activeMenuTab, setActiveMenuTab] = useState<"menu" | "progress" | "settings" | "history">("settings")
 
   const [sessionStats, setSessionStats] = useState({
     accurateHits: 0,
@@ -56,6 +57,7 @@ export default function DartsTrainingApp() {
     totalDecisions: 0,
   })
   const [hoveredTarget, setHoveredTarget] = useState<DartTarget | null>(null)
+  const [lastThrow, setLastThrow] = useState<{ aimed: DartTarget; hit: DartTarget; wasAccurate: boolean } | undefined>(undefined)
 
   useEffect(() => {
     setProgress(loadProgress())
@@ -86,14 +88,24 @@ export default function DartsTrainingApp() {
     const result = simulateThrow(target, pendingScore, hitRatio)
     const newScore = pendingScore - result.score
 
+    // Track last throw for learning mode
+    setLastThrow({
+      aimed: target,
+      hit: result.hit,
+      wasAccurate: result.wasAccurate,
+    })
+
     // Show toast notification for the throw
+    // Use consistent toastId to replace previous toast instead of stacking
     if (result.wasAccurate) {
       toast.success(`You hit ${target.label}!`, {
         description: `Scored ${result.score} points`,
+        id: "throw-result",
       })
     } else {
       toast.error(`You missed ${target.label}`, {
         description: `Hit ${result.hit.label} instead (${result.score} points)`,
+        id: "throw-result",
       })
     }
 
@@ -147,6 +159,9 @@ export default function DartsTrainingApp() {
 
     if (newDartsThrown % 3 === 0) {
       setCurrentScore(newScore)
+    } else if (hitRatioSettings.learningMode) {
+      // In learning mode, update current score after each dart to show remaining options
+      setCurrentScore(newScore)
     }
 
     setDartHistory((prev) => [...prev, result])
@@ -169,8 +184,8 @@ export default function DartsTrainingApp() {
       optimalDecisionRate: decisionRate,
     })
 
-    // Track 3-dart games and update streak
-    update3DartGameAndStreak(completed, totalDarts)
+    // Track 3-dart games and update streak (disabled in learning mode)
+    update3DartGameAndStreak(completed, totalDarts, hitRatioSettings.learningMode)
 
     setProgress(loadProgress())
   }
@@ -188,6 +203,7 @@ export default function DartsTrainingApp() {
     setUserRoute([])
     setHoveredTarget(null)
     setScoreBeforeBust(null)
+    setLastThrow(undefined)
     setSessionStats({
       accurateHits: 0,
       totalDarts: 0,
@@ -218,21 +234,10 @@ export default function DartsTrainingApp() {
               <RotateCcw className="size-3 sm:size-4 mr-1 sm:mr-2" />
               New Game
             </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              className="text-xs sm:text-sm bg-transparent"
-              onClick={() => {
-                setSheetOpen(true)
-                setActiveMenuTab("history")
-                setProgress(loadProgress())
-              }}
-            >
-              <History className="size-3 sm:size-4" />
-            </Button>
+           
           </div>
 
-          {progress && progress.currentStreak > 0 && (
+          {progress && progress.currentStreak > 0 && !hitRatioSettings.learningMode && (
             <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-primary/10 border border-primary/20">
               <Trophy className="size-3 sm:size-4 text-primary" />
               <span className="text-xs sm:text-sm font-semibold text-primary">
@@ -249,6 +254,10 @@ export default function DartsTrainingApp() {
                 // Reset streak when menu is opened
                 resetStreak()
                 setProgress(loadProgress())
+                // Ensure settings tab is selected if no tab is active
+                if (activeMenuTab === "menu") {
+                  setActiveMenuTab("settings")
+                }
               }
             }}
           >
@@ -456,7 +465,16 @@ export default function DartsTrainingApp() {
                 size={hitRatioSettings.dartboardSize}
                 tripleInnerRadius={hitRatioSettings.tripleInnerRadius}
                 tripleOuterRadius={hitRatioSettings.tripleOuterRadius}
+                dotOffsetY={hitRatioSettings.dotOffsetY}
               />
+              {hitRatioSettings.learningMode && gameStatus === "playing" && (
+                <CheckoutFeedback
+                  currentScore={currentScore}
+                  dartsRemaining={dartsRemaining}
+                  lastThrow={lastThrow}
+                  userRoute={userRoute}
+                />
+              )}
             </div>
           </div>
         </div>

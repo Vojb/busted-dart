@@ -134,7 +134,6 @@
 
 /* Toast opacity styling */
 [data-sonner-toast] {
-  opacity: 0.5 !important;
   backdrop-filter: blur(12px);
   position: relative;
 }

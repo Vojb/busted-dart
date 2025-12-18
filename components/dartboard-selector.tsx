@@ -11,6 +11,7 @@ interface DartboardSelectorProps {
   size?: number
   tripleInnerRadius?: number
   tripleOuterRadius?: number
+  dotOffsetY?: number
 }
 
 // Helper function to round numbers to avoid floating-point precision issues
@@ -18,7 +19,7 @@ const roundTo = (value: number, decimals: number = 2): number => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
-export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95 }: DartboardSelectorProps) {
+export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95, dotOffsetY = -45 }: DartboardSelectorProps) {
   const [mounted, setMounted] = useState(false)
   const [touchPosition, setTouchPosition] = useState<{ x: number; y: number } | null>(null)
   const [isTouching, setIsTouching] = useState(false)
@@ -155,8 +156,8 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
       setIsTouching(true)
       setTouchPosition(svgPoint)
       
-      // Show preview - use dot position (25 units above touch)
-      const dotY = svgPoint.y - 25
+      // Show preview - use dot position
+      const dotY = svgPoint.y + dotOffsetY
       const target = getTargetAtPoint(svgPoint.x, dotY)
       if (target && onHoverTarget) {
         onHoverTarget(target)
@@ -183,8 +184,8 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
       }
       setTouchPosition(svgPoint)
       
-      // Update preview as user moves - use dot position (25 units above touch)
-      const dotY = svgPoint.y - 25
+      // Update preview as user moves - use dot position
+      const dotY = svgPoint.y + dotOffsetY
       const target = getTargetAtPoint(svgPoint.x, dotY)
       if (target && onHoverTarget) {
         onHoverTarget(target)
@@ -206,8 +207,8 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
       shouldPreventClickRef.current = true
       
       if (touchPosition) {
-        // Use dot position (25 units above touch) for selection
-        const dotY = touchPosition.y - 25
+        // Use dot position for selection
+        const dotY = touchPosition.y + dotOffsetY
         const target = getTargetAtPoint(touchPosition.x, dotY)
         if (target) {
           onSelectTarget(target)
@@ -414,7 +415,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             {/* Glow effect */}
             <circle
               cx={touchPosition.x}
-              cy={touchPosition.y - 25}
+              cy={touchPosition.y + dotOffsetY}
               r="6"
               fill="#ffff00"
               opacity="0.4"
@@ -422,7 +423,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             {/* Main bright dot */}
             <circle
               cx={touchPosition.x}
-              cy={touchPosition.y - 25}
+              cy={touchPosition.y + dotOffsetY}
               r="5"
               fill="#ffff00"
               stroke="#000000"
@@ -431,7 +432,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
             {/* Inner highlight */}
             <circle
               cx={touchPosition.x}
-              cy={touchPosition.y - 25}
+              cy={touchPosition.y + dotOffsetY}
               r="2.5"
               fill="#ffffff"
               opacity="0.8"

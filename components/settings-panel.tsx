@@ -8,7 +8,8 @@ import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Target, Moon, Sun } from "lucide-react"
+import { Switch } from "@/components/ui/switch"
+import { Target, Moon, Sun, GraduationCap } from "lucide-react"
 
 interface SettingsPanelProps {
   onSettingsChange?: (settings: HitRatioSettings) => void
@@ -16,7 +17,7 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95 })
+  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -42,7 +43,7 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   }
 
   const handleReset = () => {
-    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95 }
+    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false }
     setSettings(defaultSettings)
     saveSettings(defaultSettings)
     onSettingsChange?.(defaultSettings)
@@ -50,6 +51,13 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   
   const handleDifficultyChange = (difficulty: Difficulty) => {
     const newSettings = { ...settings, difficulty }
+    setSettings(newSettings)
+    saveSettings(newSettings)
+    onSettingsChange?.(newSettings)
+  }
+
+  const handleLearningModeChange = (enabled: boolean) => {
+    const newSettings = { ...settings, learningMode: enabled }
     setSettings(newSettings)
     saveSettings(newSettings)
     onSettingsChange?.(newSettings)
@@ -108,6 +116,23 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
             Only scores finishable with 3 darts will be generated
           </p>
         </div>
+      </Card>
+
+      <Card className="p-3 bg-card/50">
+        <div className="flex items-center justify-between">
+          <Label htmlFor="learning-mode-switch" className="text-xs font-medium flex items-center gap-2">
+            <GraduationCap className="size-3.5" />
+            Learning Mode
+          </Label>
+          <Switch
+            id="learning-mode-switch"
+            checked={settings.learningMode}
+            onCheckedChange={handleLearningModeChange}
+          />
+        </div>
+        <p className="text-xs text-muted-foreground mt-2">
+          Show remaining checkout options after each dart. Streaks are disabled in learning mode.
+        </p>
       </Card>
 
       <div className="flex items-center justify-between">
@@ -236,6 +261,36 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
             onValueChange={(value) => handleSettingChange("tripleOuterRadius", value[0])}
             className="w-full"
           />
+        </div>
+      </Card>
+
+      <div className="flex items-center justify-between">
+        <h3 className="text-sm font-semibold flex items-center gap-2">
+          <Target className="size-3.5" />
+          Touch Indicator
+        </h3>
+      </div>
+
+      <Card className="p-3 space-y-4 bg-card/50">
+        <div className="space-y-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="dot-offset-slider" className="text-xs font-medium">
+              Dot Position Offset
+            </Label>
+            <span className="text-xs font-semibold text-muted-foreground">{settings.dotOffsetY}</span>
+          </div>
+          <Slider
+            id="dot-offset-slider"
+            min={-100}
+            max={0}
+            step={1}
+            value={[settings.dotOffsetY]}
+            onValueChange={(value) => handleSettingChange("dotOffsetY", value[0])}
+            className="w-full"
+          />
+          <p className="text-xs text-muted-foreground">
+            Adjust the vertical position of the touch indicator dot (negative values move it upward)
+          </p>
         </div>
       </Card>
 

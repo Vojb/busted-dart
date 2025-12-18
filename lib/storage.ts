@@ -37,6 +37,8 @@ export interface HitRatioSettings {
   difficulty: Difficulty
   tripleInnerRadius: number
   tripleOuterRadius: number
+  dotOffsetY: number
+  learningMode: boolean
 }
 
 const STORAGE_KEY = "darts_training_progress"
@@ -100,7 +102,7 @@ export function addSession(session: GameSession): void {
   saveProgress(progress)
 }
 
-export function update3DartGameAndStreak(completed: boolean, totalDarts: number): void {
+export function update3DartGameAndStreak(completed: boolean, totalDarts: number, learningMode: boolean = false): void {
   const progress = loadProgress()
 
   // Track 3-dart games separately
@@ -109,10 +111,13 @@ export function update3DartGameAndStreak(completed: boolean, totalDarts: number)
   }
 
   // Update streak: increment for 1-3 darts, reset if more than 3 darts or not completed
-  if (completed && totalDarts <= 3) {
-    progress.currentStreak += 1
-  } else {
-    progress.currentStreak = 0
+  // Don't update streak if learning mode is enabled
+  if (!learningMode) {
+    if (completed && totalDarts <= 3) {
+      progress.currentStreak += 1
+    } else {
+      progress.currentStreak = 0
+    }
   }
 
   saveProgress(progress)
@@ -146,6 +151,8 @@ export function loadSettings(): HitRatioSettings {
       difficulty: parsed.difficulty || defaults.difficulty,
       tripleInnerRadius: parsed.tripleInnerRadius ?? defaults.tripleInnerRadius,
       tripleOuterRadius: parsed.tripleOuterRadius ?? defaults.tripleOuterRadius,
+      dotOffsetY: parsed.dotOffsetY ?? defaults.dotOffsetY,
+      learningMode: parsed.learningMode ?? defaults.learningMode,
     }
   } catch {
     return getDefaultSettings()
@@ -190,6 +197,8 @@ function getDefaultSettings(): HitRatioSettings {
     difficulty: "medium",
     tripleInnerRadius: 80,
     tripleOuterRadius: 95,
+    dotOffsetY: -45,
+    learningMode: false,
   }
 }
 
