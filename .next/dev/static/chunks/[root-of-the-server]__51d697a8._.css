@@ -5679,6 +5679,12 @@
   }
 }
 
+[data-sonner-toast] {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: .85 !important;
+}
+
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;

@@ -131,3 +131,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Toast opacity styling */
+[data-sonner-toast] {
+  opacity: 0.85 !important;
+  backdrop-filter: blur(8px);
+}
