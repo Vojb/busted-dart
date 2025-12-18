@@ -133,6 +133,15 @@
       --tw-drop-shadow-color: initial;
       --tw-drop-shadow-alpha: 100%;
       --tw-drop-shadow-size: initial;
+      --tw-backdrop-blur: initial;
+      --tw-backdrop-brightness: initial;
+      --tw-backdrop-contrast: initial;
+      --tw-backdrop-grayscale: initial;
+      --tw-backdrop-hue-rotate: initial;
+      --tw-backdrop-invert: initial;
+      --tw-backdrop-opacity: initial;
+      --tw-backdrop-saturate: initial;
+      --tw-backdrop-sepia: initial;
       --tw-duration: initial;
       --tw-ease: initial;
       --tw-content: "";
@@ -206,6 +215,7 @@
     --ease-in-out: cubic-bezier(.4, 0, .2, 1);
     --animate-spin: spin 1s linear infinite;
     --animate-pulse: pulse 2s cubic-bezier(.4, 0, .6, 1) infinite;
+    --blur-sm: 8px;
     --aspect-video: 16 / 9;
     --default-transition-duration: .15s;
     --default-transition-timing-function: cubic-bezier(.4, 0, .2, 1);
@@ -1055,14 +1065,6 @@
     max-height: var(--radix-select-content-available-height);
   }
 
-  .max-h-\[60vh\] {
-    max-height: 60vh;
-  }
-
-  .max-h-\[70vh\] {
-    max-height: 70vh;
-  }
-
   .max-h-\[300px\] {
     max-height: 300px;
   }
@@ -1181,10 +1183,6 @@
 
   .max-w-7xl {
     max-width: var(--container-7xl);
-  }
-
-  .max-w-\[500px\] {
-    max-width: 500px;
   }
 
   .max-w-\[550px\] {
@@ -1559,32 +1557,16 @@
     overflow: hidden;
   }
 
-  .overflow-visible {
-    overflow: visible;
-  }
-
   .overflow-x-auto {
     overflow-x: auto;
-  }
-
-  .overflow-x-clip {
-    overflow-x: clip;
   }
 
   .overflow-x-hidden {
     overflow-x: hidden;
   }
 
-  .overflow-x-visible {
-    overflow-x: visible;
-  }
-
   .overflow-y-auto {
     overflow-y: auto;
-  }
-
-  .overflow-y-visible {
-    overflow-y: visible;
   }
 
   .rounded-\[2px\] {
@@ -1735,16 +1717,6 @@
     border-color: var(--muted);
   }
 
-  .border-muted-foreground\/50 {
-    border-color: var(--muted-foreground);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .border-muted-foreground\/50 {
-      border-color: color-mix(in oklab, var(--muted-foreground) 50%, transparent);
-    }
-  }
-
   .border-primary {
     border-color: var(--primary);
   }
@@ -1761,10 +1733,6 @@
 
   .border-red-500 {
     border-color: var(--color-red-500);
-  }
-
-  .border-secondary {
-    border-color: var(--secondary);
   }
 
   .border-sidebar-border {
@@ -1869,16 +1837,6 @@
     }
   }
 
-  .bg-muted\/30 {
-    background-color: var(--muted);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-muted\/30 {
-      background-color: color-mix(in oklab, var(--muted) 30%, transparent);
-    }
-  }
-
   .bg-muted\/50 {
     background-color: var(--muted);
   }
@@ -1939,16 +1897,6 @@
 
   .bg-secondary {
     background-color: var(--secondary);
-  }
-
-  .bg-secondary\/5 {
-    background-color: var(--secondary);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .bg-secondary\/5 {
-      background-color: color-mix(in oklab, var(--secondary) 5%, transparent);
-    }
   }
 
   .bg-sidebar {
@@ -2349,16 +2297,6 @@
     }
   }
 
-  .text-muted-foreground\/60 {
-    color: var(--muted-foreground);
-  }
-
-  @supports (color: color-mix(in lab, red, red)) {
-    .text-muted-foreground\/60 {
-      color: color-mix(in oklab, var(--muted-foreground) 60%, transparent);
-    }
-  }
-
   .text-popover-foreground {
     color: var(--popover-foreground);
   }
@@ -2421,10 +2359,6 @@
 
   .opacity-50 {
     opacity: .5;
-  }
-
-  .opacity-60 {
-    opacity: .6;
   }
 
   .opacity-70 {
@@ -2522,6 +2456,12 @@
 
   .filter {
     filter: var(--tw-blur, ) var(--tw-brightness, ) var(--tw-contrast, ) var(--tw-grayscale, ) var(--tw-hue-rotate, ) var(--tw-invert, ) var(--tw-saturate, ) var(--tw-sepia, ) var(--tw-drop-shadow, );
+  }
+
+  .backdrop-blur-sm {
+    --tw-backdrop-blur: blur(var(--blur-sm));
+    -webkit-backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
+    backdrop-filter: var(--tw-backdrop-blur, ) var(--tw-backdrop-brightness, ) var(--tw-backdrop-contrast, ) var(--tw-backdrop-grayscale, ) var(--tw-backdrop-hue-rotate, ) var(--tw-backdrop-invert, ) var(--tw-backdrop-opacity, ) var(--tw-backdrop-saturate, ) var(--tw-backdrop-sepia, );
   }
 
   .transition {
@@ -3132,12 +3072,6 @@
   @media (hover: hover) {
     .hover\:text-sidebar-accent-foreground:hover {
       color: var(--sidebar-accent-foreground);
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:no-underline:hover {
-      text-decoration-line: none;
     }
   }
 
@@ -3997,10 +3931,6 @@
     animation: exit var(--tw-animation-duration, var(--tw-duration, .15s)) var(--tw-ease, ease) var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1) var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, forwards);
   }
 
-  .data-\[state\=closed\]\:overflow-hidden[data-state="closed"] {
-    overflow: hidden;
-  }
-
   .data-\[state\=closed\]\:duration-300[data-state="closed"] {
     --tw-duration: .3s;
     transition-duration: .3s;
@@ -4072,14 +4002,6 @@
 
   .data-\[state\=open\]\:animate-in[data-state="open"] {
     animation: enter var(--tw-animation-duration, var(--tw-duration, .15s)) var(--tw-ease, ease) var(--tw-animation-delay, 0s) var(--tw-animation-iteration-count, 1) var(--tw-animation-direction, normal) var(--tw-animation-fill-mode, forwards);
-  }
-
-  .data-\[state\=open\]\:overflow-visible[data-state="open"] {
-    overflow: visible;
-  }
-
-  .data-\[state\=open\]\:overflow-y-auto[data-state="open"] {
-    overflow-y: auto;
   }
 
   .data-\[state\=open\]\:bg-accent[data-state="open"] {
@@ -6005,6 +5927,51 @@
 }
 
 @property --tw-drop-shadow-size {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-blur {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-brightness {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-contrast {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-grayscale {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-hue-rotate {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-invert {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-opacity {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-saturate {
+  syntax: "*";
+  inherits: false
+}
+
+@property --tw-backdrop-sepia {
   syntax: "*";
   inherits: false
 }

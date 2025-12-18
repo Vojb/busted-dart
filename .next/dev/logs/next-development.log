@@ -347,3 +347,6 @@ It can also happen if the client has a browser extension installed which messes 
 [14:18:54.268] Server  LOG      ✓ Compiled in 19ms
 [14:19:01.709] Server  LOG      ✓ Compiled in 26ms
 [14:19:04.014] Server  LOG      ✓ Compiled in 53ms
+[22:11:29.450] Server  LOG      ✓ Compiled in 75ms
+[22:12:37.535] Server  LOG      ✓ Compiled in 65ms
+[22:13:52.779] Server  LOG      ✓ Compiled in 35ms

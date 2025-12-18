@@ -335,6 +335,33 @@ export default function DartsTrainingApp() {
                   : "You busted or failed to finish on a double."}
               </DialogDescription>
             </DialogHeader>
+            {(() => {
+              const optimalRoutes = getOptimalCheckouts(startingScore)
+              const bestRoute = optimalRoutes.length > 0 ? optimalRoutes[0] : null
+              const dartCount = bestRoute ? bestRoute.length : null
+              
+              return bestRoute ? (
+                <div className="space-y-3 py-4">
+                  <div className="rounded-lg border bg-muted/50 p-4">
+                    <div className="mb-2 text-sm font-semibold">
+                      Optimal Route ({dartCount === 2 ? "2 Dart" : dartCount === 3 ? "3 Dart" : `${dartCount} Dart`} Finish):
+                    </div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {bestRoute.map((target, index) => (
+                        <div key={index} className="flex items-center gap-1">
+                          <span className="rounded-md bg-primary/10 px-2 py-1 text-sm font-medium text-primary">
+                            {target.label}
+                          </span>
+                          {index < bestRoute.length - 1 && (
+                            <span className="text-muted-foreground">→</span>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : null
+            })()}
             <DialogFooter className="gap-2 sm:gap-0">
               <Button onClick={handleReset} className="w-full sm:w-auto">
                 New Game
