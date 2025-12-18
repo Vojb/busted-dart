@@ -2,14 +2,16 @@
 
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
-import { loadSettings, saveSettings, type HitRatioSettings, type Difficulty } from "@/lib/storage"
+import { loadSettings, saveSettings, type HitRatioSettings, type Difficulty, type DartboardColorTheme, type DartboardThemeColors } from "@/lib/storage"
+import { getDartboardThemeColors } from "@/lib/dartboard-themes"
 import { Card } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import { Target, Moon, Sun, GraduationCap, Settings, Ruler } from "lucide-react"
+import { Target, Moon, Sun, GraduationCap, Settings, Ruler, Palette } from "lucide-react"
+import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 interface SettingsPanelProps {
@@ -18,7 +20,7 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, bullseye: 60, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false })
+  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, bullseye: 60, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false, dartboardColorTheme: "classic", customThemeColors: { singleBlack: "#1a1a1a", singleCream: "#f5f5dc", doubleTripleRed: "#dc2626", doubleTripleGreen: "#16a34a", outerBull: "#16a34a", bull: "#dc2626" } })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   }
 
   const handleReset = () => {
-    const defaultSettings = { triple: 65, double: 65, single: 85, bullseye: 60, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false }
+    const defaultSettings = { triple: 65, double: 65, single: 85, bullseye: 60, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false, dartboardColorTheme: "classic" as DartboardColorTheme, customThemeColors: { singleBlack: "#1a1a1a", singleCream: "#f5f5dc", doubleTripleRed: "#dc2626", doubleTripleGreen: "#16a34a", outerBull: "#16a34a", bull: "#dc2626" } }
     setSettings(defaultSettings)
     saveSettings(defaultSettings)
     onSettingsChange?.(defaultSettings)
@@ -63,6 +65,31 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
     saveSettings(newSettings)
     onSettingsChange?.(newSettings)
   }
+
+  const handleColorThemeChange = (theme: DartboardColorTheme) => {
+    // If switching to custom and no custom colors exist, initialize with default
+    const customColors = theme === "custom" && !settings.customThemeColors
+      ? { singleBlack: "#1a1a1a", singleCream: "#f5f5dc", doubleTripleRed: "#dc2626", doubleTripleGreen: "#16a34a", outerBull: "#16a34a", bull: "#dc2626" }
+      : settings.customThemeColors
+    const newSettings = { ...settings, dartboardColorTheme: theme, customThemeColors: customColors }
+    setSettings(newSettings)
+    saveSettings(newSettings)
+    onSettingsChange?.(newSettings)
+  }
+
+  const handleCustomColorChange = (colorKey: keyof DartboardThemeColors, value: string) => {
+    const newCustomColors = {
+      ...(settings.customThemeColors || { singleBlack: "#1a1a1a", singleCream: "#f5f5dc", doubleTripleRed: "#dc2626", doubleTripleGreen: "#16a34a", outerBull: "#16a34a", bull: "#dc2626" }),
+      [colorKey]: value,
+    }
+    const newSettings = { ...settings, customThemeColors: newCustomColors }
+    setSettings(newSettings)
+    saveSettings(newSettings)
+    onSettingsChange?.(newSettings)
+  }
+
+  // Get current theme colors for preview
+  const currentThemeColors = getDartboardThemeColors(settings.dartboardColorTheme, settings.customThemeColors)
 
   if (!mounted) {
     return null
@@ -234,6 +261,211 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
             <p className="text-xs text-muted-foreground mt-2">
               Show remaining checkout options after each dart. Streaks are disabled in learning mode.
             </p>
+          </Card>
+
+          <Card className="p-3 bg-card/50">
+            <div className="space-y-3">
+              <div className="space-y-2">
+                <Label htmlFor="color-theme-select" className="text-xs font-medium flex items-center gap-2">
+                  <Palette className="size-3.5" />
+                  Dartboard Color Theme
+                </Label>
+                <Select value={settings.dartboardColorTheme} onValueChange={handleColorThemeChange}>
+                  <SelectTrigger id="color-theme-select" size="sm" className="w-full text-xs h-8">
+                    <SelectValue />
+                  </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="classic">Classic</SelectItem>
+                  <SelectItem value="vibrant">Vibrant</SelectItem>
+                  <SelectItem value="muted">Muted</SelectItem>
+                  <SelectItem value="neon">Neon</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="midnight">Midnight</SelectItem>
+                  <SelectItem value="custom">Custom</SelectItem>
+                </SelectContent>
+                </Select>
+              </div>
+
+              {/* Color Preview */}
+              <div className="space-y-2">
+                <Label className="text-xs font-medium">Preview</Label>
+                <div className="flex items-center gap-2 p-2 rounded-md border bg-muted/30">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex gap-1">
+                      <div
+                        className="w-6 h-6 rounded border"
+                        style={{ backgroundColor: currentThemeColors.singleBlack }}
+                        title="Black Segment"
+                      />
+                      <div
+                        className="w-6 h-6 rounded border"
+                        style={{ backgroundColor: currentThemeColors.singleCream }}
+                        title="Cream Segment"
+                      />
+                    </div>
+                    <div className="flex gap-1">
+                      <div
+                        className="w-6 h-6 rounded border"
+                        style={{ backgroundColor: currentThemeColors.doubleTripleRed }}
+                        title="Red Ring"
+                      />
+                      <div
+                        className="w-6 h-6 rounded border"
+                        style={{ backgroundColor: currentThemeColors.doubleTripleGreen }}
+                        title="Green Ring"
+                      />
+                    </div>
+                    <div className="flex gap-1">
+                      <div
+                        className="w-6 h-6 rounded-full border"
+                        style={{ backgroundColor: currentThemeColors.outerBull }}
+                        title="Outer Bull (25)"
+                      />
+                      <div
+                        className="w-6 h-6 rounded-full border"
+                        style={{ backgroundColor: currentThemeColors.bull }}
+                        title="Bull (50)"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Custom Theme Color Pickers */}
+              {settings.dartboardColorTheme === "custom" && (
+                <div className="space-y-3 pt-2 border-t">
+                  <Label className="text-xs font-medium">Custom Colors</Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div className="space-y-1">
+                      <Label htmlFor="custom-black" className="text-xs text-muted-foreground">
+                        Black Segment
+                      </Label>
+                      <div className="flex gap-1">
+                        <Input
+                          id="custom-black"
+                          type="color"
+                          value={settings.customThemeColors?.singleBlack || "#1a1a1a"}
+                          onChange={(e) => handleCustomColorChange("singleBlack", e.target.value)}
+                          className="h-8 w-12 p-0 border"
+                        />
+                        <Input
+                          type="text"
+                          value={settings.customThemeColors?.singleBlack || "#1a1a1a"}
+                          onChange={(e) => handleCustomColorChange("singleBlack", e.target.value)}
+                          className="h-8 text-xs flex-1"
+                          placeholder="#1a1a1a"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="custom-cream" className="text-xs text-muted-foreground">
+                        Cream Segment
+                      </Label>
+                      <div className="flex gap-1">
+                        <Input
+                          id="custom-cream"
+                          type="color"
+                          value={settings.customThemeColors?.singleCream || "#f5f5dc"}
+                          onChange={(e) => handleCustomColorChange("singleCream", e.target.value)}
+                          className="h-8 w-12 p-0 border"
+                        />
+                        <Input
+                          type="text"
+                          value={settings.customThemeColors?.singleCream || "#f5f5dc"}
+                          onChange={(e) => handleCustomColorChange("singleCream", e.target.value)}
+                          className="h-8 text-xs flex-1"
+                          placeholder="#f5f5dc"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="custom-red" className="text-xs text-muted-foreground">
+                        Red Ring
+                      </Label>
+                      <div className="flex gap-1">
+                        <Input
+                          id="custom-red"
+                          type="color"
+                          value={settings.customThemeColors?.doubleTripleRed || "#dc2626"}
+                          onChange={(e) => handleCustomColorChange("doubleTripleRed", e.target.value)}
+                          className="h-8 w-12 p-0 border"
+                        />
+                        <Input
+                          type="text"
+                          value={settings.customThemeColors?.doubleTripleRed || "#dc2626"}
+                          onChange={(e) => handleCustomColorChange("doubleTripleRed", e.target.value)}
+                          className="h-8 text-xs flex-1"
+                          placeholder="#dc2626"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="custom-green" className="text-xs text-muted-foreground">
+                        Green Ring
+                      </Label>
+                      <div className="flex gap-1">
+                        <Input
+                          id="custom-green"
+                          type="color"
+                          value={settings.customThemeColors?.doubleTripleGreen || "#16a34a"}
+                          onChange={(e) => handleCustomColorChange("doubleTripleGreen", e.target.value)}
+                          className="h-8 w-12 p-0 border"
+                        />
+                        <Input
+                          type="text"
+                          value={settings.customThemeColors?.doubleTripleGreen || "#16a34a"}
+                          onChange={(e) => handleCustomColorChange("doubleTripleGreen", e.target.value)}
+                          className="h-8 text-xs flex-1"
+                          placeholder="#16a34a"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="custom-outer-bull" className="text-xs text-muted-foreground">
+                        Outer Bull
+                      </Label>
+                      <div className="flex gap-1">
+                        <Input
+                          id="custom-outer-bull"
+                          type="color"
+                          value={settings.customThemeColors?.outerBull || "#16a34a"}
+                          onChange={(e) => handleCustomColorChange("outerBull", e.target.value)}
+                          className="h-8 w-12 p-0 border"
+                        />
+                        <Input
+                          type="text"
+                          value={settings.customThemeColors?.outerBull || "#16a34a"}
+                          onChange={(e) => handleCustomColorChange("outerBull", e.target.value)}
+                          className="h-8 text-xs flex-1"
+                          placeholder="#16a34a"
+                        />
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <Label htmlFor="custom-bull" className="text-xs text-muted-foreground">
+                        Bull (50)
+                      </Label>
+                      <div className="flex gap-1">
+                        <Input
+                          id="custom-bull"
+                          type="color"
+                          value={settings.customThemeColors?.bull || "#dc2626"}
+                          onChange={(e) => handleCustomColorChange("bull", e.target.value)}
+                          className="h-8 w-12 p-0 border"
+                        />
+                        <Input
+                          type="text"
+                          value={settings.customThemeColors?.bull || "#dc2626"}
+                          onChange={(e) => handleCustomColorChange("bull", e.target.value)}
+                          className="h-8 text-xs flex-1"
+                          placeholder="#dc2626"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </Card>
         </TabsContent>
 

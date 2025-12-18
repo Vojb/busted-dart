@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { Card } from "@/components/ui/card"
 import { type DartTarget, DARTBOARD_NUMBERS } from "@/lib/darts-config"
+import { getDartboardThemeColors } from "@/lib/dartboard-themes"
+import type { DartboardColorTheme, DartboardThemeColors } from "@/lib/storage"
 
 interface DartboardSelectorProps {
   onSelectTarget: (target: DartTarget) => void
@@ -12,6 +14,8 @@ interface DartboardSelectorProps {
   tripleInnerRadius?: number
   tripleOuterRadius?: number
   dotOffsetY?: number
+  colorTheme?: DartboardColorTheme
+  customThemeColors?: DartboardThemeColors
 }
 
 // Helper function to round numbers to avoid floating-point precision issues
@@ -19,7 +23,7 @@ const roundTo = (value: number, decimals: number = 2): number => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
-export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95, dotOffsetY = -45 }: DartboardSelectorProps) {
+export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95, dotOffsetY = -45, colorTheme = "classic", customThemeColors }: DartboardSelectorProps) {
   const [mounted, setMounted] = useState(false)
   const [touchPosition, setTouchPosition] = useState<{ x: number; y: number } | null>(null)
   const [isTouching, setIsTouching] = useState(false)
@@ -63,14 +67,17 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
     }
   }
 
+  // Get theme colors
+  const themeColors = getDartboardThemeColors(colorTheme, customThemeColors)
+
   const segments = DARTBOARD_NUMBERS.map((number, index) => {
     const segmentAngle = 360 / 20
     const angle = segmentAngle * index - segmentAngle / 2
 
     // Black segments: 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5 (alternating)
     const isBlackSegment = index % 2 === 0
-    const singleColor = isBlackSegment ? "#1a1a1a" : "#f5f5dc" // black or cream
-    const doubleTripleColor = isBlackSegment ? "#dc2626" : "#16a34a" // red or green
+    const singleColor = isBlackSegment ? themeColors.singleBlack : themeColors.singleCream
+    const doubleTripleColor = isBlackSegment ? themeColors.doubleTripleRed : themeColors.doubleTripleGreen
 
     return { number, angle, segmentAngle, singleColor, doubleTripleColor }
   })
@@ -409,7 +416,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
           cx="170"
           cy="170"
           r="20"
-          fill="#16a34a"
+          fill={themeColors.outerBull}
           stroke="#000"
           strokeWidth="0.5"
           className="cursor-pointer"
@@ -431,7 +438,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
           cx="170"
           cy="170"
           r="10"
-          fill="#dc2626"
+          fill={themeColors.bull}
           stroke="#000"
           strokeWidth="0.5"
           className="cursor-pointer"

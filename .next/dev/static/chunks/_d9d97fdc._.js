@@ -366,6 +366,83 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
+"[project]/lib/dartboard-themes.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+// Dartboard Color Themes
+// Each theme defines colors for:
+// - singleBlack: Black segments (single zone)
+// - singleCream: Cream/white segments (single zone)
+// - doubleTripleRed: Red segments (double/triple rings on black segments)
+// - doubleTripleGreen: Green segments (double/triple rings on cream segments)
+// - outerBull: Outer bull (25) color
+// - bull: Inner bull (50) color
+__turbopack_context__.s([
+    "DARTBOARD_THEMES",
+    ()=>DARTBOARD_THEMES,
+    "getDartboardThemeColors",
+    ()=>getDartboardThemeColors
+]);
+const DARTBOARD_THEMES = {
+    classic: {
+        singleBlack: "#1a1a1a",
+        singleCream: "#f5f5dc",
+        doubleTripleRed: "#dc2626",
+        doubleTripleGreen: "#16a34a",
+        outerBull: "#16a34a",
+        bull: "#dc2626"
+    },
+    vibrant: {
+        singleBlack: "#0a0a0a",
+        singleCream: "#fffef0",
+        doubleTripleRed: "#ef4444",
+        doubleTripleGreen: "#22c55e",
+        outerBull: "#22c55e",
+        bull: "#ef4444"
+    },
+    muted: {
+        singleBlack: "#2a2a2a",
+        singleCream: "#e8e8d8",
+        doubleTripleRed: "#b91c1c",
+        doubleTripleGreen: "#15803d",
+        outerBull: "#15803d",
+        bull: "#b91c1c"
+    },
+    neon: {
+        singleBlack: "#0a0a0f",
+        singleCream: "#ff00ff",
+        doubleTripleRed: "#d946ef",
+        doubleTripleGreen: "#00d9ff",
+        outerBull: "#00d9ff",
+        bull: "#d946ef"
+    },
+    dark: {
+        singleBlack: "#1a1a1a",
+        singleCream: "#3b3b3b",
+        doubleTripleRed: "#9a1919",
+        doubleTripleGreen: "#0a4d22",
+        outerBull: "#0b4d22",
+        bull: "#9a1919"
+    },
+    midnight: {
+        singleBlack: "#000000",
+        singleCream: "#1a1a1a",
+        doubleTripleRed: "#7f1d1d",
+        doubleTripleGreen: "#14532d",
+        outerBull: "#14532d",
+        bull: "#7f1d1d"
+    }
+};
+function getDartboardThemeColors(theme, customColors) {
+    if (theme === "custom" && customColors) {
+        return customColors;
+    }
+    return DARTBOARD_THEMES[theme];
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
 "[project]/components/dartboard-selector.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -377,9 +454,11 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/darts-config.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$dartboard$2d$themes$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/dartboard-themes.ts [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 ;
@@ -387,7 +466,7 @@ var _s = __turbopack_context__.k.signature();
 const roundTo = (value, decimals = 2)=>{
     return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 };
-function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95, dotOffsetY = -45, colorTheme = "classic" }) {
+function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95, dotOffsetY = -45, colorTheme = "classic", customThemeColors }) {
     _s();
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [touchPosition, setTouchPosition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
@@ -453,15 +532,15 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
             });
         }
     };
+    // Get theme colors
+    const themeColors = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$dartboard$2d$themes$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDartboardThemeColors"])(colorTheme, customThemeColors);
     const segments = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$darts$2d$config$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["DARTBOARD_NUMBERS"].map((number, index)=>{
         const segmentAngle = 360 / 20;
         const angle = segmentAngle * index - segmentAngle / 2;
         // Black segments: 20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5 (alternating)
         const isBlackSegment = index % 2 === 0;
-        const singleColor = isBlackSegment ? "#1a1a1a" : "#f5f5dc" // black or cream
-        ;
-        const doubleTripleColor = isBlackSegment ? "#dc2626" : "#16a34a" // red or green
-        ;
+        const singleColor = isBlackSegment ? themeColors.singleBlack : themeColors.singleCream;
+        const doubleTripleColor = isBlackSegment ? themeColors.doubleTripleRed : themeColors.doubleTripleGreen;
         return {
             number,
             angle,
@@ -757,7 +836,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 317,
+                                lineNumber: 322,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -784,7 +863,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 337,
+                                lineNumber: 342,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -812,7 +891,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 356,
+                                lineNumber: 361,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -839,7 +918,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 376,
+                                lineNumber: 381,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
@@ -851,13 +930,13 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 children: number
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 396,
+                                lineNumber: 401,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, number, true, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 316,
+                        lineNumber: 321,
                         columnNumber: 13
                     }, this);
                 }),
@@ -865,7 +944,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     cx: "170",
                     cy: "170",
                     r: "20",
-                    fill: "#16a34a",
+                    fill: themeColors.outerBull,
                     stroke: "#000",
                     strokeWidth: "0.5",
                     className: "cursor-pointer",
@@ -887,14 +966,14 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 410,
+                    lineNumber: 415,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
                     cx: "170",
                     cy: "170",
                     r: "10",
-                    fill: "#dc2626",
+                    fill: themeColors.bull,
                     stroke: "#000",
                     strokeWidth: "0.5",
                     className: "cursor-pointer",
@@ -916,7 +995,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 432,
+                    lineNumber: 437,
                     columnNumber: 9
                 }, this),
                 isTouching && touchPosition && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -932,7 +1011,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                             opacity: "0.4"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 457,
+                            lineNumber: 462,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -944,7 +1023,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                             strokeWidth: "1.5"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 465,
+                            lineNumber: 470,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -955,24 +1034,24 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                             opacity: "0.8"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 474,
+                            lineNumber: 479,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 455,
+                    lineNumber: 460,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/dartboard-selector.tsx",
-            lineNumber: 298,
+            lineNumber: 303,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/dartboard-selector.tsx",
-        lineNumber: 297,
+        lineNumber: 302,
         columnNumber: 5
     }, this);
 }
@@ -1299,6 +1378,14 @@ __turbopack_context__.s([
 ]);
 const STORAGE_KEY = "darts_training_progress";
 const SETTINGS_KEY = "darts_training_settings";
+const DEFAULT_CUSTOM_THEME = {
+    singleBlack: "#1a1a1a",
+    singleCream: "#f5f5dc",
+    doubleTripleRed: "#dc2626",
+    doubleTripleGreen: "#16a34a",
+    outerBull: "#16a34a",
+    bull: "#dc2626"
+};
 function loadProgress() {
     if ("TURBOPACK compile-time falsy", 0) //TURBOPACK unreachable
     ;
@@ -1387,7 +1474,8 @@ function loadSettings() {
             tripleOuterRadius: parsed.tripleOuterRadius ?? defaults.tripleOuterRadius,
             dotOffsetY: parsed.dotOffsetY ?? defaults.dotOffsetY,
             learningMode: parsed.learningMode ?? defaults.learningMode,
-            dartboardColorTheme: parsed.dartboardColorTheme || defaults.dartboardColorTheme
+            dartboardColorTheme: parsed.dartboardColorTheme || defaults.dartboardColorTheme,
+            customThemeColors: parsed.customThemeColors || defaults.customThemeColors
         };
     } catch  {
         return getDefaultSettings();
@@ -1432,7 +1520,8 @@ function getDefaultSettings() {
         tripleOuterRadius: 95,
         dotOffsetY: -45,
         learningMode: false,
-        dartboardColorTheme: "classic"
+        dartboardColorTheme: "classic",
+        customThemeColors: DEFAULT_CUSTOM_THEME
     };
 }
 function getRecentSessions(count = 10) {
@@ -2734,6 +2823,37 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
+"[project]/components/ui/input.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "Input",
+    ()=>Input
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/utils.ts [app-client] (ecmascript)");
+;
+;
+function Input({ className, type, ...props }) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+        type: type,
+        "data-slot": "input",
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])('file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm', 'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]', 'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive', className),
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/components/ui/input.tsx",
+        lineNumber: 7,
+        columnNumber: 5
+    }, this);
+}
+_c = Input;
+;
+var _c;
+__turbopack_context__.k.register(_c, "Input");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
 "[project]/components/ui/tabs.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -2823,6 +2943,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next-themes/dist/index.mjs [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/storage.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$dartboard$2d$themes$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/lib/dartboard-themes.ts [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/card.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/label.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/slider.tsx [app-client] (ecmascript)");
@@ -2836,10 +2957,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$re
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$settings$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Settings$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/settings.js [app-client] (ecmascript) <export default as Settings>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$ruler$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Ruler$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/ruler.js [app-client] (ecmascript) <export default as Ruler>");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/palette.js [app-client] (ecmascript) <export default as Palette>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/input.tsx [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/components/ui/tabs.tsx [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
+;
 ;
 ;
 ;
@@ -2865,7 +2989,15 @@ function SettingsPanel({ onSettingsChange }) {
         tripleOuterRadius: 95,
         dotOffsetY: -45,
         learningMode: false,
-        dartboardColorTheme: "classic"
+        dartboardColorTheme: "classic",
+        customThemeColors: {
+            singleBlack: "#1a1a1a",
+            singleCream: "#f5f5dc",
+            doubleTripleRed: "#dc2626",
+            doubleTripleGreen: "#16a34a",
+            outerBull: "#16a34a",
+            bull: "#dc2626"
+        }
     });
     const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
@@ -2903,7 +3035,15 @@ function SettingsPanel({ onSettingsChange }) {
             tripleOuterRadius: 95,
             dotOffsetY: -45,
             learningMode: false,
-            dartboardColorTheme: "classic"
+            dartboardColorTheme: "classic",
+            customThemeColors: {
+                singleBlack: "#1a1a1a",
+                singleCream: "#f5f5dc",
+                doubleTripleRed: "#dc2626",
+                doubleTripleGreen: "#16a34a",
+                outerBull: "#16a34a",
+                bull: "#dc2626"
+            }
         };
         setSettings(defaultSettings);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["saveSettings"])(defaultSettings);
@@ -2928,14 +3068,46 @@ function SettingsPanel({ onSettingsChange }) {
         onSettingsChange?.(newSettings);
     };
     const handleColorThemeChange = (theme)=>{
+        // If switching to custom and no custom colors exist, initialize with default
+        const customColors = theme === "custom" && !settings.customThemeColors ? {
+            singleBlack: "#1a1a1a",
+            singleCream: "#f5f5dc",
+            doubleTripleRed: "#dc2626",
+            doubleTripleGreen: "#16a34a",
+            outerBull: "#16a34a",
+            bull: "#dc2626"
+        } : settings.customThemeColors;
         const newSettings = {
             ...settings,
-            dartboardColorTheme: theme
+            dartboardColorTheme: theme,
+            customThemeColors: customColors
         };
         setSettings(newSettings);
         (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["saveSettings"])(newSettings);
         onSettingsChange?.(newSettings);
     };
+    const handleCustomColorChange = (colorKey, value)=>{
+        const newCustomColors = {
+            ...settings.customThemeColors || {
+                singleBlack: "#1a1a1a",
+                singleCream: "#f5f5dc",
+                doubleTripleRed: "#dc2626",
+                doubleTripleGreen: "#16a34a",
+                outerBull: "#16a34a",
+                bull: "#dc2626"
+            },
+            [colorKey]: value
+        };
+        const newSettings = {
+            ...settings,
+            customThemeColors: newCustomColors
+        };
+        setSettings(newSettings);
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$storage$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["saveSettings"])(newSettings);
+        onSettingsChange?.(newSettings);
+    };
+    // Get current theme colors for preview
+    const currentThemeColors = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$dartboard$2d$themes$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getDartboardThemeColors"])(settings.dartboardColorTheme, settings.customThemeColors);
     if (!mounted) {
         return null;
     }
@@ -2950,7 +3122,7 @@ function SettingsPanel({ onSettingsChange }) {
                         children: "Settings"
                     }, void 0, false, {
                         fileName: "[project]/components/settings-panel.tsx",
-                        lineNumber: 81,
+                        lineNumber: 101,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -2961,13 +3133,13 @@ function SettingsPanel({ onSettingsChange }) {
                         children: "Reset All"
                     }, void 0, false, {
                         fileName: "[project]/components/settings-panel.tsx",
-                        lineNumber: 82,
+                        lineNumber: 102,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/settings-panel.tsx",
-                lineNumber: 80,
+                lineNumber: 100,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Tabs"], {
@@ -2985,14 +3157,14 @@ function SettingsPanel({ onSettingsChange }) {
                                         className: "size-3.5 mr-1.5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/settings-panel.tsx",
-                                        lineNumber: 90,
+                                        lineNumber: 110,
                                         columnNumber: 13
                                     }, this),
                                     "Hit Ratio"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 89,
+                                lineNumber: 109,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -3003,14 +3175,14 @@ function SettingsPanel({ onSettingsChange }) {
                                         className: "size-3.5 mr-1.5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/settings-panel.tsx",
-                                        lineNumber: 94,
+                                        lineNumber: 114,
                                         columnNumber: 13
                                     }, this),
                                     "System"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 93,
+                                lineNumber: 113,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -3021,20 +3193,20 @@ function SettingsPanel({ onSettingsChange }) {
                                         className: "size-3.5 mr-1.5"
                                     }, void 0, false, {
                                         fileName: "[project]/components/settings-panel.tsx",
-                                        lineNumber: 98,
+                                        lineNumber: 118,
                                         columnNumber: 13
                                     }, this),
                                     "Sizes"
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 97,
+                                lineNumber: 117,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/settings-panel.tsx",
-                        lineNumber: 88,
+                        lineNumber: 108,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -3055,7 +3227,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Triple"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 107,
+                                                    lineNumber: 127,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3066,13 +3238,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 110,
+                                                    lineNumber: 130,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 106,
+                                            lineNumber: 126,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3087,13 +3259,13 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 112,
+                                            lineNumber: 132,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 105,
+                                    lineNumber: 125,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3108,7 +3280,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Double"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 125,
+                                                    lineNumber: 145,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3119,13 +3291,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 128,
+                                                    lineNumber: 148,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 124,
+                                            lineNumber: 144,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3140,13 +3312,13 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 130,
+                                            lineNumber: 150,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 123,
+                                    lineNumber: 143,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3161,7 +3333,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Single"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 143,
+                                                    lineNumber: 163,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3172,13 +3344,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 146,
+                                                    lineNumber: 166,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 142,
+                                            lineNumber: 162,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3193,13 +3365,13 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 148,
+                                            lineNumber: 168,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 141,
+                                    lineNumber: 161,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3214,7 +3386,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Double Bullseye"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 161,
+                                                    lineNumber: 181,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3225,13 +3397,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 164,
+                                                    lineNumber: 184,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 160,
+                                            lineNumber: 180,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3246,24 +3418,24 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 166,
+                                            lineNumber: 186,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 159,
+                                    lineNumber: 179,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/settings-panel.tsx",
-                            lineNumber: 104,
+                            lineNumber: 124,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/settings-panel.tsx",
-                        lineNumber: 103,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -3282,20 +3454,20 @@ function SettingsPanel({ onSettingsChange }) {
                                                     className: "size-3.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 203,
                                                     columnNumber: 44
                                                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__["Sun"], {
                                                     className: "size-3.5"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 183,
+                                                    lineNumber: 203,
                                                     columnNumber: 76
                                                 }, this),
                                                 "Theme"
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 182,
+                                            lineNumber: 202,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Button"], {
@@ -3309,7 +3481,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                         className: "size-3 mr-1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/settings-panel.tsx",
-                                                        lineNumber: 194,
+                                                        lineNumber: 214,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Light"
@@ -3320,7 +3492,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                         className: "size-3 mr-1"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/settings-panel.tsx",
-                                                        lineNumber: 199,
+                                                        lineNumber: 219,
                                                         columnNumber: 21
                                                     }, this),
                                                     "Dark"
@@ -3328,18 +3500,18 @@ function SettingsPanel({ onSettingsChange }) {
                                             }, void 0, true)
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 186,
+                                            lineNumber: 206,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 181,
+                                    lineNumber: 201,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 180,
+                                lineNumber: 200,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -3353,7 +3525,7 @@ function SettingsPanel({ onSettingsChange }) {
                                             children: "Difficulty"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 209,
+                                            lineNumber: 229,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
@@ -3366,12 +3538,12 @@ function SettingsPanel({ onSettingsChange }) {
                                                     className: "w-full text-xs h-8",
                                                     children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
                                                         fileName: "[project]/components/settings-panel.tsx",
-                                                        lineNumber: 214,
+                                                        lineNumber: 234,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 213,
+                                                    lineNumber: 233,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
@@ -3381,7 +3553,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                             children: "Easy (1-40)"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 217,
+                                                            lineNumber: 237,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -3389,7 +3561,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                             children: "Medium (40-120)"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 218,
+                                                            lineNumber: 238,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -3397,7 +3569,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                             children: "Hard (120-170)"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 219,
+                                                            lineNumber: 239,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
@@ -3405,19 +3577,19 @@ function SettingsPanel({ onSettingsChange }) {
                                                             children: "Random (1-170)"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 220,
+                                                            lineNumber: 240,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 216,
+                                                    lineNumber: 236,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 212,
+                                            lineNumber: 232,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3425,18 +3597,18 @@ function SettingsPanel({ onSettingsChange }) {
                                             children: "Only scores finishable with 3 darts will be generated"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 223,
+                                            lineNumber: 243,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 208,
+                                    lineNumber: 228,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 207,
+                                lineNumber: 227,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
@@ -3453,14 +3625,14 @@ function SettingsPanel({ onSettingsChange }) {
                                                         className: "size-3.5"
                                                     }, void 0, false, {
                                                         fileName: "[project]/components/settings-panel.tsx",
-                                                        lineNumber: 232,
+                                                        lineNumber: 252,
                                                         columnNumber: 17
                                                     }, this),
                                                     "Learning Mode"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/components/settings-panel.tsx",
-                                                lineNumber: 231,
+                                                lineNumber: 251,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$switch$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Switch"], {
@@ -3469,13 +3641,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                 onCheckedChange: handleLearningModeChange
                                             }, void 0, false, {
                                                 fileName: "[project]/components/settings-panel.tsx",
-                                                lineNumber: 235,
+                                                lineNumber: 255,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/components/settings-panel.tsx",
-                                        lineNumber: 230,
+                                        lineNumber: 250,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3483,125 +3655,596 @@ function SettingsPanel({ onSettingsChange }) {
                                         children: "Show remaining checkout options after each dart. Streaks are disabled in learning mode."
                                     }, void 0, false, {
                                         fileName: "[project]/components/settings-panel.tsx",
-                                        lineNumber: 241,
+                                        lineNumber: 261,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 229,
+                                lineNumber: 249,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Card"], {
                                 className: "p-3 bg-card/50",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "space-y-2",
+                                    className: "space-y-3",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
-                                            htmlFor: "color-theme-select",
-                                            className: "text-xs font-medium flex items-center gap-2",
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
                                             children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__["Palette"], {
-                                                    className: "size-3.5"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 249,
-                                                    columnNumber: 17
-                                                }, this),
-                                                "Dartboard Color Theme"
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 248,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
-                                            value: settings.dartboardColorTheme,
-                                            onValueChange: handleColorThemeChange,
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
-                                                    id: "color-theme-select",
-                                                    size: "sm",
-                                                    className: "w-full text-xs h-8",
-                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
-                                                        fileName: "[project]/components/settings-panel.tsx",
-                                                        lineNumber: 254,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                }, void 0, false, {
-                                                    fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 253,
-                                                    columnNumber: 17
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    htmlFor: "color-theme-select",
+                                                    className: "text-xs font-medium flex items-center gap-2",
                                                     children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                            value: "classic",
-                                                            children: "Classic"
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$palette$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Palette$3e$__["Palette"], {
+                                                            className: "size-3.5"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 257,
+                                                            lineNumber: 270,
                                                             columnNumber: 19
                                                         }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                            value: "vibrant",
-                                                            children: "Vibrant"
+                                                        "Dartboard Color Theme"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                    lineNumber: 269,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Select"], {
+                                                    value: settings.dartboardColorTheme,
+                                                    onValueChange: handleColorThemeChange,
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectTrigger"], {
+                                                            id: "color-theme-select",
+                                                            size: "sm",
+                                                            className: "w-full text-xs h-8",
+                                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectValue"], {}, void 0, false, {
+                                                                fileName: "[project]/components/settings-panel.tsx",
+                                                                lineNumber: 275,
+                                                                columnNumber: 21
+                                                            }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 258,
+                                                            lineNumber: 274,
                                                             columnNumber: 19
                                                         }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                            value: "muted",
-                                                            children: "Muted"
-                                                        }, void 0, false, {
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectContent"], {
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "classic",
+                                                                    children: "Classic"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 278,
+                                                                    columnNumber: 19
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "vibrant",
+                                                                    children: "Vibrant"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 279,
+                                                                    columnNumber: 19
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "muted",
+                                                                    children: "Muted"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 280,
+                                                                    columnNumber: 19
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "neon",
+                                                                    children: "Neon"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 281,
+                                                                    columnNumber: 19
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "dark",
+                                                                    children: "Dark"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 282,
+                                                                    columnNumber: 19
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "midnight",
+                                                                    children: "Midnight"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 283,
+                                                                    columnNumber: 19
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
+                                                                    value: "custom",
+                                                                    children: "Custom"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 284,
+                                                                    columnNumber: 19
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
                                                             fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 259,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$select$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SelectItem"], {
-                                                            value: "neon",
-                                                            children: "Neon"
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/components/settings-panel.tsx",
-                                                            lineNumber: 260,
-                                                            columnNumber: 19
+                                                            lineNumber: 277,
+                                                            columnNumber: 17
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 256,
+                                                    lineNumber: 273,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 252,
+                                            lineNumber: 268,
                                             columnNumber: 15
                                         }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                            className: "text-xs text-muted-foreground",
-                                            children: "Choose a color scheme for the dartboard"
-                                        }, void 0, false, {
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-2",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    className: "text-xs font-medium",
+                                                    children: "Preview"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                    lineNumber: 291,
+                                                    columnNumber: 17
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex items-center gap-2 p-2 rounded-md border bg-muted/30",
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "flex flex-col gap-1",
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex gap-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-6 h-6 rounded border",
+                                                                        style: {
+                                                                            backgroundColor: currentThemeColors.singleBlack
+                                                                        },
+                                                                        title: "Black Segment"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                                        lineNumber: 295,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-6 h-6 rounded border",
+                                                                        style: {
+                                                                            backgroundColor: currentThemeColors.singleCream
+                                                                        },
+                                                                        title: "Cream Segment"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                                        lineNumber: 300,
+                                                                        columnNumber: 23
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/settings-panel.tsx",
+                                                                lineNumber: 294,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex gap-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-6 h-6 rounded border",
+                                                                        style: {
+                                                                            backgroundColor: currentThemeColors.doubleTripleRed
+                                                                        },
+                                                                        title: "Red Ring"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                                        lineNumber: 307,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-6 h-6 rounded border",
+                                                                        style: {
+                                                                            backgroundColor: currentThemeColors.doubleTripleGreen
+                                                                        },
+                                                                        title: "Green Ring"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                                        lineNumber: 312,
+                                                                        columnNumber: 23
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/settings-panel.tsx",
+                                                                lineNumber: 306,
+                                                                columnNumber: 21
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                className: "flex gap-1",
+                                                                children: [
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-6 h-6 rounded-full border",
+                                                                        style: {
+                                                                            backgroundColor: currentThemeColors.outerBull
+                                                                        },
+                                                                        title: "Outer Bull (25)"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                                        lineNumber: 319,
+                                                                        columnNumber: 23
+                                                                    }, this),
+                                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                        className: "w-6 h-6 rounded-full border",
+                                                                        style: {
+                                                                            backgroundColor: currentThemeColors.bull
+                                                                        },
+                                                                        title: "Bull (50)"
+                                                                    }, void 0, false, {
+                                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                                        lineNumber: 324,
+                                                                        columnNumber: 23
+                                                                    }, this)
+                                                                ]
+                                                            }, void 0, true, {
+                                                                fileName: "[project]/components/settings-panel.tsx",
+                                                                lineNumber: 318,
+                                                                columnNumber: 21
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/components/settings-panel.tsx",
+                                                        lineNumber: 293,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                    lineNumber: 292,
+                                                    columnNumber: 17
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 263,
+                                            lineNumber: 290,
                                             columnNumber: 15
+                                        }, this),
+                                        settings.dartboardColorTheme === "custom" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "space-y-3 pt-2 border-t",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                    className: "text-xs font-medium",
+                                                    children: "Custom Colors"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                    lineNumber: 337,
+                                                    columnNumber: 19
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "grid grid-cols-2 gap-2",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                    htmlFor: "custom-black",
+                                                                    className: "text-xs text-muted-foreground",
+                                                                    children: "Black Segment"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 340,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "custom-black",
+                                                                            type: "color",
+                                                                            value: settings.customThemeColors?.singleBlack || "#1a1a1a",
+                                                                            onChange: (e)=>handleCustomColorChange("singleBlack", e.target.value),
+                                                                            className: "h-8 w-12 p-0 border"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 344,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            type: "text",
+                                                                            value: settings.customThemeColors?.singleBlack || "#1a1a1a",
+                                                                            onChange: (e)=>handleCustomColorChange("singleBlack", e.target.value),
+                                                                            className: "h-8 text-xs flex-1",
+                                                                            placeholder: "#1a1a1a"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 351,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 343,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                            lineNumber: 339,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                    htmlFor: "custom-cream",
+                                                                    className: "text-xs text-muted-foreground",
+                                                                    children: "Cream Segment"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 361,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "custom-cream",
+                                                                            type: "color",
+                                                                            value: settings.customThemeColors?.singleCream || "#f5f5dc",
+                                                                            onChange: (e)=>handleCustomColorChange("singleCream", e.target.value),
+                                                                            className: "h-8 w-12 p-0 border"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 365,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            type: "text",
+                                                                            value: settings.customThemeColors?.singleCream || "#f5f5dc",
+                                                                            onChange: (e)=>handleCustomColorChange("singleCream", e.target.value),
+                                                                            className: "h-8 text-xs flex-1",
+                                                                            placeholder: "#f5f5dc"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 372,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 364,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                            lineNumber: 360,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                    htmlFor: "custom-red",
+                                                                    className: "text-xs text-muted-foreground",
+                                                                    children: "Red Ring"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 382,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "custom-red",
+                                                                            type: "color",
+                                                                            value: settings.customThemeColors?.doubleTripleRed || "#dc2626",
+                                                                            onChange: (e)=>handleCustomColorChange("doubleTripleRed", e.target.value),
+                                                                            className: "h-8 w-12 p-0 border"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 386,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            type: "text",
+                                                                            value: settings.customThemeColors?.doubleTripleRed || "#dc2626",
+                                                                            onChange: (e)=>handleCustomColorChange("doubleTripleRed", e.target.value),
+                                                                            className: "h-8 text-xs flex-1",
+                                                                            placeholder: "#dc2626"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 393,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 385,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                            lineNumber: 381,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                    htmlFor: "custom-green",
+                                                                    className: "text-xs text-muted-foreground",
+                                                                    children: "Green Ring"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 403,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "custom-green",
+                                                                            type: "color",
+                                                                            value: settings.customThemeColors?.doubleTripleGreen || "#16a34a",
+                                                                            onChange: (e)=>handleCustomColorChange("doubleTripleGreen", e.target.value),
+                                                                            className: "h-8 w-12 p-0 border"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 407,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            type: "text",
+                                                                            value: settings.customThemeColors?.doubleTripleGreen || "#16a34a",
+                                                                            onChange: (e)=>handleCustomColorChange("doubleTripleGreen", e.target.value),
+                                                                            className: "h-8 text-xs flex-1",
+                                                                            placeholder: "#16a34a"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 414,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 406,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                            lineNumber: 402,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                    htmlFor: "custom-outer-bull",
+                                                                    className: "text-xs text-muted-foreground",
+                                                                    children: "Outer Bull"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 424,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "custom-outer-bull",
+                                                                            type: "color",
+                                                                            value: settings.customThemeColors?.outerBull || "#16a34a",
+                                                                            onChange: (e)=>handleCustomColorChange("outerBull", e.target.value),
+                                                                            className: "h-8 w-12 p-0 border"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 428,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            type: "text",
+                                                                            value: settings.customThemeColors?.outerBull || "#16a34a",
+                                                                            onChange: (e)=>handleCustomColorChange("outerBull", e.target.value),
+                                                                            className: "h-8 text-xs flex-1",
+                                                                            placeholder: "#16a34a"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 435,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 427,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                            lineNumber: 423,
+                                                            columnNumber: 21
+                                                        }, this),
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "space-y-1",
+                                                            children: [
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Label"], {
+                                                                    htmlFor: "custom-bull",
+                                                                    className: "text-xs text-muted-foreground",
+                                                                    children: "Bull (50)"
+                                                                }, void 0, false, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 445,
+                                                                    columnNumber: 23
+                                                                }, this),
+                                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                                    className: "flex gap-1",
+                                                                    children: [
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            id: "custom-bull",
+                                                                            type: "color",
+                                                                            value: settings.customThemeColors?.bull || "#dc2626",
+                                                                            onChange: (e)=>handleCustomColorChange("bull", e.target.value),
+                                                                            className: "h-8 w-12 p-0 border"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 449,
+                                                                            columnNumber: 25
+                                                                        }, this),
+                                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Input"], {
+                                                                            type: "text",
+                                                                            value: settings.customThemeColors?.bull || "#dc2626",
+                                                                            onChange: (e)=>handleCustomColorChange("bull", e.target.value),
+                                                                            className: "h-8 text-xs flex-1",
+                                                                            placeholder: "#dc2626"
+                                                                        }, void 0, false, {
+                                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                                            lineNumber: 456,
+                                                                            columnNumber: 25
+                                                                        }, this)
+                                                                    ]
+                                                                }, void 0, true, {
+                                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                                    lineNumber: 448,
+                                                                    columnNumber: 23
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "[project]/components/settings-panel.tsx",
+                                                            lineNumber: 444,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/components/settings-panel.tsx",
+                                                    lineNumber: 338,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/settings-panel.tsx",
+                                            lineNumber: 336,
+                                            columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 247,
+                                    lineNumber: 267,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/components/settings-panel.tsx",
-                                lineNumber: 246,
+                                lineNumber: 266,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/settings-panel.tsx",
-                        lineNumber: 179,
+                        lineNumber: 199,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -3622,7 +4265,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Dartboard Size"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 274,
+                                                    lineNumber: 476,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3633,13 +4276,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 277,
+                                                    lineNumber: 479,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 273,
+                                            lineNumber: 475,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3654,13 +4297,13 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 279,
+                                            lineNumber: 481,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 272,
+                                    lineNumber: 474,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3675,7 +4318,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Triple Inner Radius"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 292,
+                                                    lineNumber: 494,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3683,13 +4326,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: settings.tripleInnerRadius
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 295,
+                                                    lineNumber: 497,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 291,
+                                            lineNumber: 493,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3704,13 +4347,13 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 297,
+                                            lineNumber: 499,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 290,
+                                    lineNumber: 492,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3725,7 +4368,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Triple Outer Radius"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 310,
+                                                    lineNumber: 512,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3733,13 +4376,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: settings.tripleOuterRadius
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 313,
+                                                    lineNumber: 515,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 309,
+                                            lineNumber: 511,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3754,13 +4397,13 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 315,
+                                            lineNumber: 517,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 308,
+                                    lineNumber: 510,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -3775,7 +4418,7 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: "Dot Position Offset"
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 328,
+                                                    lineNumber: 530,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -3783,13 +4426,13 @@ function SettingsPanel({ onSettingsChange }) {
                                                     children: settings.dotOffsetY
                                                 }, void 0, false, {
                                                     fileName: "[project]/components/settings-panel.tsx",
-                                                    lineNumber: 331,
+                                                    lineNumber: 533,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 327,
+                                            lineNumber: 529,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$slider$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Slider"], {
@@ -3804,7 +4447,7 @@ function SettingsPanel({ onSettingsChange }) {
                                             className: "w-full"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 333,
+                                            lineNumber: 535,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -3812,40 +4455,40 @@ function SettingsPanel({ onSettingsChange }) {
                                             children: "Adjust the vertical position of the touch indicator dot (negative values move it upward)"
                                         }, void 0, false, {
                                             fileName: "[project]/components/settings-panel.tsx",
-                                            lineNumber: 342,
+                                            lineNumber: 544,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/settings-panel.tsx",
-                                    lineNumber: 326,
+                                    lineNumber: 528,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/settings-panel.tsx",
-                            lineNumber: 271,
+                            lineNumber: 473,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/settings-panel.tsx",
-                        lineNumber: 270,
+                        lineNumber: 472,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/settings-panel.tsx",
-                lineNumber: 87,
+                lineNumber: 107,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/components/settings-panel.tsx",
-        lineNumber: 79,
+        lineNumber: 99,
         columnNumber: 5
     }, this);
 }
-_s(SettingsPanel, "emOvyn++pRRdPcWHb5MB4zKWMtY=", false, function() {
+_s(SettingsPanel, "/f5AFMO/Tj//OKKgvQBGZrTPB2c=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$themes$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTheme"]
     ];
@@ -6514,7 +7157,9 @@ function DartsTrainingApp() {
                                         size: hitRatioSettings.dartboardSize,
                                         tripleInnerRadius: hitRatioSettings.tripleInnerRadius,
                                         tripleOuterRadius: hitRatioSettings.tripleOuterRadius,
-                                        dotOffsetY: hitRatioSettings.dotOffsetY
+                                        dotOffsetY: hitRatioSettings.dotOffsetY,
+                                        colorTheme: hitRatioSettings.dartboardColorTheme,
+                                        customThemeColors: hitRatioSettings.customThemeColors
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
                                         lineNumber: 463,
@@ -6527,7 +7172,7 @@ function DartsTrainingApp() {
                                         userRoute: userRoute
                                     }, void 0, false, {
                                         fileName: "[project]/app/page.tsx",
-                                        lineNumber: 473,
+                                        lineNumber: 475,
                                         columnNumber: 17
                                     }, this)
                                 ]
@@ -6569,4 +7214,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=_cb622c63._.js.map
+//# sourceMappingURL=_d9d97fdc._.js.map

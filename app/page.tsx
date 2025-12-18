@@ -468,6 +468,8 @@ export default function DartsTrainingApp() {
                 tripleInnerRadius={hitRatioSettings.tripleInnerRadius}
                 tripleOuterRadius={hitRatioSettings.tripleOuterRadius}
                 dotOffsetY={hitRatioSettings.dotOffsetY}
+                colorTheme={hitRatioSettings.dartboardColorTheme}
+                customThemeColors={hitRatioSettings.customThemeColors}
               />
               {hitRatioSettings.learningMode && gameStatus === "playing" && (
                 <CheckoutFeedback

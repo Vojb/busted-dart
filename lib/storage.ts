@@ -28,6 +28,16 @@ export interface ProgressData {
 }
 
 export type Difficulty = "easy" | "medium" | "hard" | "random"
+export type DartboardColorTheme = "classic" | "vibrant" | "muted" | "neon" | "dark" | "midnight" | "custom"
+
+export interface DartboardThemeColors {
+  singleBlack: string
+  singleCream: string
+  doubleTripleRed: string
+  doubleTripleGreen: string
+  outerBull: string
+  bull: string
+}
 
 export interface HitRatioSettings {
   triple: number
@@ -40,10 +50,21 @@ export interface HitRatioSettings {
   tripleOuterRadius: number
   dotOffsetY: number
   learningMode: boolean
+  dartboardColorTheme: DartboardColorTheme
+  customThemeColors?: DartboardThemeColors
 }
 
 const STORAGE_KEY = "darts_training_progress"
 const SETTINGS_KEY = "darts_training_settings"
+
+const DEFAULT_CUSTOM_THEME: DartboardThemeColors = {
+  singleBlack: "#1a1a1a",
+  singleCream: "#f5f5dc",
+  doubleTripleRed: "#dc2626",
+  doubleTripleGreen: "#16a34a",
+  outerBull: "#16a34a",
+  bull: "#dc2626",
+}
 
 export function loadProgress(): ProgressData {
   if (typeof window === "undefined") {
@@ -155,6 +176,8 @@ export function loadSettings(): HitRatioSettings {
       tripleOuterRadius: parsed.tripleOuterRadius ?? defaults.tripleOuterRadius,
       dotOffsetY: parsed.dotOffsetY ?? defaults.dotOffsetY,
       learningMode: parsed.learningMode ?? defaults.learningMode,
+      dartboardColorTheme: parsed.dartboardColorTheme || defaults.dartboardColorTheme,
+      customThemeColors: parsed.customThemeColors || defaults.customThemeColors,
     }
   } catch {
     return getDefaultSettings()
@@ -202,6 +225,8 @@ function getDefaultSettings(): HitRatioSettings {
     tripleOuterRadius: 95,
     dotOffsetY: -45,
     learningMode: false,
+    dartboardColorTheme: "classic",
+    customThemeColors: DEFAULT_CUSTOM_THEME,
   }
 }
 

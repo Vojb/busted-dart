@@ -1,0 +1,55 @@
+// Dartboard Color Themes
+// Each theme defines colors for:
+// - singleBlack: Black segments (single zone)
+// - singleCream: Cream/white segments (single zone)
+// - doubleTripleRed: Red segments (double/triple rings on black segments)
+// - doubleTripleGreen: Green segments (double/triple rings on cream segments)
+// - outerBull: Outer bull (25) color
+// - bull: Inner bull (50) color
+
+$dartboard-themes: (
+  classic: (
+    singleBlack: #1a1a1a,
+    singleCream: #f5f5dc,
+    doubleTripleRed: #dc2626,
+    doubleTripleGreen: #16a34a,
+    outerBull: #16a34a,
+    bull: #dc2626,
+  ),
+  vibrant: (
+    singleBlack: #0a0a0a,
+    singleCream: #fffef0,
+    doubleTripleRed: #ef4444,
+    doubleTripleGreen: #22c55e,
+    outerBull: #22c55e,
+    bull: #ef4444,
+  ),
+  muted: (
+    singleBlack: #2a2a2a,
+    singleCream: #e8e8d8,
+    doubleTripleRed: #b91c1c,
+    doubleTripleGreen: #15803d,
+    outerBull: #15803d,
+    bull: #b91c1c,
+  ),
+  neon: (
+    singleBlack: #000000,
+    singleCream: #ffff00,
+    doubleTripleRed: #ff0080,
+    doubleTripleGreen: #00ff80,
+    outerBull: #00ff80,
+    bull: #ff0080,
+  ),
+);
+
+// Function to get theme colors
+@function get-dartboard-theme($theme-name) {
+  @return map-get($dartboard-themes, $theme-name);
+}
+
+// Function to get a specific color from a theme
+@function get-dartboard-color($theme-name, $color-name) {
+  $theme: get-dartboard-theme($theme-name);
+  @return map-get($theme, $color-name);
+}
+
