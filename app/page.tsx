@@ -45,6 +45,7 @@ export default function DartsTrainingApp() {
   const [progress, setProgress] = useState<ProgressData | null>(null)
   const [sheetOpen, setSheetOpen] = useState(false)
   const [gameCompleteDialog, setGameCompleteDialog] = useState(false)
+  const [scoreBeforeBust, setScoreBeforeBust] = useState<number | null>(null)
   const [hitRatioSettings, setHitRatioSettings] = useState<HitRatioSettings>(loadSettings())
   const [activeMenuTab, setActiveMenuTab] = useState<"menu" | "progress" | "settings" | "history">("menu")
 
@@ -111,6 +112,7 @@ export default function DartsTrainingApp() {
 
     if (newScore < 0 || newScore === 1) {
       setGameStatus("bust")
+      setScoreBeforeBust(pendingScore)
       setDartHistory((prev) => [...prev, result])
       setDartsThrown(newDartsThrown)
       setUserRoute((prev) => [...prev, target])
@@ -133,6 +135,7 @@ export default function DartsTrainingApp() {
 
     if (newScore === 0 && result.hit.zone !== "D" && result.hit.zone !== "BULL") {
       setGameStatus("bust")
+      setScoreBeforeBust(pendingScore)
       setDartHistory((prev) => [...prev, result])
       setDartsThrown(newDartsThrown)
       setUserRoute((prev) => [...prev, target])
@@ -184,6 +187,7 @@ export default function DartsTrainingApp() {
     setGameStatus("playing")
     setUserRoute([])
     setHoveredTarget(null)
+    setScoreBeforeBust(null)
     setSessionStats({
       accurateHits: 0,
       totalDarts: 0,
@@ -336,10 +340,77 @@ export default function DartsTrainingApp() {
               </DialogDescription>
             </DialogHeader>
             {(() => {
-              const optimalRoutes = getOptimalCheckouts(startingScore)
+              // Show optimal route for the starting score (for wins) or what should have been thrown (for busts)
+              const scoreToCheck = gameStatus === "bust" && scoreBeforeBust !== null ? scoreBeforeBust : startingScore
+              const optimalRoutes = getOptimalCheckouts(scoreToCheck)
               const bestRoute = optimalRoutes.length > 0 ? optimalRoutes[0] : null
               const dartCount = bestRoute ? bestRoute.length : null
               
+              if (gameStatus === "bust" && scoreBeforeBust !== null) {
+                // For busts, show what the last dart should have been
+                const lastDart = bestRoute ? bestRoute[bestRoute.length - 1] : null
+                
+                // If score is finishable with a single dart, show that
+                if (scoreBeforeBust <= 50 && scoreBeforeBust % 2 === 0) {
+                  const singleDartTarget = scoreBeforeBust === 50 
+                    ? { zone: "BULL" as const, number: 50, label: "Bull", value: 50 }
+                    : { zone: "D" as const, number: scoreBeforeBust / 2, label: `D${scoreBeforeBust / 2}`, value: scoreBeforeBust }
+                  
+                  return (
+                    <div className="space-y-3 py-4">
+                      <div className="rounded-lg border bg-destructive/10 p-4">
+                        <div className="mb-2 text-sm font-semibold text-destructive">
+                          Last Dart Should Have Been:
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="rounded-md bg-destructive/20 px-3 py-1.5 text-sm font-medium text-destructive">
+                            {singleDartTarget.label}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                }
+                
+                // Otherwise show the last dart from the optimal route
+                if (lastDart) {
+                  return (
+                    <div className="space-y-3 py-4">
+                      <div className="rounded-lg border bg-destructive/10 p-4">
+                        <div className="mb-2 text-sm font-semibold text-destructive">
+                          Last Dart Should Have Been:
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="rounded-md bg-destructive/20 px-3 py-1.5 text-sm font-medium text-destructive">
+                            {lastDart.label}
+                          </span>
+                        </div>
+                        {bestRoute && bestRoute.length > 1 && (
+                          <div className="mt-3 pt-3 border-t border-destructive/20">
+                            <div className="mb-2 text-xs font-medium text-muted-foreground">
+                              Full Optimal Route ({dartCount === 2 ? "2 Dart" : dartCount === 3 ? "3 Dart" : `${dartCount} Dart`}):
+                            </div>
+                            <div className="flex flex-wrap items-center gap-2">
+                              {bestRoute.map((target, index) => (
+                                <div key={index} className="flex items-center gap-1">
+                                  <span className="rounded-md bg-primary/10 px-2 py-1 text-xs font-medium text-primary">
+                                    {target.label}
+                                  </span>
+                                  {index < bestRoute.length - 1 && (
+                                    <span className="text-muted-foreground">→</span>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )
+                }
+              }
+              
+              // For wins, show the full optimal route
               return bestRoute ? (
                 <div className="space-y-3 py-4">
                   <div className="rounded-lg border bg-muted/50 p-4">

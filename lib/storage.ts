@@ -188,8 +188,8 @@ function getDefaultSettings(): HitRatioSettings {
     single: 85,
     dartboardSize: 100,
     difficulty: "medium",
-    tripleInnerRadius: 75,
-    tripleOuterRadius: 105,
+    tripleInnerRadius: 80,
+    tripleOuterRadius: 95,
   }
 }
 

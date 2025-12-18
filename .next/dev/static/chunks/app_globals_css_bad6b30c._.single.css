@@ -1625,6 +1625,16 @@
     border-color: var(--destructive);
   }
 
+  .border-destructive\/20 {
+    border-color: var(--destructive);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .border-destructive\/20 {
+      border-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+    }
+  }
+
   .border-input {
     border-color: var(--input);
   }
@@ -1729,6 +1739,26 @@
 
   .bg-destructive {
     background-color: var(--destructive);
+  }
+
+  .bg-destructive\/10 {
+    background-color: var(--destructive);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-destructive\/10 {
+      background-color: color-mix(in oklab, var(--destructive) 10%, transparent);
+    }
+  }
+
+  .bg-destructive\/20 {
+    background-color: var(--destructive);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-destructive\/20 {
+      background-color: color-mix(in oklab, var(--destructive) 20%, transparent);
+    }
   }
 
   .bg-foreground {
@@ -5596,9 +5626,14 @@
 }
 
 [data-sonner-toast] {
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  opacity: .85 !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  position: relative;
+  opacity: .5 !important;
+}
+
+[data-sonner-toast] [data-sonner-toast-content] {
+  background: oklch(from var(--popover) l c h / .5) !important;
 }
 
 @property --tw-translate-x {

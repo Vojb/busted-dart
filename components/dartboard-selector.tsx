@@ -18,7 +18,7 @@ const roundTo = (value: number, decimals: number = 2): number => {
   return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
-export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 75, tripleOuterRadius = 105 }: DartboardSelectorProps) {
+export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100, tripleInnerRadius = 80, tripleOuterRadius = 95 }: DartboardSelectorProps) {
   const [mounted, setMounted] = useState(false)
   const [touchPosition, setTouchPosition] = useState<{ x: number; y: number } | null>(null)
   const [isTouching, setIsTouching] = useState(false)

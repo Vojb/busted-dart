@@ -16,7 +16,7 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium", tripleInnerRadius: 75, tripleOuterRadius: 105 })
+  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95 })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -42,7 +42,7 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   }
 
   const handleReset = () => {
-    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 120, difficulty: "medium" as Difficulty, tripleInnerRadius: 75, tripleOuterRadius: 105 }
+    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95 }
     setSettings(defaultSettings)
     saveSettings(defaultSettings)
     onSettingsChange?.(defaultSettings)
