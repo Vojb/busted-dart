@@ -801,17 +801,47 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     lineNumber: 386,
                     columnNumber: 9
                 }, this),
-                isTouching && touchPosition && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
-                    cx: touchPosition.x,
-                    cy: touchPosition.y,
-                    r: "4",
-                    fill: "#ffffff",
-                    stroke: "#000000",
-                    strokeWidth: "1.5",
+                isTouching && touchPosition && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
                     style: {
                         pointerEvents: "none"
-                    }
-                }, void 0, false, {
+                    },
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: touchPosition.x,
+                            cy: touchPosition.y - 12,
+                            r: "6",
+                            fill: "#ffff00",
+                            opacity: "0.4"
+                        }, void 0, false, {
+                            fileName: "[project]/components/dartboard-selector.tsx",
+                            lineNumber: 411,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: touchPosition.x,
+                            cy: touchPosition.y - 12,
+                            r: "5",
+                            fill: "#ffff00",
+                            stroke: "#000000",
+                            strokeWidth: "1.5"
+                        }, void 0, false, {
+                            fileName: "[project]/components/dartboard-selector.tsx",
+                            lineNumber: 419,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
+                            cx: touchPosition.x,
+                            cy: touchPosition.y - 12,
+                            r: "2.5",
+                            fill: "#ffffff",
+                            opacity: "0.8"
+                        }, void 0, false, {
+                            fileName: "[project]/components/dartboard-selector.tsx",
+                            lineNumber: 428,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
                     fileName: "[project]/components/dartboard-selector.tsx",
                     lineNumber: 409,
                     columnNumber: 11

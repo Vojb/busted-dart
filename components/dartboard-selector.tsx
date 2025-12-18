@@ -406,15 +406,33 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
 
         {/* Touch indicator dot */}
         {isTouching && touchPosition && (
-          <circle
-            cx={touchPosition.x}
-            cy={touchPosition.y}
-            r="4"
-            fill="#ffffff"
-            stroke="#000000"
-            strokeWidth="1.5"
-            style={{ pointerEvents: "none" }}
-          />
+          <g style={{ pointerEvents: "none" }}>
+            {/* Glow effect */}
+            <circle
+              cx={touchPosition.x}
+              cy={touchPosition.y - 12}
+              r="6"
+              fill="#ffff00"
+              opacity="0.4"
+            />
+            {/* Main bright dot */}
+            <circle
+              cx={touchPosition.x}
+              cy={touchPosition.y - 12}
+              r="5"
+              fill="#ffff00"
+              stroke="#000000"
+              strokeWidth="1.5"
+            />
+            {/* Inner highlight */}
+            <circle
+              cx={touchPosition.x}
+              cy={touchPosition.y - 12}
+              r="2.5"
+              fill="#ffffff"
+              opacity="0.8"
+            />
+          </g>
         )}
       </svg>
 
