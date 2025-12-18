@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build --webpack",
     "dev": "next dev",
+    "generate-icons": "node scripts/generate-icons.js",
     "lint": "eslint .",
     "start": "next start"
   },
