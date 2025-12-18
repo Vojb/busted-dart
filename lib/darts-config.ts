@@ -54,10 +54,14 @@ export function getAdjacentNumbers(number: number): number[] {
   return [DARTBOARD_NUMBERS[prevIndex], DARTBOARD_NUMBERS[nextIndex]]
 }
 
+// Bogey numbers that cannot be finished with 3 darts
+const BOGEY_NUMBERS = [159, 162, 163, 165, 166, 168, 169]
+
 // Check if a score is finishable with darts remaining
 export function isFinishable(score: number, dartsRemaining: number): boolean {
   if (score <= 0 || score > 170) return false
   if (score === 1) return false // Can't finish on 1
+  if (BOGEY_NUMBERS.includes(score)) return false // Bogey numbers cannot be finished
 
   // Special cases for 3 darts
   if (dartsRemaining === 3) {
@@ -69,7 +73,7 @@ export function isFinishable(score: number, dartsRemaining: number): boolean {
     return score <= 110
   }
 
-  // For 1 dart: max is 50 (Bull), must be even for double
+  // For 1 dart: max is 50 (Bull or any double up to D25), must be even
   if (dartsRemaining === 1) {
     return score <= 50 && score % 2 === 0
   }
@@ -108,9 +112,9 @@ export function generateRandomCheckout(difficulty: "easy" | "medium" | "hard" | 
       maxScore = 170
   }
   
-  // Only include scores that are finishable with 3 darts
+  // Only include scores that are finishable with 3 darts (excluding bogey numbers)
   for (let i = minScore; i <= maxScore; i++) {
-    if (isFinishable(i, 3) && i !== 1) {
+    if (isFinishable(i, 3) && i !== 1 && !BOGEY_NUMBERS.includes(i)) {
       finishableScores.push(i)
     }
   }
@@ -118,7 +122,7 @@ export function generateRandomCheckout(difficulty: "easy" | "medium" | "hard" | 
   if (finishableScores.length === 0) {
     // Fallback to default range if no scores found in difficulty range
     for (let i = 2; i <= 170; i++) {
-      if (isFinishable(i, 3) && i !== 1) {
+      if (isFinishable(i, 3) && i !== 1 && !BOGEY_NUMBERS.includes(i)) {
         finishableScores.push(i)
       }
     }
