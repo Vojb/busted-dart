@@ -20,8 +20,10 @@ import {
   type HitRatioSettings,
   update3DartGameAndStreak,
   resetStreak,
+  hasSeenTutorial,
+  markTutorialSeen,
 } from "@/lib/storage"
-import { RotateCcw, Trophy, Menu, BarChart3, Settings, History } from "lucide-react"
+import { RotateCcw, Trophy, Menu, BarChart3, Settings, History, Hand, Move, Target } from "lucide-react"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import {
   Dialog,
@@ -58,6 +60,7 @@ export default function DartsTrainingApp() {
   })
   const [hoveredTarget, setHoveredTarget] = useState<DartTarget | null>(null)
   const [lastThrow, setLastThrow] = useState<{ aimed: DartTarget; hit: DartTarget; wasAccurate: boolean } | undefined>(undefined)
+  const [showTutorial, setShowTutorial] = useState(false)
 
   useEffect(() => {
     setProgress(loadProgress())
@@ -68,6 +71,11 @@ export default function DartsTrainingApp() {
     setStartingScore(initialScore)
     setCurrentScore(initialScore)
     setPendingScore(initialScore)
+    
+    // Show tutorial on first visit
+    if (!hasSeenTutorial()) {
+      setShowTutorial(true)
+    }
   }, [])
 
   const handleThrow = (target: DartTarget) => {
@@ -330,6 +338,83 @@ export default function DartsTrainingApp() {
             </SheetContent>
           </Sheet>
         </div>
+
+        <Dialog open={showTutorial} onOpenChange={(open) => {
+          if (!open) {
+            markTutorialSeen()
+          }
+          setShowTutorial(open)
+        }}>
+          <DialogContent className="sm:max-w-lg">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-2">
+                <Target className="size-5 text-primary" />
+                Welcome to Darts Training!
+              </DialogTitle>
+              <DialogDescription>
+                Learn how to aim and score on the dartboard
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <div className="rounded-full bg-primary/10 p-2 mt-0.5">
+                    <Hand className="size-4 text-primary" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <h4 className="text-sm font-semibold">Hold and Move to Aim</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Press and hold on the dartboard, then move your finger to aim. A yellow dot will show where you're aiming.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="rounded-full bg-primary/10 p-2 mt-0.5">
+                    <Move className="size-4 text-primary" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <h4 className="text-sm font-semibold">Preview Your Target</h4>
+                    <p className="text-sm text-muted-foreground">
+                      As you move, you'll see a preview of the target you're aiming at (like T20, D16, etc.) displayed above the dartboard.
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <div className="rounded-full bg-primary/10 p-2 mt-0.5">
+                    <Target className="size-4 text-primary" />
+                  </div>
+                  <div className="flex-1 space-y-1">
+                    <h4 className="text-sm font-semibold">Release to Throw</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Release your finger to throw the dart at the selected target. The score will be calculated based on your accuracy settings.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="rounded-lg border bg-muted/30 p-4 space-y-2">
+                <div className="flex items-center gap-2 text-sm font-medium">
+                  <div className="size-2 rounded-full bg-yellow-500 animate-pulse" />
+                  Yellow dot = Your aim point
+                </div>
+                <div className="flex items-center gap-2 text-sm font-medium">
+                  <div className="size-2 rounded-full bg-primary" />
+                  Preview shows target name (T20, D16, etc.)
+                </div>
+              </div>
+            </div>
+            <DialogFooter>
+              <Button onClick={() => {
+                markTutorialSeen()
+                setShowTutorial(false)
+              }} className="w-full sm:w-auto">
+                Got it!
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         <Dialog open={gameCompleteDialog} onOpenChange={setGameCompleteDialog}>
           <DialogContent className="sm:max-w-md">

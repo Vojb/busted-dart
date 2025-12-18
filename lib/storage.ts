@@ -56,6 +56,7 @@ export interface HitRatioSettings {
 
 const STORAGE_KEY = "darts_training_progress"
 const SETTINGS_KEY = "darts_training_settings"
+const TUTORIAL_SEEN_KEY = "darts_tutorial_seen"
 
 const DEFAULT_CUSTOM_THEME: DartboardThemeColors = {
   singleBlack: "#1a1a1a",
@@ -261,5 +262,23 @@ export function getProgressTrends() {
     accuracyTrend: avgAccuracySecond - avgAccuracyFirst,
     decisionTrend: avgDecisionSecond - avgDecisionFirst,
     isImproving: avgAccuracySecond > avgAccuracyFirst || avgDecisionSecond > avgDecisionFirst,
+  }
+}
+
+export function hasSeenTutorial(): boolean {
+  if (typeof window === "undefined") return false
+  try {
+    return localStorage.getItem(TUTORIAL_SEEN_KEY) === "true"
+  } catch {
+    return false
+  }
+}
+
+export function markTutorialSeen(): void {
+  if (typeof window === "undefined") return
+  try {
+    localStorage.setItem(TUTORIAL_SEEN_KEY, "true")
+  } catch (error) {
+    console.error("Failed to save tutorial seen status:", error)
   }
 }

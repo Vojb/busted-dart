@@ -5159,3 +5159,793 @@ It can also happen if the client has a browser extension installed which messes 
 [00:28:09.137] Server  LOG      ✓ Compiled in 77ms
 [00:29:08.188] Server  LOG      ✓ Compiled in 15ms
 [00:35:05.088] Server  LOG      ✓ Compiled in 18ms
+[00:46:31.668] Server  LOG      ✓ Compiled in 21ms
+[00:46:40.437] Server  LOG      ✓ Compiled in 16ms
+[00:46:44.836] Server  LOG      ✓ Compiled in 85ms
+[00:46:48.574] Server  LOG      ✓ Compiled in 15ms
+[00:46:51.916] Server  LOG      ✓ Compiled in 17ms
+[00:47:04.941] Server  LOG      ✓ Compiled in 48ms
+[00:48:04.775] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:48:04.775] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:48:05.188] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="font-sans antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                            ...
+                              <Card className="p-4 sm:p-6...">
+                                <div data-slot="card" className="bg-card te...">
+                                  <svg ref={{current:null}} viewBox="0 0 340 340" className="w-full max..." ...>
+                                    <g>
+                                      <path
+                                        d="M 192.68 26.79 A 145 145 0 0 0 147.32 26.79 L 149.66 41.6 A 130 130 0 0 1 1..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 184.86 76.17 A 95 95 0 0 0 155.14 76.17 L 157.49 90.98 A 80 80 0 0 1 182...."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 235.83 40.8 A 145 145 0 0 0 192.68 26.79 L 190.34 41.6 A 130 130 0 0 1 22..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 229.02 54.17 A 130 130 0 0 0 190.34 41.6 L 184.86 76.17 A 95 95 0 0 1 213..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 213.13 85.35 A 95 95 0 0 0 184.86 76.17 L 182.51 90.98 A 80 80 0 0 1 206...."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 206.32 98.72 A 80 80 0 0 0 182.51 90.98 L 173.13 150.25 A 20 20 0 0 1 179..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 272.53 67.47 A 145 145 0 0 0 235.83 40.8 L 229.02 54.17 A 130 130 0 0 1 2..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 237.18 102.82 A 95 95 0 0 0 213.13 85.35 L 206.32 98.72 A 80 80 0 0 1 226..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 299.2 104.17 A 145 145 0 0 0 272.53 67.47 L 261.92 78.08 A 130 130 0 0 1 ..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 285.83 110.98 A 130 130 0 0 0 261.92 78.08 L 237.18 102.82 A 95 95 0 0 1 ..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 254.65 126.87 A 95 95 0 0 0 237.18 102.82 L 226.57 113.43 A 80 80 0 0 1 2..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 241.28 133.68 A 80 80 0 0 0 226.57 113.43 L 184.14 155.86 A 20 20 0 0 1 1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 313.21 147.32 A 145 145 0 0 0 299.2 104.17 L 285.83 110.98 A 130 130 0 0 ..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 263.83 155.14 A 95 95 0 0 0 254.65 126.87 L 241.28 133.68 A 80 80 0 0 1 2..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 313.21 192.68 A 145 145 0 0 0 313.21 147.32 L 298.4 149.66 A 130 130 0 0 ..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 298.4 190.34 A 130 130 0 0 0 298.4 149.66 L 263.83 155.14 A 95 95 0 0 1 2..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 263.83 184.86 A 95 95 0 0 0 263.83 155.14 L 249.02 157.49 A 80 80 0 0 1 2..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 249.02 182.51 A 80 80 0 0 0 249.02 157.49 L 189.75 166.87 A 20 20 0 0 1 1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 299.2 235.83 A 145 145 0 0 0 313.21 192.68 L 298.4 190.34 A 130 130 0 0 1..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 254.65 213.13 A 95 95 0 0 0 263.83 184.86 L 249.02 182.51 A 80 80 0 0 1 2..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 272.53 272.53 A 145 145 0 0 0 299.2 235.83 L 285.83 229.02 A 130 130 0 0 ..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 261.92 261.92 A 130 130 0 0 0 285.83 229.02 L 254.65 213.13 A 95 95 0 0 1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 237.18 237.18 A 95 95 0 0 0 254.65 213.13 L 241.28 206.32 A 80 80 0 0 1 2..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 226.57 226.57 A 80 80 0 0 0 241.28 206.32 L 187.82 179.08 A 20 20 0 0 1 1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 235.83 299.2 A 145 145 0 0 0 272.53 272.53 L 261.92 261.92 A 130 130 0 0 ..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 213.13 254.65 A 95 95 0 0 0 237.18 237.18 L 226.57 226.57 A 80 80 0 0 1 2..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 192.68 313.21 A 145 145 0 0 0 235.83 299.2 L 229.02 285.83 A 130 130 0 0 ..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 190.34 298.4 A 130 130 0 0 0 229.02 285.83 L 213.13 254.65 A 95 95 0 0 1 ..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 184.86 263.83 A 95 95 0 0 0 213.13 254.65 L 206.32 241.28 A 80 80 0 0 1 1..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 182.51 249.02 A 80 80 0 0 0 206.32 241.28 L 179.08 187.82 A 20 20 0 0 1 1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 147.32 313.21 A 145 145 0 0 0 192.68 313.21 L 190.34 298.4 A 130 130 0 0 ..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 155.14 263.83 A 95 95 0 0 0 184.86 263.83 L 182.51 249.02 A 80 80 0 0 1 1..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 104.17 299.2 A 145 145 0 0 0 147.32 313.21 L 149.66 298.4 A 130 130 0 0 1..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 110.98 285.83 A 130 130 0 0 0 149.66 298.4 L 155.14 263.83 A 95 95 0 0 1 ..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 126.87 254.65 A 95 95 0 0 0 155.14 263.83 L 157.49 249.02 A 80 80 0 0 1 1..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 133.68 241.28 A 80 80 0 0 0 157.49 249.02 L 166.87 189.75 A 20 20 0 0 1 1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 67.47 272.53 A 145 145 0 0 0 104.17 299.2 L 110.98 285.83 A 130 130 0 0 1..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 102.82 237.18 A 95 95 0 0 0 126.87 254.65 L 133.68 241.28 A 80 80 0 0 1 1..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 40.8 235.83 A 145 145 0 0 0 67.47 272.53 L 78.08 261.92 A 130 130 0 0 1 5..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 54.17 229.02 A 130 130 0 0 0 78.08 261.92 L 102.82 237.18 A 95 95 0 0 1 8..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 85.35 213.13 A 95 95 0 0 0 102.82 237.18 L 113.43 226.57 A 80 80 0 0 1 98..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 98.72 206.32 A 80 80 0 0 0 113.43 226.57 L 155.86 184.14 A 20 20 0 0 1 15..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 26.79 192.68 A 145 145 0 0 0 40.8 235.83 L 54.17 229.02 A 130 130 0 0 1 4..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 76.17 184.86 A 95 95 0 0 0 85.35 213.13 L 98.72 206.32 A 80 80 0 0 1 90.9..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 26.79 147.32 A 145 145 0 0 0 26.79 192.68 L 41.6 190.34 A 130 130 0 0 1 4..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 41.6 149.66 A 130 130 0 0 0 41.6 190.34 L 76.17 184.86 A 95 95 0 0 1 76.1..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 76.17 155.14 A 95 95 0 0 0 76.17 184.86 L 90.98 182.51 A 80 80 0 0 1 90.9..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 90.98 157.49 A 80 80 0 0 0 90.98 182.51 L 150.25 173.13 A 20 20 0 0 1 150..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 40.8 104.17 A 145 145 0 0 0 26.79 147.32 L 41.6 149.66 A 130 130 0 0 1 54..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 85.35 126.87 A 95 95 0 0 0 76.17 155.14 L 90.98 157.49 A 80 80 0 0 1 98.7..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 67.47 67.47 A 145 145 0 0 0 40.8 104.17 L 54.17 110.98 A 130 130 0 0 1 78..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 78.08 78.08 A 130 130 0 0 0 54.17 110.98 L 85.35 126.87 A 95 95 0 0 1 102..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 102.82 102.82 A 95 95 0 0 0 85.35 126.87 L 98.72 133.68 A 80 80 0 0 1 113..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 113.43 113.43 A 80 80 0 0 0 98.72 133.68 L 152.18 160.92 A 20 20 0 0 1 15..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 104.17 40.8 A 145 145 0 0 0 67.47 67.47 L 78.08 78.08 A 130 130 0 0 1 110..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path>
+                                      <path
+                                        d="M 126.87 85.35 A 95 95 0 0 0 102.82 102.82 L 113.43 113.43 A 80 80 0 0 1 13..."
++                                       fill="#9a1919"
+-                                       fill="#dc2626"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <g>
+                                      <path
+                                        d="M 147.32 26.79 A 145 145 0 0 0 104.17 40.8 L 110.98 54.17 A 130 130 0 0 1 1..."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 149.66 41.6 A 130 130 0 0 0 110.98 54.17 L 126.87 85.35 A 95 95 0 0 1 155..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 155.14 76.17 A 95 95 0 0 0 126.87 85.35 L 133.68 98.72 A 80 80 0 0 1 157...."
++                                       fill="#0a4d22"
+-                                       fill="#16a34a"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      <path
+                                        d="M 157.49 90.98 A 80 80 0 0 0 133.68 98.72 L 160.92 152.18 A 20 20 0 0 1 166..."
++                                       fill="#3b3b3b"
+-                                       fill="#f5f5dc"
+                                        stroke="#000"
+                                        strokeWidth="0.5"
+                                        className="cursor-pointer"
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onMouseLeave={function onMouseLeave}
+                                      >
+                                      ...
+                                    <circle
+                                      cx="170"
+                                      cy="170"
+                                      r="20"
++                                     fill="#0b4d22"
+-                                     fill="#16a34a"
+                                      stroke="#000"
+                                      strokeWidth="0.5"
+                                      className="cursor-pointer"
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onMouseLeave={function onMouseLeave}
+                                    >
+                                    <circle
+                                      cx="170"
+                                      cy="170"
+                                      r="10"
++                                     fill="#9a1919"
+-                                     fill="#dc2626"
+                                      stroke="#000"
+                                      strokeWidth="0.5"
+                                      className="cursor-pointer"
+                                      onClick={function onClick}
+                                      onMouseEnter={function onMouseEnter}
+                                      onMouseLeave={function onMouseLeave}
+                                    >
+                            ...
+                  ...
+
+[00:48:05.188] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:48:05.188] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:48:05.188] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766083232625}
