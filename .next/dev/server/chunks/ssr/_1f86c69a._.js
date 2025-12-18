@@ -364,9 +364,29 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
     const touchStartTimeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(0);
     const hasMovedRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
     const shouldPreventClickRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const isTouchingRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(false);
+    const touchPositionRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const onHoverTargetRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(onHoverTarget);
+    const onSelectTargetRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRef"])(onSelectTarget);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         setMounted(true);
     }, []);
+    // Keep refs in sync with props
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        onHoverTargetRef.current = onHoverTarget;
+        onSelectTargetRef.current = onSelectTarget;
+    }, [
+        onHoverTarget,
+        onSelectTarget
+    ]);
+    // Keep refs in sync with state
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        isTouchingRef.current = isTouching;
+        touchPositionRef.current = touchPosition;
+    }, [
+        isTouching,
+        touchPosition
+    ]);
     const handleSegmentClick = (zone, number)=>{
         if (disabled) return;
         const value = zone === "T" ? number * 3 : zone === "D" ? number * 2 : number;
@@ -508,7 +528,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
         return null;
     };
     // Handle touch start
-    const handleTouchStart = (e)=>{
+    const handleTouchStart = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((e)=>{
         if (disabled) return;
         const touch = e.touches[0];
         if (!touch) return;
@@ -519,17 +539,22 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
         if (svgPoint) {
             // Show dot and preview immediately
             setIsTouching(true);
+            isTouchingRef.current = true;
             setTouchPosition(svgPoint);
+            touchPositionRef.current = svgPoint;
             // Show preview - use dot position
             const dotY = svgPoint.y + dotOffsetY;
             const target = getTargetAtPoint(svgPoint.x, dotY);
-            if (target && onHoverTarget) {
-                onHoverTarget(target);
+            if (target && onHoverTargetRef.current) {
+                onHoverTargetRef.current(target);
             }
         }
-    };
+    }, [
+        disabled,
+        dotOffsetY
+    ]);
     // Handle touch move
-    const handleTouchMove = (e)=>{
+    const handleTouchMove = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((e)=>{
         if (disabled) return;
         e.preventDefault(); // Prevent scrolling when dragging
         hasMovedRef.current = true;
@@ -538,34 +563,40 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
         const svgPoint = screenToSVG(touch.clientX, touch.clientY);
         if (svgPoint) {
             // Ensure dot is visible when moving
-            if (!isTouching) {
+            if (!isTouchingRef.current) {
                 setIsTouching(true);
+                isTouchingRef.current = true;
             }
             setTouchPosition(svgPoint);
+            touchPositionRef.current = svgPoint;
             // Update preview as user moves - use dot position
             const dotY = svgPoint.y + dotOffsetY;
             const target = getTargetAtPoint(svgPoint.x, dotY);
-            if (target && onHoverTarget) {
-                onHoverTarget(target);
-            } else if (onHoverTarget) {
-                onHoverTarget(null);
+            if (target && onHoverTargetRef.current) {
+                onHoverTargetRef.current(target);
+            } else if (onHoverTargetRef.current) {
+                onHoverTargetRef.current(null);
             }
         }
-    };
+    }, [
+        disabled,
+        dotOffsetY
+    ]);
     // Handle touch end
-    const handleTouchEnd = (e)=>{
+    const handleTouchEnd = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])((e)=>{
         if (disabled) return;
         const holdTime = Date.now() - touchStartTimeRef.current;
         // If user moved or held for more than 100ms, handle selection here
-        if (hasMovedRef.current || isTouching && holdTime > 100) {
+        if (hasMovedRef.current || isTouchingRef.current && holdTime > 100) {
             e.preventDefault();
             shouldPreventClickRef.current = true;
-            if (touchPosition) {
+            const currentTouchPosition = touchPositionRef.current;
+            if (currentTouchPosition) {
                 // Use dot position for selection
-                const dotY = touchPosition.y + dotOffsetY;
-                const target = getTargetAtPoint(touchPosition.x, dotY);
-                if (target) {
-                    onSelectTarget(target);
+                const dotY = currentTouchPosition.y + dotOffsetY;
+                const target = getTargetAtPoint(currentTouchPosition.x, dotY);
+                if (target && onSelectTargetRef.current) {
+                    onSelectTargetRef.current(target);
                 }
             }
             // Reset flag after a short delay
@@ -577,21 +608,56 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
             shouldPreventClickRef.current = false;
         }
         setIsTouching(false);
+        isTouchingRef.current = false;
         setTouchPosition(null);
-        if (onHoverTarget) {
-            onHoverTarget(null);
+        touchPositionRef.current = null;
+        if (onHoverTargetRef.current) {
+            onHoverTargetRef.current(null);
         }
-    };
+    }, [
+        disabled,
+        dotOffsetY
+    ]);
     // Handle touch cancel
-    const handleTouchCancel = ()=>{
+    const handleTouchCancel = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useCallback"])(()=>{
         setIsTouching(false);
+        isTouchingRef.current = false;
         setTouchPosition(null);
+        touchPositionRef.current = null;
         hasMovedRef.current = false;
         shouldPreventClickRef.current = false;
-        if (onHoverTarget) {
-            onHoverTarget(null);
+        if (onHoverTargetRef.current) {
+            onHoverTargetRef.current(null);
         }
-    };
+    }, []);
+    // Attach touch event listeners directly to DOM with passive: false
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
+        const svg = svgRef.current;
+        if (!svg) return;
+        svg.addEventListener('touchstart', handleTouchStart, {
+            passive: true
+        });
+        svg.addEventListener('touchmove', handleTouchMove, {
+            passive: false
+        });
+        svg.addEventListener('touchend', handleTouchEnd, {
+            passive: false
+        });
+        svg.addEventListener('touchcancel', handleTouchCancel, {
+            passive: true
+        });
+        return ()=>{
+            svg.removeEventListener('touchstart', handleTouchStart);
+            svg.removeEventListener('touchmove', handleTouchMove);
+            svg.removeEventListener('touchend', handleTouchEnd);
+            svg.removeEventListener('touchcancel', handleTouchCancel);
+        };
+    }, [
+        handleTouchStart,
+        handleTouchMove,
+        handleTouchEnd,
+        handleTouchCancel
+    ]);
     // Use consistent size during SSR to avoid hydration mismatch
     const displaySize = mounted ? size : 100;
     const maxWidth = roundTo(450 * displaySize / 100);
@@ -606,10 +672,6 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                 width: `${displaySize}%`,
                 maxWidth: `${maxWidth}px`
             },
-            onTouchStart: handleTouchStart,
-            onTouchMove: handleTouchMove,
-            onTouchEnd: handleTouchEnd,
-            onTouchCancel: handleTouchCancel,
             children: [
                 segments.map(({ number, angle, segmentAngle, singleColor, doubleTripleColor })=>{
                     const startAngle = angle;
@@ -643,7 +705,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 276,
+                                lineNumber: 315,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -670,7 +732,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 296,
+                                lineNumber: 335,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -698,7 +760,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 315,
+                                lineNumber: 354,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
@@ -725,7 +787,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 }
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 335,
+                                lineNumber: 374,
                                 columnNumber: 15
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
@@ -737,13 +799,13 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                                 children: number
                             }, void 0, false, {
                                 fileName: "[project]/components/dartboard-selector.tsx",
-                                lineNumber: 355,
+                                lineNumber: 394,
                                 columnNumber: 15
                             }, this)
                         ]
                     }, number, true, {
                         fileName: "[project]/components/dartboard-selector.tsx",
-                        lineNumber: 275,
+                        lineNumber: 314,
                         columnNumber: 13
                     }, this);
                 }),
@@ -773,7 +835,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 369,
+                    lineNumber: 408,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -802,7 +864,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                     }
                 }, void 0, false, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 391,
+                    lineNumber: 430,
                     columnNumber: 9
                 }, this),
                 isTouching && touchPosition && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("g", {
@@ -818,7 +880,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                             opacity: "0.4"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 416,
+                            lineNumber: 455,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -830,7 +892,7 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                             strokeWidth: "1.5"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 424,
+                            lineNumber: 463,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("circle", {
@@ -841,24 +903,24 @@ function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, size = 100
                             opacity: "0.8"
                         }, void 0, false, {
                             fileName: "[project]/components/dartboard-selector.tsx",
-                            lineNumber: 433,
+                            lineNumber: 472,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/components/dartboard-selector.tsx",
-                    lineNumber: 414,
+                    lineNumber: 453,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/components/dartboard-selector.tsx",
-            lineNumber: 253,
+            lineNumber: 296,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/dartboard-selector.tsx",
-        lineNumber: 252,
+        lineNumber: 295,
         columnNumber: 5
     }, this);
 }
@@ -5302,7 +5364,7 @@ function DartsTrainingApp() {
             setProgress((0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$storage$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["loadProgress"])());
         }
     };
-    const dartsRemaining = 3 - dartsThrown % 3;
+    const dartsRemaining = hitRatioSettings.learningMode ? 3 - dartsThrown % 3 : 3;
     const canFinish = false // Removed the "finishable with 3 darts" section
     ;
     const accuracy = sessionStats.totalDarts > 0 ? sessionStats.accurateHits / sessionStats.totalDarts * 100 : 0;

@@ -219,7 +219,7 @@ export default function DartsTrainingApp() {
     }
   }
 
-  const dartsRemaining = 3 - (dartsThrown % 3)
+  const dartsRemaining = hitRatioSettings.learningMode ? 3 - (dartsThrown % 3) : 3
   const canFinish = false // Removed the "finishable with 3 darts" section
 
   const accuracy = sessionStats.totalDarts > 0 ? (sessionStats.accurateHits / sessionStats.totalDarts) * 100 : 0

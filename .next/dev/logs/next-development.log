@@ -86,3 +86,469 @@ Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
 [00:09:46.803] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
 [00:09:46.803] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
 [00:09:46.803] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766080934270}
+[00:11:08.450] Server  LOG      ✓ Compiled in 41ms
+[00:11:11.988] Server  LOG      ✓ Compiled in 15ms
+[00:11:29.045] Server  LOG      ✓ Compiled in 62ms
+[00:11:34.062] Server  LOG      ✓ Compiled in 19ms
+[00:11:51.488] Server  LOG      ✓ Compiled in 19ms
+[00:11:57.242] Server  LOG      ✓ Compiled in 16ms
+[00:11:57.310] Browser ERROR   The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s useEffect [false, false, , function dispatchSetState() {
+    [native code]
+}, (target)=>{
+        if (gameStatus !== "playing") return;
+        setHoveredTarget(null);
+        // Determine hit ratio based on zone
+        let hitRatio;
+        if (target.zone === "T") {
+            hitRatio = hitRatioSettings.triple;
+        } else if (target.zone === "D") {
+            hitRatio = hitRatioSettings.double;
+        } else {
+            hitRatio = hitRatioSettings.single;
+        }
+        const result = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$checkout$2d$logic$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["simulateThrow"])(target, pendingScore, hitRatio);
+        const newScore = pendingScore - result.score;
+        // Track last throw for learning mode
+        setLastThrow({
+            aimed: target,
+            hit: result.hit,
+            wasAccurate: result.wasAccurate
+        });
+        // Show toast notification for the throw
+        // Use consistent toastId to replace previous toast instead of stacking
+        if (result.wasAccurate) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(`You hit ${target.label}!`, {
+                description: `Scored ${result.score} points`,
+                id: "throw-result"
+            });
+        } else {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(`You missed ${target.label}`, {
+                description: `Hit ${result.hit.label} instead (${result.score} points)`,
+                id: "throw-result"
+            });
+        }
+        const optimalRoutes = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$checkout$2d$logic$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getOptimalCheckouts"])(pendingScore);
+        const wasOptimal = optimalRoutes.some((route)=>route.some((t)=>t.label === target.label));
+        setSessionStats((prev)=>({
+                accurateHits: result.wasAccurate ? prev.accurateHits + 1 : prev.accurateHits,
+                totalDarts: prev.totalDarts + 1,
+                optimalDecisions: wasOptimal ? prev.optimalDecisions + 1 : prev.optimalDecisions,
+                totalDecisions: prev.totalDecisions + 1
+            }));
+        setPendingScore(newScore);
+        const newDartsThrown = dartsThrown + 1;
+        if (newScore < 0 || newScore === 1) {
+            setGameStatus("bust");
+            setScoreBeforeBust(pendingScore);
+            setDartHistory((prev)=>[
+                    ...prev,
+                    result
+                ]);
+            setDartsThrown(newDartsThrown);
+            setUserRoute((prev)=>[
+                    ...prev,
+                    target
+                ]);
+            setCurrentScore(newScore);
+            saveGameSession(newDartsThrown, false);
+            setGameCompleteDialog(true);
+            return;
+        }
+        if (newScore === 0 && (result.hit.zone === "D" || result.hit.zone === "BULL")) {
+            setGameStatus("won");
+            setDartHistory((prev)=>[
+                    ...prev,
+                    result
+                ]);
+            setDartsThrown(newDartsThrown);
+            setUserRoute((prev)=>[
+                    ...prev,
+                    target
+                ]);
+            setCurrentScore(0);
+            saveGameSession(newDartsThrown, true);
+            setGameCompleteDialog(true);
+            return;
+        }
+        if (newScore === 0 && result.hit.zone !== "D" && result.hit.zone !== "BULL") {
+            setGameStatus("bust");
+            setScoreBeforeBust(pendingScore);
+            setDartHistory((prev)=>[
+                    ...prev,
+                    result
+                ]);
+            setDartsThrown(newDartsThrown);
+            setUserRoute((prev)=>[
+                    ...prev,
+                    target
+                ]);
+            setCurrentScore(newScore);
+            saveGameSession(newDartsThrown, false);
+            setGameCompleteDialog(true);
+            return;
+        }
+        if (newDartsThrown % 3 === 0) {
+            setCurrentScore(newScore);
+        } else if (hitRatioSettings.learningMode) {
+            // In learning mode, update current score after each dart to show remaining options
+            setCurrentScore(newScore);
+        }
+        setDartHistory((prev)=>[
+                ...prev,
+                result
+            ]);
+        setDartsThrown(newDartsThrown);
+        setUserRoute((prev)=>[
+                ...prev,
+                target
+            ]);
+    }, -45] [(e)=>{
+            if (disabled) return;
+            const touch = e.touches[0];
+            if (!touch) return;
+            touchStartTimeRef.current = Date.now();
+            hasMovedRef.current = false;
+            shouldPreventClickRef.current = false;
+            const svgPoint = screenToSVG(touch.clientX, touch.clientY);
+            if (svgPoint) {
+                // Show dot and preview immediately
+                setIsTouching(true);
+                isTouchingRef.current = true;
+                setTouchPosition(svgPoint);
+                touchPositionRef.current = svgPoint;
+                // Show preview - use dot position
+                const dotY = svgPoint.y + dotOffsetY;
+                const target = getTargetAtPoint(svgPoint.x, dotY);
+                if (target && onHoverTargetRef.current) {
+                    onHoverTargetRef.current(target);
+                }
+            }
+        }, (e)=>{
+            if (disabled) return;
+            e.preventDefault(); // Prevent scrolling when dragging
+            hasMovedRef.current = true;
+            const touch = e.touches[0];
+            if (!touch) return;
+            const svgPoint = screenToSVG(touch.clientX, touch.clientY);
+            if (svgPoint) {
+                // Ensure dot is visible when moving
+                if (!isTouchingRef.current) {
+                    setIsTouching(true);
+                    isTouchingRef.current = true;
+                }
+                setTouchPosition(svgPoint);
+                touchPositionRef.current = svgPoint;
+                // Update preview as user moves - use dot position
+                const dotY = svgPoint.y + dotOffsetY;
+                const target = getTargetAtPoint(svgPoint.x, dotY);
+                if (target && onHoverTargetRef.current) {
+                    onHoverTargetRef.current(target);
+                } else if (onHoverTargetRef.current) {
+                    onHoverTargetRef.current(null);
+                }
+            }
+        }, (e)=>{
+            if (disabled) return;
+            const holdTime = Date.now() - touchStartTimeRef.current;
+            // If user moved or held for more than 100ms, handle selection here
+            if (hasMovedRef.current || isTouchingRef.current && holdTime > 100) {
+                e.preventDefault();
+                shouldPreventClickRef.current = true;
+                const currentTouchPosition = touchPositionRef.current;
+                if (currentTouchPosition) {
+                    // Use dot position for selection
+                    const dotY = currentTouchPosition.y + dotOffsetY;
+                    const target = getTargetAtPoint(currentTouchPosition.x, dotY);
+                    if (target && onSelectTargetRef.current) {
+                        onSelectTargetRef.current(target);
+                    }
+                }
+                // Reset flag after a short delay
+                setTimeout({
+                    "DartboardSelector.useCallback[handleTouchEnd]": ()=>{
+                        shouldPreventClickRef.current = false;
+                    }
+                }["DartboardSelector.useCallback[handleTouchEnd]"], 100);
+            } else {
+                // Quick tap - let click handler work
+                shouldPreventClickRef.current = false;
+            }
+            setIsTouching(false);
+            isTouchingRef.current = false;
+            setTouchPosition(null);
+            touchPositionRef.current = null;
+            if (onHoverTargetRef.current) {
+                onHoverTargetRef.current(null);
+            }
+        }, ()=>{
+            setIsTouching(false);
+            isTouchingRef.current = false;
+            setTouchPosition(null);
+            touchPositionRef.current = null;
+            hasMovedRef.current = false;
+            shouldPreventClickRef.current = false;
+            if (onHoverTargetRef.current) {
+                onHoverTargetRef.current(null);
+            }
+        }]
+[00:11:58.034] Browser ERROR   The final argument passed to %s changed size between renders. The order and size of this array must remain constant.
+
+Previous: %s
+Incoming: %s useEffect [false, false, , function () { [native code] }, (target)=>{
+        if (gameStatus !== "playing") return;
+        setHoveredTarget(null);
+        // Determine hit ratio based on zone
+        let hitRatio;
+        if (target.zone === "T") {
+            hitRatio = hitRatioSettings.triple;
+        } else if (target.zone === "D") {
+            hitRatio = hitRatioSettings.double;
+        } else {
+            hitRatio = hitRatioSettings.single;
+        }
+        const result = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$checkout$2d$logic$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["simulateThrow"])(target, pendingScore, hitRatio);
+        const newScore = pendingScore - result.score;
+        // Track last throw for learning mode
+        setLastThrow({
+            aimed: target,
+            hit: result.hit,
+            wasAccurate: result.wasAccurate
+        });
+        // Show toast notification for the throw
+        // Use consistent toastId to replace previous toast instead of stacking
+        if (result.wasAccurate) {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].success(`You hit ${target.label}!`, {
+                description: `Scored ${result.score} points`,
+                id: "throw-result"
+            });
+        } else {
+            __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$sonner$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["toast"].error(`You missed ${target.label}`, {
+                description: `Hit ${result.hit.label} instead (${result.score} points)`,
+                id: "throw-result"
+            });
+        }
+        const optimalRoutes = (0, __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$checkout$2d$logic$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["getOptimalCheckouts"])(pendingScore);
+        const wasOptimal = optimalRoutes.some((route)=>route.some((t)=>t.label === target.label));
+        setSessionStats((prev)=>({
+                accurateHits: result.wasAccurate ? prev.accurateHits + 1 : prev.accurateHits,
+                totalDarts: prev.totalDarts + 1,
+                optimalDecisions: wasOptimal ? prev.optimalDecisions + 1 : prev.optimalDecisions,
+                totalDecisions: prev.totalDecisions + 1
+            }));
+        setPendingScore(newScore);
+        const newDartsThrown = dartsThrown + 1;
+        if (newScore < 0 || newScore === 1) {
+            setGameStatus("bust");
+            setScoreBeforeBust(pendingScore);
+            setDartHistory((prev)=>[
+                    ...prev,
+                    result
+                ]);
+            setDartsThrown(newDartsThrown);
+            setUserRoute((prev)=>[
+                    ...prev,
+                    target
+                ]);
+            setCurrentScore(newScore);
+            saveGameSession(newDartsThrown, false);
+            setGameCompleteDialog(true);
+            return;
+        }
+        if (newScore === 0 && (result.hit.zone === "D" || result.hit.zone === "BULL")) {
+            setGameStatus("won");
+            setDartHistory((prev)=>[
+                    ...prev,
+                    result
+                ]);
+            setDartsThrown(newDartsThrown);
+            setUserRoute((prev)=>[
+                    ...prev,
+                    target
+                ]);
+            setCurrentScore(0);
+            saveGameSession(newDartsThrown, true);
+            setGameCompleteDialog(true);
+            return;
+        }
+        if (newScore === 0 && result.hit.zone !== "D" && result.hit.zone !== "BULL") {
+            setGameStatus("bust");
+            setScoreBeforeBust(pendingScore);
+            setDartHistory((prev)=>[
+                    ...prev,
+                    result
+                ]);
+            setDartsThrown(newDartsThrown);
+            setUserRoute((prev)=>[
+                    ...prev,
+                    target
+                ]);
+            setCurrentScore(newScore);
+            saveGameSession(newDartsThrown, false);
+            setGameCompleteDialog(true);
+            return;
+        }
+        if (newDartsThrown % 3 === 0) {
+            setCurrentScore(newScore);
+        } else if (hitRatioSettings.learningMode) {
+            // In learning mode, update current score after each dart to show remaining options
+            setCurrentScore(newScore);
+        }
+        setDartHistory((prev)=>[
+                ...prev,
+                result
+            ]);
+        setDartsThrown(newDartsThrown);
+        setUserRoute((prev)=>[
+                ...prev,
+                target
+            ]);
+    }, -45] [(e)=>{
+            if (disabled) return;
+            const touch = e.touches[0];
+            if (!touch) return;
+            touchStartTimeRef.current = Date.now();
+            hasMovedRef.current = false;
+            shouldPreventClickRef.current = false;
+            const svgPoint = screenToSVG(touch.clientX, touch.clientY);
+            if (svgPoint) {
+                // Show dot and preview immediately
+                setIsTouching(true);
+                isTouchingRef.current = true;
+                setTouchPosition(svgPoint);
+                touchPositionRef.current = svgPoint;
+                // Show preview - use dot position
+                const dotY = svgPoint.y + dotOffsetY;
+                const target = getTargetAtPoint(svgPoint.x, dotY);
+                if (target && onHoverTargetRef.current) {
+                    onHoverTargetRef.current(target);
+                }
+            }
+        }, (e)=>{
+            if (disabled) return;
+            e.preventDefault(); // Prevent scrolling when dragging
+            hasMovedRef.current = true;
+            const touch = e.touches[0];
+            if (!touch) return;
+            const svgPoint = screenToSVG(touch.clientX, touch.clientY);
+            if (svgPoint) {
+                // Ensure dot is visible when moving
+                if (!isTouchingRef.current) {
+                    setIsTouching(true);
+                    isTouchingRef.current = true;
+                }
+                setTouchPosition(svgPoint);
+                touchPositionRef.current = svgPoint;
+                // Update preview as user moves - use dot position
+                const dotY = svgPoint.y + dotOffsetY;
+                const target = getTargetAtPoint(svgPoint.x, dotY);
+                if (target && onHoverTargetRef.current) {
+                    onHoverTargetRef.current(target);
+                } else if (onHoverTargetRef.current) {
+                    onHoverTargetRef.current(null);
+                }
+            }
+        }, (e)=>{
+            if (disabled) return;
+            const holdTime = Date.now() - touchStartTimeRef.current;
+            // If user moved or held for more than 100ms, handle selection here
+            if (hasMovedRef.current || isTouchingRef.current && holdTime > 100) {
+                e.preventDefault();
+                shouldPreventClickRef.current = true;
+                const currentTouchPosition = touchPositionRef.current;
+                if (currentTouchPosition) {
+                    // Use dot position for selection
+                    const dotY = currentTouchPosition.y + dotOffsetY;
+                    const target = getTargetAtPoint(currentTouchPosition.x, dotY);
+                    if (target && onSelectTargetRef.current) {
+                        onSelectTargetRef.current(target);
+                    }
+                }
+                // Reset flag after a short delay
+                setTimeout({
+                    "DartboardSelector.useCallback[handleTouchEnd]": ()=>{
+                        shouldPreventClickRef.current = false;
+                    }
+                }["DartboardSelector.useCallback[handleTouchEnd]"], 100);
+            } else {
+                // Quick tap - let click handler work
+                shouldPreventClickRef.current = false;
+            }
+            setIsTouching(false);
+            isTouchingRef.current = false;
+            setTouchPosition(null);
+            touchPositionRef.current = null;
+            if (onHoverTargetRef.current) {
+                onHoverTargetRef.current(null);
+            }
+        }, ()=>{
+            setIsTouching(false);
+            isTouchingRef.current = false;
+            setTouchPosition(null);
+            touchPositionRef.current = null;
+            hasMovedRef.current = false;
+            shouldPreventClickRef.current = false;
+            if (onHoverTargetRef.current) {
+                onHoverTargetRef.current(null);
+            }
+        }]
+[00:12:44.361] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:12:44.361] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:12:44.691] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:12:44.691] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:12:44.691] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766081112159}
+[00:13:28.162] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:13:28.162] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:13:28.467] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body
+                            className="font-sans antialiased"
+-                           cz-shortcut-listen="true"
+                          >
+                  ...
+
+[00:13:28.467] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:28.467] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:13:28.467] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766081155933}
+[00:13:31.052] Server  WARN     ⚠ Unsupported metadata themeColor is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:13:31.052] Server  WARN     ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+[00:13:31.368] Browser LOG     %c[Vercel Web Analytics]%c Debug mode is enabled by default in development. No requests will be sent to the server. color: rgb(120, 120, 120) color: inherit
+[00:13:31.368] Browser LOG     %c[Vercel Web Analytics]%c Running queued event color: rgb(120, 120, 120) color: inherit pageview {"path":"/","route":"/"}
+[00:13:31.368] Browser LOG     %c[Vercel Web Analytics]%c [pageview] http://localhost:3000/ color: rgb(120, 120, 120) color: inherit {"dp":"/","o":"http://localhost:3000/","r":"","sdkn":"@vercel/analytics/next","sdkv":"1.3.1","sv":"0.1.3","ts":1766081158835}
+[00:13:50.725] Server  LOG      ✓ Compiled in 26ms

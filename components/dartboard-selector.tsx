@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { Card } from "@/components/ui/card"
 import { type DartTarget, DARTBOARD_NUMBERS } from "@/lib/darts-config"
 
@@ -27,10 +27,26 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
   const touchStartTimeRef = useRef<number>(0)
   const hasMovedRef = useRef<boolean>(false)
   const shouldPreventClickRef = useRef<boolean>(false)
+  const isTouchingRef = useRef<boolean>(false)
+  const touchPositionRef = useRef<{ x: number; y: number } | null>(null)
+  const onHoverTargetRef = useRef(onHoverTarget)
+  const onSelectTargetRef = useRef(onSelectTarget)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Keep refs in sync with props
+  useEffect(() => {
+    onHoverTargetRef.current = onHoverTarget
+    onSelectTargetRef.current = onSelectTarget
+  }, [onHoverTarget, onSelectTarget])
+
+  // Keep refs in sync with state
+  useEffect(() => {
+    isTouchingRef.current = isTouching
+    touchPositionRef.current = touchPosition
+  }, [isTouching, touchPosition])
 
   const handleSegmentClick = (zone: "T" | "D" | "S", number: number) => {
     if (disabled) return
@@ -139,7 +155,7 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
   }
 
   // Handle touch start
-  const handleTouchStart = (e: React.TouchEvent<SVGSVGElement>) => {
+  const handleTouchStart = useCallback((e: TouchEvent) => {
     if (disabled) return
     
     const touch = e.touches[0]
@@ -154,19 +170,21 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
     if (svgPoint) {
       // Show dot and preview immediately
       setIsTouching(true)
+      isTouchingRef.current = true
       setTouchPosition(svgPoint)
+      touchPositionRef.current = svgPoint
       
       // Show preview - use dot position
       const dotY = svgPoint.y + dotOffsetY
       const target = getTargetAtPoint(svgPoint.x, dotY)
-      if (target && onHoverTarget) {
-        onHoverTarget(target)
+      if (target && onHoverTargetRef.current) {
+        onHoverTargetRef.current(target)
       }
     }
-  }
+  }, [disabled, dotOffsetY])
 
   // Handle touch move
-  const handleTouchMove = (e: React.TouchEvent<SVGSVGElement>) => {
+  const handleTouchMove = useCallback((e: TouchEvent) => {
     if (disabled) return
     
     e.preventDefault() // Prevent scrolling when dragging
@@ -179,39 +197,42 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
     
     if (svgPoint) {
       // Ensure dot is visible when moving
-      if (!isTouching) {
+      if (!isTouchingRef.current) {
         setIsTouching(true)
+        isTouchingRef.current = true
       }
       setTouchPosition(svgPoint)
+      touchPositionRef.current = svgPoint
       
       // Update preview as user moves - use dot position
       const dotY = svgPoint.y + dotOffsetY
       const target = getTargetAtPoint(svgPoint.x, dotY)
-      if (target && onHoverTarget) {
-        onHoverTarget(target)
-      } else if (onHoverTarget) {
-        onHoverTarget(null)
+      if (target && onHoverTargetRef.current) {
+        onHoverTargetRef.current(target)
+      } else if (onHoverTargetRef.current) {
+        onHoverTargetRef.current(null)
       }
     }
-  }
+  }, [disabled, dotOffsetY])
 
   // Handle touch end
-  const handleTouchEnd = (e: React.TouchEvent<SVGSVGElement>) => {
+  const handleTouchEnd = useCallback((e: TouchEvent) => {
     if (disabled) return
     
     const holdTime = Date.now() - touchStartTimeRef.current
     
     // If user moved or held for more than 100ms, handle selection here
-    if (hasMovedRef.current || (isTouching && holdTime > 100)) {
+    if (hasMovedRef.current || (isTouchingRef.current && holdTime > 100)) {
       e.preventDefault()
       shouldPreventClickRef.current = true
       
-      if (touchPosition) {
+      const currentTouchPosition = touchPositionRef.current
+      if (currentTouchPosition) {
         // Use dot position for selection
-        const dotY = touchPosition.y + dotOffsetY
-        const target = getTargetAtPoint(touchPosition.x, dotY)
-        if (target) {
-          onSelectTarget(target)
+        const dotY = currentTouchPosition.y + dotOffsetY
+        const target = getTargetAtPoint(currentTouchPosition.x, dotY)
+        if (target && onSelectTargetRef.current) {
+          onSelectTargetRef.current(target)
         }
       }
       
@@ -225,24 +246,46 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
     }
     
     setIsTouching(false)
+    isTouchingRef.current = false
     setTouchPosition(null)
+    touchPositionRef.current = null
     
-    if (onHoverTarget) {
-      onHoverTarget(null)
+    if (onHoverTargetRef.current) {
+      onHoverTargetRef.current(null)
     }
-  }
+  }, [disabled, dotOffsetY])
 
   // Handle touch cancel
-  const handleTouchCancel = () => {
+  const handleTouchCancel = useCallback(() => {
     setIsTouching(false)
+    isTouchingRef.current = false
     setTouchPosition(null)
+    touchPositionRef.current = null
     hasMovedRef.current = false
     shouldPreventClickRef.current = false
     
-    if (onHoverTarget) {
-      onHoverTarget(null)
+    if (onHoverTargetRef.current) {
+      onHoverTargetRef.current(null)
     }
-  }
+  }, [])
+
+  // Attach touch event listeners directly to DOM with passive: false
+  useEffect(() => {
+    const svg = svgRef.current
+    if (!svg) return
+
+    svg.addEventListener('touchstart', handleTouchStart, { passive: true })
+    svg.addEventListener('touchmove', handleTouchMove, { passive: false })
+    svg.addEventListener('touchend', handleTouchEnd, { passive: false })
+    svg.addEventListener('touchcancel', handleTouchCancel, { passive: true })
+
+    return () => {
+      svg.removeEventListener('touchstart', handleTouchStart)
+      svg.removeEventListener('touchmove', handleTouchMove)
+      svg.removeEventListener('touchend', handleTouchEnd)
+      svg.removeEventListener('touchcancel', handleTouchCancel)
+    }
+  }, [handleTouchStart, handleTouchMove, handleTouchEnd, handleTouchCancel])
 
   // Use consistent size during SSR to avoid hydration mismatch
   const displaySize = mounted ? size : 100
@@ -259,10 +302,6 @@ export function DartboardSelector({ onSelectTarget, onHoverTarget, disabled, siz
           width: `${displaySize}%`,
           maxWidth: `${maxWidth}px`,
         }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-        onTouchCancel={handleTouchCancel}
       >
         {/* Segments */}
         {segments.map(({ number, angle, segmentAngle, singleColor, doubleTripleColor }) => {
