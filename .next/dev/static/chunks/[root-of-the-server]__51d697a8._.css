@@ -804,6 +804,10 @@
     margin-right: calc(var(--spacing) * 1);
   }
 
+  .mr-1\.5 {
+    margin-right: calc(var(--spacing) * 1.5);
+  }
+
   .mb-1 {
     margin-bottom: calc(var(--spacing) * 1);
   }

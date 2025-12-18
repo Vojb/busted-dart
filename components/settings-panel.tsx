@@ -9,7 +9,8 @@ import { Slider } from "@/components/ui/slider"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import { Target, Moon, Sun, GraduationCap } from "lucide-react"
+import { Target, Moon, Sun, GraduationCap, Settings, Ruler } from "lucide-react"
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 
 interface SettingsPanelProps {
   onSettingsChange?: (settings: HitRatioSettings) => void
@@ -17,7 +18,7 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   const { theme, setTheme, resolvedTheme } = useTheme()
-  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false })
+  const [settings, setSettings] = useState<HitRatioSettings>({ triple: 65, double: 65, single: 85, bullseye: 60, dartboardSize: 100, difficulty: "medium", tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false })
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
   }
 
   const handleReset = () => {
-    const defaultSettings = { triple: 65, double: 65, single: 85, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false }
+    const defaultSettings = { triple: 65, double: 65, single: 85, bullseye: 60, dartboardSize: 100, difficulty: "medium" as Difficulty, tripleInnerRadius: 80, tripleOuterRadius: 95, dotOffsetY: -45, learningMode: false }
     setSettings(defaultSettings)
     saveSettings(defaultSettings)
     onSettingsChange?.(defaultSettings)
@@ -69,234 +70,252 @@ export function SettingsPanel({ onSettingsChange }: SettingsPanelProps) {
 
   return (
     <div className="space-y-3">
-      <Card className="p-3 bg-card/50">
-        <div className="flex items-center justify-between">
-          <Label className="text-xs font-medium flex items-center gap-2">
-            {currentTheme === "dark" ? <Moon className="size-3.5" /> : <Sun className="size-3.5" />}
-            Theme
-          </Label>
-          <Button
-            onClick={toggleTheme}
-            variant="outline"
-            size="sm"
-            className="text-xs h-7"
-          >
-            {currentTheme === "dark" ? (
-              <>
-                <Sun className="size-3 mr-1" />
-                Light
-              </>
-            ) : (
-              <>
-                <Moon className="size-3 mr-1" />
-                Dark
-              </>
-            )}
-          </Button>
-        </div>
-      </Card>
-
-      <Card className="p-3 bg-card/50">
-        <div className="space-y-2">
-          <Label htmlFor="difficulty-select" className="text-xs font-medium">
-            Difficulty
-          </Label>
-          <Select value={settings.difficulty} onValueChange={handleDifficultyChange}>
-            <SelectTrigger id="difficulty-select" size="sm" className="w-full text-xs h-8">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="easy">Easy (1-40)</SelectItem>
-              <SelectItem value="medium">Medium (40-120)</SelectItem>
-              <SelectItem value="hard">Hard (120-170)</SelectItem>
-              <SelectItem value="random">Random (1-170)</SelectItem>
-            </SelectContent>
-          </Select>
-          <p className="text-xs text-muted-foreground">
-            Only scores finishable with 3 darts will be generated
-          </p>
-        </div>
-      </Card>
-
-      <Card className="p-3 bg-card/50">
-        <div className="flex items-center justify-between">
-          <Label htmlFor="learning-mode-switch" className="text-xs font-medium flex items-center gap-2">
-            <GraduationCap className="size-3.5" />
-            Learning Mode
-          </Label>
-          <Switch
-            id="learning-mode-switch"
-            checked={settings.learningMode}
-            onCheckedChange={handleLearningModeChange}
-          />
-        </div>
-        <p className="text-xs text-muted-foreground mt-2">
-          Show remaining checkout options after each dart. Streaks are disabled in learning mode.
-        </p>
-      </Card>
-
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold flex items-center gap-2">
-          <Target className="size-3.5" />
-          Hit Ratio Settings
-        </h3>
+        <h3 className="text-sm font-semibold">Settings</h3>
         <Button onClick={handleReset} variant="ghost" size="sm" className="text-xs h-7">
-          Reset
+          Reset All
         </Button>
       </div>
 
-      <Card className="p-3 space-y-4 bg-card/50">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="size-slider" className="text-xs font-medium">
-              Dartboard Size
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.dartboardSize}%</span>
-          </div>
-          <Slider
-            id="size-slider"
-            min={60}
-            max={150}
-            step={10}
-            value={[settings.dartboardSize]}
-            onValueChange={(value) => handleSettingChange("dartboardSize", value[0])}
-            className="w-full"
-          />
-        </div>
+      <Tabs defaultValue="hit-ratio" className="w-full">
+        <TabsList className="w-full grid grid-cols-3">
+          <TabsTrigger value="hit-ratio" className="text-xs">
+            <Target className="size-3.5 mr-1.5" />
+            Hit Ratio
+          </TabsTrigger>
+          <TabsTrigger value="system" className="text-xs">
+            <Settings className="size-3.5 mr-1.5" />
+            System
+          </TabsTrigger>
+          <TabsTrigger value="sizes" className="text-xs">
+            <Ruler className="size-3.5 mr-1.5" />
+            Sizes
+          </TabsTrigger>
+        </TabsList>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="triple-slider" className="text-xs font-medium">
-              Triple
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.triple}%</span>
-          </div>
-          <Slider
-            id="triple-slider"
-            min={10}
-            max={100}
-            step={5}
-            value={[settings.triple]}
-            onValueChange={(value) => handleSettingChange("triple", value[0])}
-            className="w-full"
-          />
-        </div>
+        <TabsContent value="hit-ratio" className="mt-3 space-y-3">
+          <Card className="p-3 space-y-4 bg-card/50">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="triple-slider" className="text-xs font-medium">
+                  Triple
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.triple}%</span>
+              </div>
+              <Slider
+                id="triple-slider"
+                min={10}
+                max={100}
+                step={5}
+                value={[settings.triple]}
+                onValueChange={(value) => handleSettingChange("triple", value[0])}
+                className="w-full"
+              />
+            </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="double-slider" className="text-xs font-medium">
-              Double
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.double}%</span>
-          </div>
-          <Slider
-            id="double-slider"
-            min={10}
-            max={100}
-            step={5}
-            value={[settings.double]}
-            onValueChange={(value) => handleSettingChange("double", value[0])}
-            className="w-full"
-          />
-        </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="double-slider" className="text-xs font-medium">
+                  Double
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.double}%</span>
+              </div>
+              <Slider
+                id="double-slider"
+                min={10}
+                max={100}
+                step={5}
+                value={[settings.double]}
+                onValueChange={(value) => handleSettingChange("double", value[0])}
+                className="w-full"
+              />
+            </div>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="single-slider" className="text-xs font-medium">
-              Single
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.single}%</span>
-          </div>
-          <Slider
-            id="single-slider"
-            min={10}
-            max={100}
-            step={5}
-            value={[settings.single]}
-            onValueChange={(value) => handleSettingChange("single", value[0])}
-            className="w-full"
-          />
-        </div>
-      </Card>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="single-slider" className="text-xs font-medium">
+                  Single
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.single}%</span>
+              </div>
+              <Slider
+                id="single-slider"
+                min={10}
+                max={100}
+                step={5}
+                value={[settings.single]}
+                onValueChange={(value) => handleSettingChange("single", value[0])}
+                className="w-full"
+              />
+            </div>
 
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold flex items-center gap-2">
-          <Target className="size-3.5" />
-          Triple Ring Size
-        </h3>
-      </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="bullseye-slider" className="text-xs font-medium">
+                  Double Bullseye
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.bullseye}%</span>
+              </div>
+              <Slider
+                id="bullseye-slider"
+                min={10}
+                max={100}
+                step={5}
+                value={[settings.bullseye]}
+                onValueChange={(value) => handleSettingChange("bullseye", value[0])}
+                className="w-full"
+              />
+            </div>
+          </Card>
+        </TabsContent>
 
-      <Card className="p-3 space-y-4 bg-card/50">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="triple-inner-radius-slider" className="text-xs font-medium">
-              Triple Inner Radius
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.tripleInnerRadius}</span>
-          </div>
-          <Slider
-            id="triple-inner-radius-slider"
-            min={50}
-            max={90}
-            step={1}
-            value={[settings.tripleInnerRadius]}
-            onValueChange={(value) => handleSettingChange("tripleInnerRadius", value[0])}
-            className="w-full"
-          />
-        </div>
+        <TabsContent value="system" className="mt-3 space-y-3">
+          <Card className="p-3 bg-card/50">
+            <div className="flex items-center justify-between">
+              <Label className="text-xs font-medium flex items-center gap-2">
+                {currentTheme === "dark" ? <Moon className="size-3.5" /> : <Sun className="size-3.5" />}
+                Theme
+              </Label>
+              <Button
+                onClick={toggleTheme}
+                variant="outline"
+                size="sm"
+                className="text-xs h-7"
+              >
+                {currentTheme === "dark" ? (
+                  <>
+                    <Sun className="size-3 mr-1" />
+                    Light
+                  </>
+                ) : (
+                  <>
+                    <Moon className="size-3 mr-1" />
+                    Dark
+                  </>
+                )}
+              </Button>
+            </div>
+          </Card>
 
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="triple-outer-radius-slider" className="text-xs font-medium">
-              Triple Outer Radius
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.tripleOuterRadius}</span>
-          </div>
-          <Slider
-            id="triple-outer-radius-slider"
-            min={90}
-            max={130}
-            step={1}
-            value={[settings.tripleOuterRadius]}
-            onValueChange={(value) => handleSettingChange("tripleOuterRadius", value[0])}
-            className="w-full"
-          />
-        </div>
-      </Card>
+          <Card className="p-3 bg-card/50">
+            <div className="space-y-2">
+              <Label htmlFor="difficulty-select" className="text-xs font-medium">
+                Difficulty
+              </Label>
+              <Select value={settings.difficulty} onValueChange={handleDifficultyChange}>
+                <SelectTrigger id="difficulty-select" size="sm" className="w-full text-xs h-8">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="easy">Easy (1-40)</SelectItem>
+                  <SelectItem value="medium">Medium (40-120)</SelectItem>
+                  <SelectItem value="hard">Hard (120-170)</SelectItem>
+                  <SelectItem value="random">Random (1-170)</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-muted-foreground">
+                Only scores finishable with 3 darts will be generated
+              </p>
+            </div>
+          </Card>
 
-      <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold flex items-center gap-2">
-          <Target className="size-3.5" />
-          Touch Indicator
-        </h3>
-      </div>
+          <Card className="p-3 bg-card/50">
+            <div className="flex items-center justify-between">
+              <Label htmlFor="learning-mode-switch" className="text-xs font-medium flex items-center gap-2">
+                <GraduationCap className="size-3.5" />
+                Learning Mode
+              </Label>
+              <Switch
+                id="learning-mode-switch"
+                checked={settings.learningMode}
+                onCheckedChange={handleLearningModeChange}
+              />
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Show remaining checkout options after each dart. Streaks are disabled in learning mode.
+            </p>
+          </Card>
+        </TabsContent>
 
-      <Card className="p-3 space-y-4 bg-card/50">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <Label htmlFor="dot-offset-slider" className="text-xs font-medium">
-              Dot Position Offset
-            </Label>
-            <span className="text-xs font-semibold text-muted-foreground">{settings.dotOffsetY}</span>
-          </div>
-          <Slider
-            id="dot-offset-slider"
-            min={-100}
-            max={0}
-            step={1}
-            value={[settings.dotOffsetY]}
-            onValueChange={(value) => handleSettingChange("dotOffsetY", value[0])}
-            className="w-full"
-          />
-          <p className="text-xs text-muted-foreground">
-            Adjust the vertical position of the touch indicator dot (negative values move it upward)
-          </p>
-        </div>
-      </Card>
+        <TabsContent value="sizes" className="mt-3 space-y-3">
+          <Card className="p-3 space-y-4 bg-card/50">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="size-slider" className="text-xs font-medium">
+                  Dartboard Size
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.dartboardSize}%</span>
+              </div>
+              <Slider
+                id="size-slider"
+                min={60}
+                max={150}
+                step={10}
+                value={[settings.dartboardSize]}
+                onValueChange={(value) => handleSettingChange("dartboardSize", value[0])}
+                className="w-full"
+              />
+            </div>
 
-      <p className="text-xs text-muted-foreground">
-        Adjust dartboard size and hit ratios to match your skill level or practice at different difficulties.
-      </p>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="triple-inner-radius-slider" className="text-xs font-medium">
+                  Triple Inner Radius
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.tripleInnerRadius}</span>
+              </div>
+              <Slider
+                id="triple-inner-radius-slider"
+                min={50}
+                max={90}
+                step={1}
+                value={[settings.tripleInnerRadius]}
+                onValueChange={(value) => handleSettingChange("tripleInnerRadius", value[0])}
+                className="w-full"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="triple-outer-radius-slider" className="text-xs font-medium">
+                  Triple Outer Radius
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.tripleOuterRadius}</span>
+              </div>
+              <Slider
+                id="triple-outer-radius-slider"
+                min={90}
+                max={130}
+                step={1}
+                value={[settings.tripleOuterRadius]}
+                onValueChange={(value) => handleSettingChange("tripleOuterRadius", value[0])}
+                className="w-full"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="dot-offset-slider" className="text-xs font-medium">
+                  Dot Position Offset
+                </Label>
+                <span className="text-xs font-semibold text-muted-foreground">{settings.dotOffsetY}</span>
+              </div>
+              <Slider
+                id="dot-offset-slider"
+                min={-100}
+                max={0}
+                step={1}
+                value={[settings.dotOffsetY]}
+                onValueChange={(value) => handleSettingChange("dotOffsetY", value[0])}
+                className="w-full"
+              />
+              <p className="text-xs text-muted-foreground">
+                Adjust the vertical position of the touch indicator dot (negative values move it upward)
+              </p>
+            </div>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }

@@ -81,6 +81,8 @@ export default function DartsTrainingApp() {
       hitRatio = hitRatioSettings.triple
     } else if (target.zone === "D") {
       hitRatio = hitRatioSettings.double
+    } else if (target.zone === "BULL") {
+      hitRatio = hitRatioSettings.bullseye
     } else {
       hitRatio = hitRatioSettings.single
     }

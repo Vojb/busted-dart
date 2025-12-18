@@ -33,6 +33,7 @@ export interface HitRatioSettings {
   triple: number
   double: number
   single: number
+  bullseye: number
   dartboardSize: number
   difficulty: Difficulty
   tripleInnerRadius: number
@@ -149,6 +150,7 @@ export function loadSettings(): HitRatioSettings {
       ...defaults,
       ...parsed,
       difficulty: parsed.difficulty || defaults.difficulty,
+      bullseye: parsed.bullseye ?? defaults.bullseye,
       tripleInnerRadius: parsed.tripleInnerRadius ?? defaults.tripleInnerRadius,
       tripleOuterRadius: parsed.tripleOuterRadius ?? defaults.tripleOuterRadius,
       dotOffsetY: parsed.dotOffsetY ?? defaults.dotOffsetY,
@@ -193,6 +195,7 @@ function getDefaultSettings(): HitRatioSettings {
     triple: 65,
     double: 65,
     single: 85,
+    bullseye: 60,
     dartboardSize: 100,
     difficulty: "medium",
     tripleInnerRadius: 80,
