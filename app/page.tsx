@@ -222,6 +222,27 @@ export default function DartsTrainingApp() {
     })
   }
 
+  const handleTryAgain = () => {
+    setSheetOpen(false)
+    setGameCompleteDialog(false)
+    // Reset to the same starting score
+    setCurrentScore(startingScore)
+    setPendingScore(startingScore)
+    setDartsThrown(0)
+    setDartHistory([])
+    setGameStatus("playing")
+    setUserRoute([])
+    setHoveredTarget(null)
+    setScoreBeforeBust(null)
+    setLastThrow(undefined)
+    setSessionStats({
+      accurateHits: 0,
+      totalDarts: 0,
+      optimalDecisions: 0,
+      totalDecisions: 0,
+    })
+  }
+
   const handleClearProgress = () => {
     if (confirm("Are you sure you want to clear all progress data? This cannot be undone.")) {
       clearProgress()
@@ -530,7 +551,12 @@ export default function DartsTrainingApp() {
               ) : null
             })()}
             <DialogFooter className="gap-2 sm:gap-0">
-              <Button onClick={handleReset} className="w-full sm:w-auto">
+              {gameStatus === "bust" && (
+                <Button onClick={handleTryAgain} variant="default" className="w-full sm:w-auto">
+                  Try Again
+                </Button>
+              )}
+              <Button onClick={handleReset} variant={gameStatus === "bust" ? "outline" : "default"} className="w-full sm:w-auto">
                 New Game
               </Button>
             </DialogFooter>

@@ -73,7 +73,9 @@ export function isFinishable(score: number, dartsRemaining: number): boolean {
     return score <= 110
   }
 
-  // For 1 dart: max is 50 (Bull or any double up to D25), must be even
+  // For 1 dart: max is 50 (Bull/D25 or any double from D1 to D20), must be even
+  // Note: D20 is the highest regular double (40 points), D25 is the bull (50 points)
+  // There are no doubles between 20 and 25 (no D21, D22, D23, D24)
   if (dartsRemaining === 1) {
     return score <= 50 && score % 2 === 0
   }
